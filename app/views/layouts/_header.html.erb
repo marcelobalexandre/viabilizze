@@ -1,12 +1,25 @@
 <header>
   <% if current_page?(root_path) then%>
-    <div class="icon-bar seven-up">
-      <a class="item active">
-        <%= icon 'building' %>
-      </a>    
-      <%= link_to(destroy_user_session_path, :method => :delete, class: 'item right') do %>
-        <%= icon 'sign-out' %>
-      <% end %>    
+    <div class="show-for-small-only">
+      <div class="icon-bar five-up">
+        <a class="item active">
+          <%= icon 'building' %>
+        </a>    
+        <%= link_to(destroy_user_session_path, :method => :delete, class: 'item right') do %>
+          <%= icon 'sign-out' %>
+        <% end %>    
+      </div>
+    </div>
+
+    <div class="show-for-medium-up">
+      <div class="icon-bar eight-up">
+        <a class="item active">
+          <%= icon 'building' %>
+        </a>    
+        <%= link_to(destroy_user_session_path, :method => :delete, class: 'item right') do %>
+          <%= icon 'sign-out' %>
+        <% end %>    
+      </div>
     </div>
   <% end %>
 </header>
