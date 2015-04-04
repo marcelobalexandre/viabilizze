@@ -26,9 +26,7 @@ module AuthenticationHelper
     click_button "Criar Conta"
 
     @user = User.where(email: @visitor[:email]).first
-  end
-
-  
+  end  
 
   def sign_in(remember_me = false)
     visit '/pt-BR/users/sign_in'
@@ -36,7 +34,21 @@ module AuthenticationHelper
     fill_in "user_password", with: @visitor[:password]
     check "user_remember_me" if remember_me
     click_button "Entrar"
-  end  
+  end
+
+  def sign_in_with_remember_me_checked  
+    sign_in(true)
+  end
+
+  def sign_in_with_remember_me_unchecked
+    sign_in(false)
+  end
+
+  def request_password_reset_with_email
+    visit '/pt-BR/users/password/new'
+    fill_in "user_email", with: @user[:email]
+  end
 end
 
 World(AuthenticationHelper) if respond_to?(:World)
+World(ShowMeTheCookies) if respond_to?(:World)

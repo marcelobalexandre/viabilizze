@@ -1,15 +1,48 @@
-<h2>Forgot your password?</h2>
+<div class="row">
+  <div class="small-12 medium-12 large-12 columns logo">
+    <i class="fi-graph-trend logo-icon"></i>
+    <h1>Viabilizze</h1>
+  </div>
+</div>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+  <div class="row">
+    <div class="small-12 medium-6 medium-offset-3 large-6 large-offset-3 columns">
+      <div class="panel">
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns text-center">
+            <h4>Esqueceu sua senha?</h4>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns text-center">
+            <p>Não se preocupe. Insira seu endereço de e-mail abaixo e enviaremos algumas instruções.</p>
+          </div>
+        </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+        <div class="row collapse">
+          <div class="small-2 medium-2 large-1 columns">
+            <span class="prefix field-icon fi-mail"></span>
+          </div>
+          <div class="small-10 medium-10 large-11 columns">
+            <div class="<%= "error" if resource.errors[:email].any? %>">
+              <%= f.email_field :email, placeholder: "E-mail", autofocus: true %>
+
+              <% if resource.errors[:email].any? %>
+                <small class="error"><%= resource.errors.full_messages_for(:email).first %></small>
+              <% end %>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <%= f.submit "Redefinir Senha", class: "button expand" %>
+          </div>
+        </div>        
+      </div>
+    </div>
   </div>
 <% end %>
 

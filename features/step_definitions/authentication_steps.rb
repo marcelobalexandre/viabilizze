@@ -11,6 +11,23 @@ Given(/^que estou cadastrado$/) do
   create_user
 end
 
+Given(/^que me conectei com lembrar\-me marcado$/) do
+  create_user
+  sign_in_with_remember_me_checked
+end
+
+Given(/^que me conectei com lembrar\-me desmarcado$/) do
+  create_user
+  sign_in_with_remember_me_unchecked
+end
+
+Given(/^que solicitei o reset da minha senha com o e\-mail$/) do
+  create_user
+  visit '/pt-BR/users/sign_out'
+  request_password_reset_with_email
+  click_button "Redefinir Senha"
+end
+
 When(/^me inscrevo com dados válidos$/) do
   create_visitor
   sign_up
@@ -48,6 +65,14 @@ end
 When(/^me conectar com um e\-mail incorreto$/) do
   @visitor = @visitor.merge(:email => "wrong@example.com")
   sign_in
+end
+
+When(/^fechar meu navegador$/) do
+  expire_cookies
+end
+
+When(/^abrir meu navegador novamente$/) do
+  visit '/pt-BR'
 end
 
 When(/^me conectar com uma senha incorreta$/) do
@@ -93,4 +118,8 @@ Then(/^devo estar conectado$/) do
   expect(page).to have_xpath("//a[@href='/pt-BR/users/sign_out']")
   expect(page).to_not have_content "Entrar"
   expect(page).to_not have_content "Não tem uma conta? Criar Conta"
+end
+
+Then(/^devo receber um e\-mail com as instruções do reset\.$/) do
+  unread_emails_for(@user.email).should be_present
 end
