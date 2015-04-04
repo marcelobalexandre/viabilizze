@@ -1,25 +1,63 @@
-<h2>Log in</h2>
+<div class="row">
+  <div class="small-12 medium-12 large-12 columns logo">
+    <i class="fi-graph-trend logo-icon"></i>
+  </div>
+</div>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <div class="row">
+    <div class="small-12 medium-6 medium-offset-3 large-6 large-offset-3 columns">
+      <div class="panel">
+        <div class="row collapse">
+          <div class="small-2 medium-2 large-1 columns">
+            <span class="prefix field-icon fi-mail"></span>
+          </div>
+          <div class="small-10 medium-10 large-11 columns">
+            <div class="<%= "error" if resource.errors[:email].any? %>">
+              <%= f.email_field :email, placeholder: "E-mail", autofocus: true %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+              <% if resource.errors[:email].any? %>
+                <small class="error"><%= resource.errors.full_messages_for(:email).first %></small>
+              <% end %>
+            </div>
+          </div>
+        </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+        <div class="row collapse">
+          <div class="small-2 medium-2 large-1 columns">
+            <span class="prefix field-icon fi-lock"></span>
+          </div>
+          <div class="small-10 medium-10 large-11 columns">
+            <div class="<%= "error" if resource.errors[:password].any? %>">
+              <%= f.password_field :password, placeholder: "Senha", autocomplete: "off" %>
+
+              <% if resource.errors[:password].any? %>
+                <small class="error"><%= resource.errors.full_messages_for(:password).first %></small>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="small-10 small-offset-2 medium-10 medium-offset-2 large-11 large-offset-1 columns">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        </div>
+  
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <%= f.submit "Entrar", class: "button expand" %>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="smaal-12 medium-12 large-12 columns text-center">
+            <%= link_to "Esqueceu sua senha?", new_password_path(resource_name) %>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
 <% end %>
 

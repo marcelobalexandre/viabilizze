@@ -10,8 +10,9 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'foundation-rails'
-gem 'devise'
 gem 'foundation-icons-sass-rails'
+gem 'font-awesome-sass'
+gem 'devise'
 
 group :development, :test do
   gem 'sqlite3'

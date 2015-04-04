@@ -9,10 +9,10 @@ pt-BR:
     failure:
       already_authenticated: "Você já está logado."
       inactive: "Sua conta ainda não foi ativada."
-      invalid: "Email ou senha inválidos."
+      invalid: "E-mail ou senha inválidos."
       locked: "Sua conta está travada."
       last_attempt: "Você tem mais uma tentativa antes que sua conta seja travada."
-      not_found_in_database: "Email ou senha inválidos."
+      not_found_in_database: "E-mail ou senha inválidos."
       timeout: "Para sua segurança sua sessão expirou. Por favor, faça login novamente."
       unauthenticated: "Você precisa se logar ou registrar antes de prosseguir."
       unconfirmed: "Você precisa confirmar sua conta antes de prosseguir."

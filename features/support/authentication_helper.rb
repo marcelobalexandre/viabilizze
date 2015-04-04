@@ -6,6 +6,17 @@ module AuthenticationHelper
                  password_confirmation: "password" }
   end
 
+  def create_user
+    create_visitor
+    delete_user
+    @user = FactoryGirl.create(:user, @visitor)
+  end
+
+  def delete_user
+    @user ||= User.where(email: @visitor[:email]).first
+    @user.destroy unless @user.nil?
+  end
+
   def sign_up
     visit '/pt-BR/users/sign_up'
     fill_in "user_name", with: @visitor[:name]
@@ -16,6 +27,16 @@ module AuthenticationHelper
 
     @user = User.where(email: @visitor[:email]).first
   end
+
+  
+
+  def sign_in(remember_me = false)
+    visit '/pt-BR/users/sign_in'
+    fill_in "user_email", with: @visitor[:email]
+    fill_in "user_password", with: @visitor[:password]
+    check "user_remember_me" if remember_me
+    click_button "Entrar"
+  end  
 end
 
 World(AuthenticationHelper) if respond_to?(:World)

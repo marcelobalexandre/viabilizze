@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_locale
   before_filter :configure_devise_permitted_parameters, if: :devise_controller?
-
+  
   protected
 
   def set_locale

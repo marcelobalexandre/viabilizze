@@ -2,6 +2,15 @@ Given(/^que não estou conectado ao site$/) do
   visit '/pt-BR/users/sign_out'
 end
 
+Given(/^que não estou cadastrado$/) do
+  create_visitor
+  delete_user
+end
+
+Given(/^que estou cadastrado$/) do
+  create_user
+end
+
 When(/^me inscrevo com dados válidos$/) do
   create_visitor
   sign_up
@@ -31,6 +40,21 @@ When(/^me inscrevo com a confirmação da senha diferente da senha$/) do
   sign_up
 end
 
+When(/^me conectar com e\-mail e senha válidos$/) do
+  create_visitor
+  sign_in
+end
+
+When(/^me conectar com um e\-mail incorreto$/) do
+  @visitor = @visitor.merge(:email => "wrong@example.com")
+  sign_in
+end
+
+When(/^me conectar com uma senha incorreta$/) do
+  @visitor = @visitor.merge(:password => "wrongpassword")
+  sign_in
+end
+
 Then(/^devo ver uma mensagem de conta criada com sucesso$/) do
   expect(page).to have_content "Bem-vindo! Sua conta foi criada com sucesso."
 end
@@ -49,4 +73,24 @@ end
 
 Then(/^devo ver uma mensagem de confirmação incorreta$/) do
   expect(page).to have_content "Confirmação de senha não é igual a Senha"
+end
+
+Then(/^devo ver uma mensagem de conexão inválida$/) do
+  expect(page).to have_content "E-mail ou senha inválidos."
+end
+
+Then(/^devo estar desconectado$/) do
+  expect(page).to have_button "Entrar"
+  expect(page).to have_content "Não tem uma conta? Criar Conta"
+  expect(page).to_not have_content "Sair"
+end
+
+Then(/^devo ver uma mensagem de conexão realizada com sucesso$/) do
+  expect(page).to have_content "Conectado com sucesso."
+end
+
+Then(/^devo estar conectado$/) do
+  expect(page).to have_xpath("//a[@href='/pt-BR/users/sign_out']")
+  expect(page).to_not have_content "Entrar"
+  expect(page).to_not have_content "Não tem uma conta? Criar Conta"
 end

@@ -20,3 +20,8 @@ p.create-user-agreement {
   line-height: 0.8em;
   margin-top: 1em; 
 }
+
+.custom-menu-icon {
+  font-size: 1.8em;
+  line-height: 0em;
+}
