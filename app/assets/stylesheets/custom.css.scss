@@ -1,24 +1,23 @@
 .logo {
-  text-align: center;
-
-  h1 {
-    margin-top: -0.6em;
-    font-weight: bold;
+  i {
+    font-size: 8em;
+    line-height: 0;
   }
-}
-
-.logo-icon {
-  font-size: 8em;
-  line-height: 0.8em;
-}
-
-.signup {
-  margin-bottom: 0.8em;
-  text-align: center;
+  
+  h1 {
+    font-weight: bold;
+    margin-top: -0.6em;
+    margin-bottom: 0.6em;
+  }
 }
 
 .prefix.field-icon {
   font-size: 1.6em;
+}
+
+.signup {
+  margin-top: -0.4em;
+  margin-bottom: 0.6em;
 }
 
 p.create-user-agreement {
@@ -26,7 +25,4 @@ p.create-user-agreement {
   margin-top: 1em; 
 }
 
-.custom-menu-icon {
-  font-size: 1.8em;
-  line-height: 0em;
-}
+
