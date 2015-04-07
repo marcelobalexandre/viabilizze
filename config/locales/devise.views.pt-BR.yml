@@ -1,0 +1,49 @@
+pt-BR:
+  devise:
+    mailer:
+      reset_password_instructions:
+        hello: "Olá"
+        instructions: "Alguém solicitou um link para alterar sua senha. Você pode fazer isso através do link abaixo."
+        edit_password: "Alterar minha senha"
+        ignore: "Se você não solicitou esse link, por favor ignore este e-mail."
+        notice: "Sua senha não será alterada até que acesse o link acima e crie uma nova senha."
+    passwords:
+      edit:
+        title: "Redefinir Senha"
+        form_title: "Altere sua senha"
+        password_field_placeholder: "Nova senha"
+        password_confirmation_field_placeholder: "Confirmação de nova senha"
+        submit: "Redefinir Senha"
+      new:
+        title: "Redefinir Senha"
+        form_title: "Esqueceu sua senha?"
+        form_instructions: "Não se preocupe. Insira seu endereço de e-mail abaixo e enviaremos algumas instruções."
+        email_field_placeholder: "E-mail"
+        submit: "Redefinir Senha"
+    registrations:
+      new:
+        title: "Criar Conta"
+        form_title: "Crie sua conta de graça"
+        name_field_placeholder: "Nome"
+        email_field_placeholder: "E-mail"
+        password_field_placeholder: "Senha"
+        password_confirmation_field_placeholder: "Confirmação de senha"
+        submit: "Criar Conta"
+        terms_first_line: "Ao criar uma conta você concorda com nossos"
+        terms_of_use_link: "Termos de Uso"
+        terms_second_line: "e nossa"
+        privacy_policy_link: "Política de Privacidade"
+    sessions:
+      new:
+        title: "Entrar"
+        email_field_placeholder: "E-mail"
+        password_field_placeholder: "Senha"
+        submit: "Entrar"
+        new_password_path_link: "Esqueceu sua senha?"
+    shared:
+      links:
+        new_session_text: "Já tem uma conta?"
+        new_session_path_link: "Entrar"
+        new_registration_text: "Não tem uma conta?"
+        new_registration_path_link: "Criar Conta"
+        new_password_path_link: "Esqueceu sua senha?"

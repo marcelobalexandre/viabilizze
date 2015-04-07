@@ -1,4 +1,4 @@
-<% provide :title, "Redefinir Senha" %>
+<% provide :title, t('.title') %>
 
 <%= render 'shared/logo' %>
 
@@ -8,7 +8,7 @@
       <div class="panel">
         <div class="row collapse">
           <div class="small-12 medium-12 large-12 columns text-center">
-            <h4>Altere sua senha</h4>
+            <h4><%= t('.form_title') %></h4>
           </div>
         </div>
 
@@ -30,7 +30,7 @@
           </div>
           <div class="small-10 medium-10 large-11 columns">
             <div class="<%= "error" if resource.errors[:password].any? %>">
-              <%= f.password_field :password, placeholder: "Nova senha", autofocus: true, autocomplete: "off" %>
+              <%= f.password_field :password, placeholder: t('.password_field_placeholder'), autofocus: true, autocomplete: "off" %>
 
               <% if resource.errors[:password].any? %>
                 <small class="error"><%= resource.errors.full_messages_for(:password).first %></small>
@@ -45,7 +45,7 @@
           </div>
           <div class="small-10 medium-10 large-11 columns">
             <div class="<%= "error" if resource.errors[:password_confirmation].any? %>">
-              <%= f.password_field :password_confirmation, placeholder: "Confirmação de nova senha", autocomplete: "off" %>
+              <%= f.password_field :password_confirmation, placeholder: t('.password_confirmation_field_placeholder'), autocomplete: "off" %>
 
               <% if resource.errors[:password_confirmation].any? %>
                 <small class="error"><%= resource.errors.full_messages_for(:password_confirmation).first %></small>
@@ -56,7 +56,7 @@
   
         <div class="row collapse">
           <div class="small-12 medium-12 large-12 columns">
-            <%= f.submit "Redefinir Senha", class: "button expand" %>
+            <%= f.submit t('.submit'), class: "button expand" %>
           </div>
         </div>        
       </div>

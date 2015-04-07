@@ -1,0 +1,48 @@
+en:
+  devise:
+    mailer:
+      reset_password_instructions:
+        hello: "Hello"
+        instructions: "Someone has requested a link to change your password. You can do this through the link below."
+        edit_password: "Change my password"
+        ignore: "If you didn't request this, please ignore this email."
+        notice: "Your password won't change until you access the link above and create a new one."
+    passwords:
+      edit:
+        title: "Change Password"
+        form_title: "Change your password"
+        password_field_placeholder: "Password"
+        password_confirmation_field_placeholder: "Password confirmation"
+        submit: "Change Password"
+      new:
+        title: "Change Password"
+        form_title: "Forgot your password?"
+        form_instructions: "Don't worry. Just enter your email address below and we'll send you some instructions."
+        email_field_placeholder: "E-mail"
+        submit: "Change Password"
+    registrations:
+      new:
+        title: "Create Account"
+        form_title: "Create your account for free"
+        name_field_placeholder: "Name"
+        email_field_placeholder: "E-mail"
+        password_field_placeholder: "Password"
+        password_confirmation_field_placeholder: "Password confirmation"
+        submit: "Create Account"
+        terms_first_line: "By creating an account you agree to our"
+        terms_of_use_link: "Terms of Use"
+        terms_second_line: "and"
+        privacy_policy_link: "Privacy Policy"
+    sessions:
+      new:
+        title: "Sign In"
+        email_field_placeholder: "E-mail"
+        password_field_placeholder: "Password"
+        submit: "Sign In"
+        new_password_path_link: "Forgot your password?"
+    shared:
+      links:
+        new_session_text: "Have an account already?"
+        new_session_path_link: "Sign In"
+        new_registration_text: "Don’t have an account?"
+        new_registration_path_link: "Create Account"

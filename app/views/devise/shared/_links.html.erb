@@ -1,7 +1,7 @@
 <%- if controller_name != 'sessions' %>
   <div class="row">
     <div class="small-12 medium-6 medium-offset-3 large-6 large-offset-3 columns text-center">
-      Já tem uma conta? <%= link_to "Entrar", new_session_path(resource_name) %>
+      <%= t('.new_session_text') %> <%= link_to t('.new_session_path_link'), new_session_path(resource_name) %>
     </div>
   </div>
 <% end -%>
@@ -9,21 +9,7 @@
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   <div class="row">
     <div class="small-12 medium-6 medium-offset-3 large-6 large-offset-3 columns text-center">
-      Não tem uma conta? <%= link_to "Criar Conta", new_registration_path(resource_name) %>
+      <%= t('.new_registration_text') %> <%= link_to t('.new_registration_path_link'), new_registration_path(resource_name) %>
     </div>
   </div>  
-<% end -%>
-
-<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
-<% end -%>
-
-<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
-<% end -%>
-
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
-  <% end -%>
 <% end -%>

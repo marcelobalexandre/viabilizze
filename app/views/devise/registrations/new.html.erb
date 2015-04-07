@@ -1,10 +1,10 @@
-<% provide :title, "Criar Conta" %>
+<% provide :title, t('.title') %>
 
 <%= render 'shared/logo' %>
 
 <div class="row">
   <div class="hide-for-small-only medium-12 large-12 columns text-center">
-    <h2 class="signup">Crie sua conta de graça</h3>
+    <h2 class="signup"><%= t('.form_title') %></h3>
   </div>
 </div>
 
@@ -18,7 +18,7 @@
           </div>
           <div class="small-10 medium-10 large-11 columns">
             <div class="<%= "error" if resource.errors[:name].any? %>">
-              <%= f.text_field :name, placeholder: "Nome", autofocus: true %>
+              <%= f.text_field :name, placeholder: t('.name_field_placeholder'), autofocus: true %>
 
               <% if resource.errors[:name].any? %>
                 <small class="error"><%= resource.errors.full_messages_for(:name).first %></small>
@@ -33,7 +33,7 @@
           </div>
           <div class="small-10 medium-10 large-11 columns">
             <div class="<%= "error" if resource.errors[:email].any? %>">
-              <%= f.email_field :email, placeholder: "E-mail" %>
+              <%= f.email_field :email, placeholder: t('.email_field_placeholder') %>
 
               <% if resource.errors[:email].any? %>
                 <small class="error"><%= resource.errors.full_messages_for(:email).first %></small>
@@ -48,7 +48,7 @@
           </div>
           <div class="small-10 medium-10 large-11 columns">
             <div class="<%= "error" if resource.errors[:password].any? %>">
-              <%= f.password_field :password, placeholder: "Senha", autocomplete: "off" %>
+              <%= f.password_field :password, placeholder: t('.password_field_placeholder'), autocomplete: "off" %>
 
               <% if resource.errors[:password].any? %>
                 <small class="error"><%= resource.errors.full_messages_for(:password).first %></small>
@@ -63,7 +63,7 @@
           </div>
           <div class="small-10 medium-10 large-11 columns">
             <div class="<%= "error" if resource.errors[:password_confirmation].any? %>">
-              <%= f.password_field :password_confirmation, placeholder: "Confirmação de senha", autocomplete: "off" %>
+              <%= f.password_field :password_confirmation, placeholder: t('.password_confirmation_field_placeholder'), autocomplete: "off" %>
 
               <% if resource.errors[:password_confirmation].any? %>
                 <small class="error"><%= resource.errors.full_messages_for(:password_confirmation).first %></small>
@@ -74,7 +74,7 @@
 
         <div class="row collapse">
           <div class="small-12 medium-12 large-12 columns">
-            <%= f.submit "Criar Conta", class: "button expand" %>
+            <%= f.submit t('.submit'), class: "button expand" %>
           </div>
         </div>
       </div>
@@ -88,10 +88,10 @@
   <div class="small-10 small-offset-1 medium-4 medium-offset-4 large-4 large-offset-4 text-center">
     <p class="create-user-agreement">
       <small>
-        Ao criar uma conta você concorda com nossos
-        <%= link_to "Termos de Uso", "#" %> 
-        e nossa 
-        <%= link_to "Política de Privacidade", "#" %>
+        <%= t('.terms_first_line') %>
+        <%= link_to t('.terms_of_use_link'), "#" %> 
+        <%= t('.terms_second_line') %> 
+        <%= link_to t('.privacy_policy_link'), "#" %>
       </small>
     </p>
   </div>

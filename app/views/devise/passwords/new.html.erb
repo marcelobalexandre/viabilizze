@@ -1,4 +1,4 @@
-<% provide :title, "Redefinir Senha" %>
+<% provide :title, t('.title') %>
 
 <%= render 'shared/logo' %>
 
@@ -8,13 +8,13 @@
       <div class="panel">
         <div class="row collapse">
           <div class="small-12 medium-12 large-12 columns text-center">
-            <h4>Esqueceu sua senha?</h4>
+            <h4><%= t('.form_title') %></h4>
           </div>
         </div>
 
         <div class="row collapse">
           <div class="small-12 medium-12 large-12 columns text-center">
-            <p>Não se preocupe. Insira seu endereço de e-mail abaixo e enviaremos algumas instruções.</p>
+            <p><%= t('.form_instructions') %></p>
           </div>
         </div>
 
@@ -24,7 +24,7 @@
           </div>
           <div class="small-10 medium-10 large-11 columns">
             <div class="<%= "error" if resource.errors[:email].any? %>">
-              <%= f.email_field :email, placeholder: "E-mail", autofocus: true %>
+              <%= f.email_field :email, placeholder: t('.email_field_placeholder'), autofocus: true %>
 
               <% if resource.errors[:email].any? %>
                 <small class="error"><%= resource.errors.full_messages_for(:email).first %></small>
@@ -35,7 +35,7 @@
   
         <div class="row collapse">
           <div class="small-12 medium-12 large-12 columns">
-            <%= f.submit "Redefinir Senha", class: "button expand" %>
+            <%= f.submit t('.submit'), class: "button expand" %>
           </div>
         </div>        
       </div>
