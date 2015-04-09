@@ -1,1 +1,17 @@
-<% provide :title, "Meus Empreendimentos" %>
+<% provide :title, t('.title') %>
+
+<div class="row">
+  <div class="small-12 medium-6 medium-offset-3 large-6 large-offset-3 columns text-center">
+    <h3 class="empty-projects-text">Nenhum empreendimento</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 medium-6 medium-offset-3 large-6 large-offset-3 columns text-center">
+
+    <%= link_to(new_user_project_path(current_user), class: 'button') do %>
+      <%= icon 'plus', class: 'button-icon' %>
+      Adicionar Empreendimento
+    <% end %>
+  </div>
+</div>

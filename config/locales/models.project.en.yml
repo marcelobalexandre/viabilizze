@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    models:
+      project: Project
+    attributes:
+      project:
+        name: Name

@@ -1,0 +1,8 @@
+en:
+  projects:
+    index:
+      title: "My Projects"
+    new:
+      title: "New Project"
+      submit: "Save"
+      name_field_placeholder: "Name"

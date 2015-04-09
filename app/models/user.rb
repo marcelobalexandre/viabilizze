@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
          :trackable,
          :validatable
 
+  has_many :projects
+
   validates :name, presence: true,
                    length: { in: 3..35 }
 

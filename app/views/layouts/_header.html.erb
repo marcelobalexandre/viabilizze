@@ -1,24 +1,20 @@
 <header>
-  <% if current_page?("/#{locale}/projects") then%>
+  <% if current_user %>
     <div class="show-for-small-only">
       <div class="icon-bar five-up">
-        <a class="item active">
-          <%= icon 'building' %>
-        </a>    
-        <%= link_to(destroy_user_session_path, :method => :delete, class: 'item right') do %>
-          <%= icon 'sign-out' %>
-        <% end %>    
+        <%= render 'layouts/navicons' %>
       </div>
     </div>
 
-    <div class="show-for-medium-up">
-      <div class="icon-bar eight-up">
-        <a class="item active">
-          <%= icon 'building' %>
-        </a>    
-        <%= link_to(destroy_user_session_path, :method => :delete, class: 'item right') do %>
-          <%= icon 'sign-out' %>
-        <% end %>    
+    <div class="show-for-medium-only">
+      <div class="icon-bar five-up">
+        <%= render 'layouts/navicons' %>
+      </div>
+    </div>
+
+    <div class="show-for-large-up">
+      <div class="icon-bar seven-up">
+        <%= render 'layouts/navicons' %>            
       </div>
     </div>
   <% end %>

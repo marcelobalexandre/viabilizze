@@ -1,6 +1,6 @@
 # language: pt
 
-Funcionalidade: Resetar senha
+Funcionalidade: Redefinir Senha
   Para que possa voltar a acessar o aplicativo com minha conta
   como um usuário
   eu quero poder redefinir minha senha

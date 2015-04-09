@@ -1,0 +1,8 @@
+pt-BR:
+  projects:
+    index:
+      title: "Meus Empreendimentos"
+    new:
+      title: "Novo Empreendimento"
+      submit: "Salvar"
+      name_field_placeholder: "Nome"

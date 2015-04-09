@@ -1,0 +1,4 @@
+en:
+  projects:
+    create:
+      flash_success: "Project created successfully."

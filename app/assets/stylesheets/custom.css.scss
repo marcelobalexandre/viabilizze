@@ -15,9 +15,13 @@
   font-size: 1.6em;
 }
 
-.signup {
+.signup-text {
   margin-top: -0.4em;
   margin-bottom: 0.6em;
+}
+
+.empty-projects-text {
+  margin-top: 6em;
 }
 
 p.create-user-agreement {
@@ -29,4 +33,12 @@ p.create-user-agreement {
   margin-top: 1em;
 }
 
+i.button-icon {  
+  font-size: 1.6em;
+  vertical-align: middle;
+  margin-right: 0.2em;
+}
 
+.form-panel {
+  margin-top: 1em;
+}

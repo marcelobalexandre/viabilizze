@@ -2,6 +2,11 @@ Given(/^que não estou conectado ao site$/) do
   visit '/pt-BR/users/sign_out'
 end
 
+Given(/^que estou conectado$/) do
+  create_user
+  sign_in
+end
+
 Given(/^que não estou cadastrado$/) do
   create_visitor
   delete_user
@@ -121,5 +126,5 @@ Then(/^devo estar conectado$/) do
 end
 
 Then(/^devo receber um e\-mail com as instruções do reset\.$/) do
-  unread_emails_for(@user.email).should be_present
+  expect(unread_emails_for(@user.email)).to be_present
 end

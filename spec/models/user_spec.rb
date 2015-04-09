@@ -10,7 +10,9 @@ describe User do
   it { expect(subject).to respond_to(:email) }
   it { expect(subject).to respond_to(:password) }
   it { expect(subject).to respond_to(:password_confirmation) }
-  
+  it { expect(subject).to respond_to(:projects) }
+  it { expect(subject).to have_many(:projects) }
+
   #devise properties
   it { expect(subject).to respond_to(:encrypted_password) }
 

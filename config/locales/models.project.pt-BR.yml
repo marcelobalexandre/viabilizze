@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    models:
+      project: Empreendimento
+    attributes:
+      project:
+        name: Nome
