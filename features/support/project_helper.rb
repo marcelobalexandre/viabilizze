@@ -1,11 +1,10 @@
 module ProjectHelper
   def new_project
     @new_project = FactoryGirl.attributes_for(:project)
-    @user = FactoryGirl.create(:user)
   end
 
-  def register_new_project
-    visit "/pt-BR/users/#{@user.id}/projects/new"
+  def register_new_project(user)
+    visit "/pt-BR/users/#{user.id}/projects/new"
     fill_in "project_name", with: @new_project[:name]
     click_button "Salvar"
 

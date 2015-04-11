@@ -1,1 +1,21 @@
-<%= @project.name %>
+<% provide :title, @project.name %>
+
+<div class="row">
+  <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
+    <div class="panel form-panel">
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns text-center">
+          <h4><strong><%= t('.form_title') %></strong></h4>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+            <h6><strong><%= t('.name') %></strong></h6>
+            <%= @project.name %>          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -2,7 +2,14 @@ pt-BR:
   projects:
     index:
       title: "Meus Empreendimentos"
+      search_field_placeholder: "Pesquisar"
+      empty_projects: "Nenhum empreendimento"
+      new_project_button: "Adicionar Empreendimento"
+    show:
+      form_title: "Informações do Empreendimento"
+      name: "Nome"
     new:
       title: "Novo Empreendimento"
+      form_title: "Informações do Empreendimento"
       submit: "Salvar"
       name_field_placeholder: "Nome"

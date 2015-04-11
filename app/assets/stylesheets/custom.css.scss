@@ -39,6 +39,30 @@ i.button-icon {
   margin-right: 0.2em;
 }
 
+i.button-icon-small {
+  font-size: 1.2em;  
+}
+
 .form-panel {
   margin-top: 1em;
+}
+
+.project-name {
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+
+.project {
+  a:link {
+    color: #222222;
+  }
+
+  a:visited {
+    color: #222222;
+  }
+}
+
+.pagination {
+    margin-top: 1.2em;
+    margin-bottom: 0em;
 }

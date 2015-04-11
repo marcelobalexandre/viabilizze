@@ -2,7 +2,14 @@ en:
   projects:
     index:
       title: "My Projects"
+      search_field_placeholder: "Search"
+      empty_projects: "No project"
+      new_project_button: "New Empreendimento"
+    show:
+      form_title: "Project Informations"
+      name: "Name"
     new:
       title: "New Project"
+      form_title: "Project Informations"
       submit: "Save"
       name_field_placeholder: "Name"

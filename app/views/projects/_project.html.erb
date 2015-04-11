@@ -1,0 +1,29 @@
+<div class="row collapse">
+  <div class="small-12 medium-12 large-12 project columns">
+    <%= link_to user_project_path(project, current_user) do %>
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+          <div class="project-name">
+            <%= project.name %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+          <%= icon 'warning' %> Nenhuma unidade
+        </div>
+      </div>
+      
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+          <%= icon 'warning' %> Nenhuma análise
+        </div>
+      </div>    
+    <% end %>    
+    
+    <% if @projects.last != project %>
+      <hr>
+    <% end %>
+  </div>
+</div>

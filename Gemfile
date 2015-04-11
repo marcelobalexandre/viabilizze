@@ -13,6 +13,8 @@ gem 'foundation-rails', '5.5.1.0'
 gem 'foundation-icons-sass-rails'
 gem 'font-awesome-sass'
 gem 'devise'
+gem 'will_paginate'
+gem 'will_paginate-foundation'
 
 group :development, :test do
   gem 'sqlite3'

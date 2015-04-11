@@ -14,7 +14,7 @@ pt-BR:
       last_attempt: "Você tem mais uma tentativa antes que sua conta seja travada."
       not_found_in_database: "E-mail ou senha inválidos."
       timeout: "Para sua segurança sua sessão expirou. Por favor, faça login novamente."
-      unauthenticated: "Você precisa se logar ou registrar antes de prosseguir."
+      unauthenticated: "Você precisa se conectar ou registrar antes de prosseguir."
       unconfirmed: "Você precisa confirmar sua conta antes de prosseguir."
     mailer:
       confirmation_instructions:

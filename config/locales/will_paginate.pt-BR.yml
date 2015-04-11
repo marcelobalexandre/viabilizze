@@ -1,0 +1,4 @@
+pt-BR:
+  will_paginate:
+    previous_label: "<<"
+    next_label: ">>"

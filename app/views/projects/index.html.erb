@@ -1,17 +1,48 @@
 <% provide :title, t('.title') %>
 
-<div class="row">
-  <div class="small-12 medium-6 medium-offset-3 large-6 large-offset-3 columns text-center">
-    <h3 class="empty-projects-text">Nenhum empreendimento</h3>
-  </div>
-</div>
+<% if @projects.count > 0 %>
+  <div class="row">
+    <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
+      <div class="panel form-panel">
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns text-center">
+            <h4><strong><%= t('.title') %></strong></h4>
+          </div>
+        </div>
 
-<div class="row">
-  <div class="small-12 medium-6 medium-offset-3 large-6 large-offset-3 columns text-center">
+        <div class="row collapse">
+          <div class="small-10 medium-10 large-11 columns">
+            <input type="text" placeholder="<%= t('.search_field_placeholder') %>">
+          </div>
+          <div class="small-2 medium-2 large-1 columns">
+            <a href="#" class="button postfix"><%= icon 'search', class: 'button-icon-small' %></a>
+          </div>
+        </div>
 
-    <%= link_to(new_user_project_path(current_user), class: 'button') do %>
-      <%= icon 'plus', class: 'button-icon' %>
-      Adicionar Empreendimento
-    <% end %>
+        <%= render @projects %>
+
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <%= will_paginate @projects, renderer: FoundationPagination::Rails %>          
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+<% else %>
+  <div class="row">
+    <div class="small-12 medium-6 medium-offset-3 large-6 large-offset-3 columns text-center">
+      <h3 class="empty-projects-text"><%= t('.empty_projects') %></h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 medium-6 medium-offset-3 large-6 large-offset-3 columns text-center">
+
+      <%= link_to(new_user_project_path(current_user), class: 'button') do %>
+        <%= icon 'plus', class: 'button-icon' %>
+        <%= t('.new_project_button') %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

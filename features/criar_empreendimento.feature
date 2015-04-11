@@ -22,3 +22,11 @@ Funcionalidade: Criar Empreendimento
 
     Quando crio um empreendimento sem nome
     Então devo ver uma mensagem de nome do empreedimento ausente
+
+  Cenário: Usuário tenta criar empreendimento para outro usuário
+    Ao tentar criar um empreendimento para outro usuário deve receber
+    um mensagem de acesso restrito.
+
+    Dado que existem empreendimentos de outros usuários cadastrados
+    Quando tento criar um empreendimento para outro usuário
+    Então devo ver uma mensagem de acesso restrito

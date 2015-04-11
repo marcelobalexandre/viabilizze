@@ -1,5 +1,9 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :validate_user, only: [:index, :show, :new]
+
   def index
+    @projects = current_user.projects.paginate(page: params[:page])    
   end
 
   def show
@@ -22,6 +26,16 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def validate_user
+    if params[:user_id]
+      @user = User.where(id: params[:user_id]).first
+      if @user != current_user
+        flash[:alert] = t('.restricted_access')
+        redirect_to root_url
+      end      
+    end
+  end
 
   def project_params
     params.require(:project).permit(:name)

@@ -1,0 +1,23 @@
+<div id="helpModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+  <h2 id="modalTitle">Ajuda</h2>
+  
+  <% if current_page?(user_projects_path(current_user)) %>
+    <p class="lead"><%= t('.my_projects_title') %></p>
+    <p><%= t('.my_projects_help') %></p>
+  <% end %>
+
+  <% if current_page?(new_user_project_path(current_user)) ||
+        (@project and @project.errors.any?) %>
+    <p class="lead"><%= t('.new_project_title') %></p>
+    <p><%= t('.new_project_help') %></p>
+  <% end %>
+
+  <% if !@project.nil? and 
+        !@project.id.nil? and 
+        current_page?(user_project_path(current_user, @project)) %>
+    <p class="lead"><%= t('.show_project_title') %></p>
+    <p><%= t('.show_project_help') %></p>
+  <% end %>
+
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>

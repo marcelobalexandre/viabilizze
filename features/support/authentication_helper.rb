@@ -34,6 +34,8 @@ module AuthenticationHelper
     fill_in "user_password", with: @visitor[:password]
     check "user_remember_me" if remember_me
     click_button "Entrar"
+
+    @user = User.where(email: @visitor[:email]).first
   end
 
   def sign_in_with_remember_me_checked  

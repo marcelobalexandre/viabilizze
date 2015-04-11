@@ -1,4 +1,11 @@
 pt-BR:
   projects:
+    index:
+      restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
+    show:
+      restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
+    new:
+      restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
     create:
       flash_success: "Empreendimento criado com sucesso."
+  
