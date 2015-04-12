@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
 
     if @project.save
       flash[:success] = t('.flash_success')
-      redirect_to user_project_path(@project, current_user)
+      redirect_to user_project_path(current_user, @project)
     else
       render 'new'
     end
