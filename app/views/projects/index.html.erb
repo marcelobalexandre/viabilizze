@@ -25,7 +25,12 @@
         <% end %>
 
         <% if @projects.count == 0 %>
-          Nenhum empreendimento encontrado
+          <div class="row collapse">
+            <div class="small-12 medium-12 large-12 columns text-center">
+              <p>Nenhum empreendimento encontrado.</p>
+            </div>
+          </div>       
+          
         <% end %>
         
         <%= render @projects %>
