@@ -10,15 +10,20 @@
           </div>
         </div>
 
-        <div class="row collapse">
-          <div class="small-10 medium-10 large-11 columns">
-            <input type="text" placeholder="<%= t('.search_field_placeholder') %>">
+        <%= form_tag(user_projects_path(current_user), method: 'get') do %>
+          <div class="row collapse">
+            <div class="small-10 medium-10 large-11 columns">
+              <%= text_field_tag :search, params[:search], placeholder: t('.search_field_placeholder') %>
+            </div>
+            
+            <div class="small-2 medium-2 large-1 columns">
+              <%= button_tag(type: 'submit', id: 'search-button', class: 'button postfix', name: nil) do %>
+                  <%= icon 'search', class: 'button-icon-small' %>
+              <% end %>
+            </div>
           </div>
-          <div class="small-2 medium-2 large-1 columns">
-            <a href="#" class="button postfix"><%= icon 'search', class: 'button-icon-small' %></a>
-          </div>
-        </div>
-
+        <% end %>
+        
         <%= render @projects %>
 
         <div class="row collapse">

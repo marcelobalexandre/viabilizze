@@ -8,8 +8,8 @@ Given(/^que não tenho empreendimentos cadastrados$/) do
 end
 
 Given(/^que tenho empreendimentos cadastrados$/) do
-  @project = FactoryGirl.create(:project, user_id: @user.id)
-  @user.projects << @project
+  @projects = FactoryGirl.create_list(:project, 3, user_id: @user.id)
+  @projects.each { |project| @user.projects << project }
 end
 
 When(/^crio um empreendimento com dados válidos$/) do
@@ -36,11 +36,27 @@ When(/^tento criar um empreendimento para outro usuário$/) do
 end
 
 When(/^abrir um empreendimento próprio$/) do
-  visit "/pt-BR/users/#{@user.id}/projects/#{@project.id}"
+  visit "/pt-BR/users/#{@user.id}/projects/#{@projects.first.id}"
 end
 
 When(/^abrir um empreendimento de outro usuário$/) do
   visit "/pt-BR/users/#{@another_user.id}/projects/#{@project_from_another_user.id}"
+end
+
+When(/^pesquisar pelo nome de um empreendimento cadastrado$/) do
+  @searched_project = @projects.first
+  fill_in "search", with: @searched_project.name
+  click_button "search-button"
+end
+
+When(/^pesquisar pelo nome de um empreendimento não cadastrado$/) do
+  fill_in "search", with: "Unknown Project"
+  click_button "search-button"
+end
+
+When(/^pesquisar com o campo em branco$/) do
+  fill_in "search", with: " "
+  click_button "search-button"
 end
 
 Then(/^devo ver uma mensagem de empreendimento criado com sucesso$/) do
@@ -68,7 +84,7 @@ Then(/^não devo visualizar empreendimentos de outros usuários$/) do
 end
 
 Then(/^devo visualizar meus empreendimentos$/) do
-  expect(page).to have_content @project.name
+  @projects.each { |project| expect(page).to have_content project.name }
 end
 
 Then(/^não devo visualizar uma informação de que não existem empreendimentos cadastrados$/) do
@@ -84,9 +100,25 @@ Then(/^devo ver uma mensagem de acesso restrito$/) do
 end
 
 Then(/^devo visualizar meu empreendimento$/) do
-  expect(page).to have_content @project.name
+  expect(page).to have_content @projects.first.name
 end
 
 Then(/^devo ver uma mensagem de que é necessário se conectar$/) do
   expect(page).to have_content "Você precisa se conectar ou registrar antes de prosseguir."
+end
+
+Then(/^devo visualizar o empreendimento pesquisado$/) do
+  expect(page).to have_content @searched_project.name
+end
+
+Then(/^não devo visualizar os empreendimentos não pesquisados$/) do
+  @projects.each do |project|
+    unless project == @searched_project
+      expect(page).not_to have_content project.name
+    end
+  end
+end
+
+Then(/^não devo visualizar meus empreendimentos$/) do
+  @projects.each { |project| expect(page).not_to have_content project.name }
 end
