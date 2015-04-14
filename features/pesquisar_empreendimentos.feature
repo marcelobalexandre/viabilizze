@@ -27,6 +27,8 @@ Funcionalidade: Pesquisar Empreendimentos
     Quando abrir minha lista de empreendimentos
     E pesquisar pelo nome de um empreendimento não cadastrado
     Então não devo visualizar meus empreendimentos
+    E devo visualizar uma informação de que não foram encontrados empreendimentos
+    E devo visualizar o campo e o botão de pesquisa
 
   Cenário: Usuário pesquisa com o campo em branco
     Ao abrir sua página de empreendimentos e pesquisar com o campo em branco

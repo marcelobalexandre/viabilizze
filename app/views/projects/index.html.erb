@@ -1,6 +1,6 @@
 <% provide :title, t('.title') %>
 
-<% if @projects.count > 0 %>
+<% if @projects.count > 0 || params[:search] %>
   <div class="row">
     <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
       <div class="panel form-panel">
@@ -22,6 +22,10 @@
               <% end %>
             </div>
           </div>
+        <% end %>
+
+        <% if @projects.count == 0 %>
+          Nenhum empreendimento encontrado
         <% end %>
         
         <%= render @projects %>

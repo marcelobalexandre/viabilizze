@@ -122,3 +122,12 @@ end
 Then(/^não devo visualizar meus empreendimentos$/) do
   @projects.each { |project| expect(page).not_to have_content project.name }
 end
+
+Then(/^devo visualizar uma informação de que não foram encontrados empreendimentos$/) do
+  expect(page).to have_content "Nenhum empreendimento encontrado"
+end
+
+Then(/^devo visualizar o campo e o botão de pesquisa$/) do
+  expect(page).to have_selector("#search")
+  expect(page).to have_selector("#search-button")
+end
