@@ -1,0 +1,15 @@
+<% if current_user %>
+  <div class="hidden-for-large-up">
+    <div class="icon-bar five-up fixed">
+      <%= render 'layouts/navigation_menu_icons' %>
+    </div>
+  </div>
+
+  <div class="show-for-large-up">
+    <div class="icon-bar seven-up fixed">
+      <%= render 'layouts/navigation_menu_icons' %>            
+    </div>
+  </div> 
+
+  <%= render 'layouts/menu_dropdown' %>
+<% end %>

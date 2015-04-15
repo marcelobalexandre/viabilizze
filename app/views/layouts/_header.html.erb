@@ -1,17 +1,9 @@
 <header>
-  <% if current_user %>
-    <div class="hidden-for-large-up">
-      <div class="icon-bar five-up">
-        <%= render 'layouts/navigation_menu_icons' %>
-      </div>
-    </div>
+  <div class="show-for-small-only custom-icon-bar-small-only">
+    <%= render 'layouts/navigation_bar' %>  
+  </div>
 
-    <div class="show-for-large-up">
-      <div class="icon-bar seven-up">
-        <%= render 'layouts/navigation_menu_icons' %>            
-      </div>
-    </div> 
-
-    <%= render 'layouts/menu_dropdown' %>
-  <% end %>
+  <div class="show-for-medium-up custom-icon-bar-medium-up">
+    <%= render 'layouts/navigation_bar' %>  
+  </div>
 </header>
