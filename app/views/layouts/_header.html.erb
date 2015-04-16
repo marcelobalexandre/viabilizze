@@ -1,9 +1,11 @@
 <header>
-  <div class="show-for-small-only custom-icon-bar-small-only">
-    <%= render 'layouts/navigation_bar' %>  
-  </div>
+  <% if current_user %>
+    <div class="show-for-small-only custom-icon-bar-small-only">
+      <%= render 'layouts/navigation_bar' %>  
+    </div>
 
-  <div class="show-for-medium-up custom-icon-bar-medium-up">
-    <%= render 'layouts/navigation_bar' %>  
-  </div>
+    <div class="show-for-medium-up custom-icon-bar-medium-up">
+      <%= render 'layouts/navigation_bar' %>  
+    </div>
+  <% end %>
 </header>
