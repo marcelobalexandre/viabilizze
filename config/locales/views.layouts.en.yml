@@ -13,11 +13,6 @@ en:
       sign_out_icon_label: "Sign Out"
       help_icon_title: "Help"
       help_icon_label: "help_icon_label"
-    menu_dropdown:
-      sign_out_icon_title: "Sign Out"
-      sign_out_icon_label: "Sign Out"
-      help_icon_title: "Help"
-      help_icon_label: "help_icon_label"
     help_modal:
       my_projects_title: "My Projects"
       my_projects_help: "Displays all your projects and allows you to add new ones."

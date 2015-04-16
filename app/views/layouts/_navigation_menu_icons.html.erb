@@ -33,19 +33,14 @@
   <% end %>    
 <% end %>
 
-<%= link_to(destroy_user_session_path, :method => :delete, class: 'item right show-for-large-up', title: t('.sign_out_icon_title')) do %>
+<%= link_to(destroy_user_session_path, :method => :delete, class: 'item right', title: t('.sign_out_icon_title')) do %>
   <%= icon 'sign-out' %>
   <label class="show-for-medium-up"><%= t('.sign_out_icon_label') %></label>
 <% end %>    
 
-<a class="item right show-for-large-up" title="<%= t('.help_icon_title') %>" data-reveal-id="helpModal">
+<a class="item right" title="<%= t('.help_icon_title') %>" data-reveal-id="helpModal">
   <%= icon 'question' %>
   <label class="show-for-medium-up"><%= t('.help_icon_label') %></label>
-</a>
-
-<a href="#" class="item right hidden-for-large-up" data-dropdown="drop">
-  <%= icon 'bars' %>
-  <label class="show-for-medium-up">Menu</label>
 </a>
 
 <%= render 'layouts/help_modal' %>
