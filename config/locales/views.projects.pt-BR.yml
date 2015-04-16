@@ -11,5 +11,7 @@ pt-BR:
     new:
       title: "Novo Empreendimento"
       form_title: "Informações do Empreendimento"
+      submit: "Salvar"      
+    edit:
+      form_title: "Informações do Empreendimento"
       submit: "Salvar"
-      name_field_placeholder: "Nome"

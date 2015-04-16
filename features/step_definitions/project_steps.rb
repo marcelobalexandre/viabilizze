@@ -59,6 +59,16 @@ When(/^pesquisar com o campo em branco$/) do
   click_button "search-button"
 end
 
+When(/^altero dados de um empreendimento próprio$/) do
+  visit "/pt-BR/users/#{@user.id}/projects/#{@projects.first.id}/edit"
+  fill_in "project_name", with: "New Project Name"
+  click_button "Salvar"
+end
+
+When(/^abro um empreendimento de outro usuário para edição$/) do
+  visit "/pt-BR/users/#{@another_user.id}/projects/#{@project_from_another_user.id}/edit"
+end
+
 Then(/^devo ver uma mensagem de empreendimento criado com sucesso$/) do
   expect(page).to have_content "Empreendimento criado com sucesso."
 end
@@ -131,3 +141,13 @@ Then(/^devo visualizar o campo e o botão de pesquisa$/) do
   expect(page).to have_selector("#search")
   expect(page).to have_selector("#search-button")
 end
+
+Then(/^devo ver uma mensagem de empreendimento atualizado com sucesso$/) do
+  expect(page).to have_content "Empreendimento atualizado com sucesso."
+end
+
+Then(/^devo visualizar o empreendimento atualizado$/) do
+  expect(page).to have_content "New Project Name"
+end
+
+

@@ -6,5 +6,9 @@ en:
       restricted_access: "You tried to access a page not allowed and was redirected."
     new:
       restricted_access: "You tried to access a page not allowed and was redirected."
-      create:
+    create:
       flash_success: "Project created successfully."
+    edit:
+      restricted_access: "You tried to access a page not allowed and was redirected."
+    update:
+      flash_success: "Project updated successfully."

@@ -19,5 +19,12 @@
     <p><%= t('.show_project_help') %></p>
   <% end %>
 
+  <% if !@project.nil? and 
+        !@project.id.nil? and 
+        current_page?(edit_user_project_path(current_user, @project)) %>
+    <p class="lead"><%= t('.edit_project_title') %></p>
+    <p><%= t('.edit_project_help') %></p>
+  <% end %>
+
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>

@@ -25,6 +25,14 @@
   <% end %>    
 <% end %>
 
+<!-- /:locale/users/:user_id/projects/:project_id/edit -->
+<% if !@project.nil? and !@project.id.nil? and current_page?(edit_user_project_path(current_user, @project)) %>
+  <%= link_to "#", class: "item active disabled", title: t('.edit_project_icon_title')  do %>
+    <%= icon 'pencil' %>
+    <label class="show-for-medium-up"><%= t('.edit_project_icon_label') %></label>
+  <% end %>    
+<% end %>
+
 <%= link_to(destroy_user_session_path, :method => :delete, class: 'item right show-for-large-up', title: t('.sign_out_icon_title')) do %>
   <%= icon 'sign-out' %>
   <label class="show-for-medium-up"><%= t('.sign_out_icon_label') %></label>

@@ -8,4 +8,8 @@ pt-BR:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
     create:
       flash_success: "Empreendimento criado com sucesso."
+    edit:
+      restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
+    update:
+      flash_success: "Empreendimento atualizado com sucesso."
   

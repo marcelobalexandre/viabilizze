@@ -1,14 +1,14 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :validate_user, only: [:index, :show, :new]
+  before_action :validate_user, only: [:index, :show, :new, :edit]
 
   def index
     @projects = current_user.projects.paginate(page: params[:page])  
 
     if params[:search]
-      @projects = current_user.projects.where("name like ?", "%#{params[:search]}%").paginate(page: params[:page])
+      @projects = current_user.projects.where("name like ?", "%#{params[:search]}%").order(:name).paginate(page: params[:page])
     else
-      @projects = current_user.projects.paginate(page: params[:page])
+      @projects = current_user.projects.order(:name).paginate(page: params[:page])
     end  
   end
 
@@ -28,6 +28,21 @@ class ProjectsController < ApplicationController
       redirect_to user_project_path(current_user, @project)
     else
       render 'new'
+    end
+  end
+
+  def edit
+    @project = Project.find(params[:id])    
+  end
+
+  def update
+    @project = Project.find(params[:id])
+
+    if @project.update(project_params)
+      flash[:success] = t('.flash_success')
+      redirect_to user_project_path(current_user, @project)
+    else
+      render 'edit'
     end
   end
 

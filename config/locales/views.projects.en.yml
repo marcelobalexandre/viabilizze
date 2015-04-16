@@ -12,4 +12,6 @@ en:
       title: "New Project"
       form_title: "Project Informations"
       submit: "Save"
-      name_field_placeholder: "Name"
+    new:
+      form_title: "Project Informations"
+      submit: "Save"      
