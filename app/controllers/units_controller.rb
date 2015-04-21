@@ -1,6 +1,11 @@
 class UnitsController < ApplicationController
   before_action :authenticate_user!
-  before_action :validate_user, only: [:new]
+  before_action :validate_user, only: [:index, :show, :new, :edit]
+
+  def index
+    @project = Project.find(params[:project_id])
+    @units = @project.units.order(:name).paginate(page: params[:page])
+  end
 
   def show
     @unit = Unit.find(params[:id])
@@ -10,7 +15,7 @@ class UnitsController < ApplicationController
     @project = Project.find(params[:project_id])
     @unit = Unit.new
 
-    unless params[:unit_id].nil?
+    if params[:unit_id]
       unit_to_copy = Unit.find(params[:unit_id])
       @unit.name = unit_to_copy.name
       @unit.private_area = unit_to_copy.private_area

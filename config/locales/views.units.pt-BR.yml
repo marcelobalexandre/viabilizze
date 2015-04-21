@@ -1,5 +1,9 @@
 pt-BR:
   units:
+    index:
+      title: "Copiar Unidade"
+      search_field_placeholder: "Pesquisar"
+      no_units_found: "Nenhuma Unidade Encontrada"
     new:
       title: "Nova Unidade"
       form_title: "Informações da Unidade"

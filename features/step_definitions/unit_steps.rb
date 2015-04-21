@@ -1,3 +1,13 @@
+Given(/^que tenho empreendimentos com unidades cadastrados$/) do
+    @projects = FactoryGirl.create_list(:project, 3, user_id: @user.id)
+    @projects.each do |project| 
+      units = FactoryGirl.create_list(:unit, 3, project_id: project.id)  
+      units.each { |unit| project.units << unit }
+
+      @user.projects << project
+    end
+end
+
 When(/^crio uma unidade com dados válidos$/) do
   new_unit
   register_new_unit(@projects.first)
@@ -24,4 +34,24 @@ end
 
 Then(/^devo ver uma mensagem de nome da unidade ausente$/) do
   expect(page).to have_content "Nome não pode ficar em branco"
+end
+
+When(/^acesso um empreendimento próprio$/) do
+  visit "/pt-BR/users/#{@user.id}/projects/#{@projects.first.id}"
+end
+
+When(/^clico em Adicionar Unidade$/) do
+  click_link "Adicionar Unidade"
+end
+
+When(/^clico em Copiar Unidade$/) do
+  first('#copy-unit-button').click
+end
+
+When(/^clico em uma unidade existente$/) do
+  first('.unit-information').click
+end
+
+Then(/^devo ver os dados da unidade selecionada nos campos da unidade sendo cadastrada$/) do
+  expect(page).to have_content @projects.first.units.first.name
 end

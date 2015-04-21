@@ -1,5 +1,9 @@
 en:
   units:
+    index:
+      title: "Copy Unit"
+      search_field_placeholder: "Search"
+      no_units_found: "No units found"      
     new:
       title: "New Unit"
       form_title: "Unit Informations"

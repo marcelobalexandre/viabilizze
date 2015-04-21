@@ -1,0 +1,43 @@
+<% provide :title, t('.title') %>
+
+<div class="row">
+  <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
+    <div class="panel form-panel">
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns text-center">
+          <h4><strong><%= t('.title') %></strong></h4>
+        </div>
+      </div>
+
+      <%= form_tag(user_project_units_path(current_user, @project), method: 'get') do %>
+        <div class="row collapse">
+          <div class="small-10 medium-10 large-11 columns">
+            <%= text_field_tag :search, params[:search], placeholder: t('.search_field_placeholder') %>
+          </div>
+          
+          <div class="small-2 medium-2 large-1 columns">
+            <%= button_tag(type: 'submit', id: 'search-button', class: 'button postfix', name: nil) do %>
+                <%= icon 'search', class: 'button-icon-small' %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @units.count == 0 %>
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns text-center">
+            <p><%= t('.no_projects_found') %></p>
+          </div>
+        </div>
+      <% end %>
+
+      <%= render @units %>
+      
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+          <%= will_paginate @units, renderer: FoundationPagination::Rails %>            
+        </div>
+      </div>        
+    </div>
+  </div>
+</div>

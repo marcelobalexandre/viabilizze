@@ -38,19 +38,22 @@
 <% end %>
 
 <!-- New User Project Unit -->
-<% if (@unit && @unit.errors.any?) || @project && @project.id &&
-      current_page?(new_user_project_unit_path(current_user, @project)) %>
+<% if @project && 
+      @project.id &&
+      (current_page?(new_user_project_unit_path(current_user, @project)) ||
+       current_page?(user_project_units_path(current_user, @project))) %>
   <%= link_to(new_user_project_unit_path(current_user, @project), 
-              class: "item active disabled", 
+              class: "item disabled #{current_page?(new_user_project_unit_path(current_user, @project)) ? "active" : ""}", 
               title: t('.new_unit_icon_title')) do %>
     <%= icon 'plus' %>
     <label class="show-for-medium-up"><%= t('.new_unit_icon_label') %></label>
   <% end %>
 
-  <a class="item" title="<%= t('.copy_unit_icon_title') %>">
-  <%= icon 'copy' %>
-  <label class="show-for-medium-up"><%= t('.copy_unit_icon_label') %></label>
-</a>
+  <%= link_to(user_project_units_path(current_user, @project), id: 'copy-unit-button', 
+              class: "item #{current_page?(user_project_units_path(current_user, @project)) ? "active disabled" : ""}", title: t('.copy_unit_icon_title')) do %>
+    <%= icon 'copy' %>
+    <label class="show-for-medium-up"><%= t('.copy_unit_icon_label') %></label>
+  <% end %>
 <% end %>
 
 <!-- Sign Out -->
