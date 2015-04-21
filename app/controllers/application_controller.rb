@@ -24,4 +24,14 @@ class ApplicationController < ActionController::Base
     logger.debug "default_url_options is passed options: #{options.inspect}\n"
     { locale: I18n.locale }
   end
+
+  def validate_user
+    if params[:user_id]
+      @user = User.where(id: params[:user_id]).first
+      if @user != current_user
+        flash[:alert] = t('.restricted_access')
+        redirect_to root_url
+      end      
+    end
+  end
 end

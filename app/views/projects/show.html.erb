@@ -24,6 +24,75 @@
           <% end %> 
         </div>
       </div>
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns text-center">
+          <h4><strong>Informações das Unidades</strong></h4>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+          <h6><strong>Quantidade</strong></h6>
+          
+          <% if @units.count > 0 %>
+            <%= @units.count %>
+          <% else %>
+            Nenhuma unidade
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+          <ul class="stack button-group add-units-stack">
+            <li>
+              <%= link_to(new_user_project_unit_path(current_user, @project), class: 'button expand') do %>
+                <%= icon 'plus' %>
+                Adicionar Unidade
+              <% end %>               
+            </li>
+            <li>
+              <%= link_to('#', class: 'button expand') do %>
+                <%= icon 'asterisk' %>
+                Adicionar Múltiplas Unidades
+              <% end %> 
+            </li>
+          </ul> 
+        </div>
+      </div>
+
+      <hr>
+
+      <%= form_tag(user_project_path(current_user, @project), method: 'get') do %>
+        <div class="row collapse">
+          <div class="small-10 medium-10 large-11 columns">
+            <%= text_field_tag :search, params[:search], placeholder: t('.search_field_placeholder') %>
+          </div>
+          
+          <div class="small-2 medium-2 large-1 columns">
+            <%= button_tag(type: 'submit', id: 'search-button', class: 'button postfix', name: nil) do %>
+                <%= icon 'search', class: 'button-icon-small' %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @units.count == 0 %>
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns text-center">
+            <p><%= t('.no_units_found') %></p>
+          </div>
+        </div>
+      <% end %>
+
+      <%= render @units %>     
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+          <%= will_paginate @units, renderer: FoundationPagination::Rails %>    
+        </div>
+      </div>
     </div>
   </div>
 </div>

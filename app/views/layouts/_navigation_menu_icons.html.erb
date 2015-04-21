@@ -1,3 +1,4 @@
+<!-- User Projects -->
 <%= link_to(user_projects_path(current_user), 
             class: "item #{current_page?(user_projects_path(current_user)) ? "active disabled" : ""}", 
             title: t('.my_projects_icon_title')) do %>
@@ -5,39 +6,60 @@
   <label class="show-for-medium-up"><%= t('.my_projects_icon_label') %></label>
 <% end %>
 
+<!-- New User Project -->
 <% if current_page?(user_projects_path(current_user)) || 
       current_page?(new_user_project_path(current_user)) ||
-      (@project and @project.errors.any?) %>
+      (@project && @project.errors.any?) %>
   <%= link_to(new_user_project_path(current_user), 
               class: "item #{current_page?(new_user_project_path(current_user)) || 
-                             (@project and @project.errors.any?) ? "active disabled" : ""}", 
+                             (@project && @project.errors.any?) ? "active disabled" : ""}", 
               title: t('.new_project_icon_title')) do %>
     <%= icon 'plus' %>
     <label class="show-for-medium-up"><%= t('.new_project_icon_label') %></label>
   <% end %>
 <% end %>
 
+<!-- Show User Project -->
 <!-- /:locale/users/:user_id/projects/:project_id -->
-<% if !@project.nil? and !@project.id.nil? and current_page?(user_project_path(current_user, @project)) %>
+<% if !@project.nil? && !@project.id.nil? && current_page?(user_project_path(current_user, @project)) %>
   <%= link_to "#", class: "item active disabled", title: t('.show_project_icon_title') do %>
     <%= icon 'search' %>
     <label class="show-for-medium-up"><%= t('.show_project_icon_label') %></label>
   <% end %>    
 <% end %>
 
+<!-- Edit User Project -->
 <!-- /:locale/users/:user_id/projects/:project_id/edit -->
-<% if !@project.nil? and !@project.id.nil? and current_page?(edit_user_project_path(current_user, @project)) %>
+<% if !@project.nil? && !@project.id.nil? && current_page?(edit_user_project_path(current_user, @project)) %>
   <%= link_to "#", class: "item active disabled", title: t('.edit_project_icon_title')  do %>
     <%= icon 'pencil' %>
     <label class="show-for-medium-up"><%= t('.edit_project_icon_label') %></label>
   <% end %>    
 <% end %>
 
+<!-- New User Project Unit -->
+<% if (@unit && @unit.errors.any?) || @project && @project.id &&
+      current_page?(new_user_project_unit_path(current_user, @project)) %>
+  <%= link_to(new_user_project_unit_path(current_user, @project), 
+              class: "item active disabled", 
+              title: t('.new_unit_icon_title')) do %>
+    <%= icon 'plus' %>
+    <label class="show-for-medium-up"><%= t('.new_unit_icon_label') %></label>
+  <% end %>
+
+  <a class="item" title="<%= t('.copy_unit_icon_title') %>">
+  <%= icon 'copy' %>
+  <label class="show-for-medium-up"><%= t('.copy_unit_icon_label') %></label>
+</a>
+<% end %>
+
+<!-- Sign Out -->
 <%= link_to(destroy_user_session_path, :method => :delete, class: 'item right', title: t('.sign_out_icon_title')) do %>
   <%= icon 'sign-out' %>
   <label class="show-for-medium-up"><%= t('.sign_out_icon_label') %></label>
 <% end %>    
 
+<!-- Help -->
 <a class="item right" title="<%= t('.help_icon_title') %>" data-reveal-id="helpModal">
   <%= icon 'question' %>
   <label class="show-for-medium-up"><%= t('.help_icon_label') %></label>

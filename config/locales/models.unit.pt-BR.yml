@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      unit: Unidade
+    attributes:
+      unit:
+        name: Nome
+        private_area: Área Privativa
+        common_area: Área Comum
+        box_area: Área de Box
+        total_area: Área de Total
+        exchanged: Unidade Permutada

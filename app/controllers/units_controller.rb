@@ -1,0 +1,44 @@
+class UnitsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :validate_user, only: [:new]
+
+  def show
+    @unit = Unit.find(params[:id])
+  end
+
+  def new
+    @project = Project.find(params[:project_id])
+    @unit = Unit.new
+
+    unless params[:unit_id].nil?
+      unit_to_copy = Unit.find(params[:unit_id])
+      @unit.name = unit_to_copy.name
+      @unit.private_area = unit_to_copy.private_area
+      @unit.common_area = unit_to_copy.common_area
+      @unit.box_area = unit_to_copy.box_area
+      @unit.exchanged = unit_to_copy.exchanged
+    end 
+  end
+
+  def create
+    @project = Project.find(params[:project_id])
+    @unit = @project.units.build(unit_params)
+
+    if @unit.save
+      flash[:success] = t('.flash_success')
+      redirect_to user_project_path(current_user, @project)
+    else
+      render 'new'
+    end
+  end
+
+  private
+
+  def unit_params
+    params.require(:unit).permit(:name, 
+                                 :private_area,
+                                 :common_area,
+                                 :box_area,
+                                 :exchanged)
+  end
+end

@@ -27,22 +27,20 @@
         <% if @projects.count == 0 %>
           <div class="row collapse">
             <div class="small-12 medium-12 large-12 columns text-center">
-              <p>Nenhum empreendimento encontrado.</p>
+              <p><%= t('.no_projects_found') %></p>
             </div>
-          </div>       
-          
+          </div>
         <% end %>
-        
-        <%= render @projects %>
 
+        <%= render @projects %>
+        
         <div class="row collapse">
           <div class="small-12 medium-12 large-12 columns">
-            <%= will_paginate @projects, renderer: FoundationPagination::Rails %>          
+            <%= will_paginate @projects, renderer: FoundationPagination::Rails %>            
           </div>
-        </div>
+        </div>        
       </div>
     </div>
-  </div>
 <% else %>
   <div class="row">
     <div class="small-12 medium-6 medium-offset-3 large-6 large-offset-3 columns text-center">

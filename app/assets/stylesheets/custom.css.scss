@@ -46,6 +46,15 @@ i.button-icon-small {
   margin-bottom: 0.3em;
 }
 
+.unit-name {
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+
+.unit-information {
+  font-size: 0.9em;
+}
+
 .project {
   a:link {
     color: #222222;
@@ -70,5 +79,9 @@ i.button-icon-small {
 }
 
 a.edit-project-button {
+  margin-top: 1em;
+}
+
+ul.add-units-stack {
   margin-top: 1em;
 }

@@ -1,0 +1,80 @@
+<% provide :title, t('.title') %>
+
+<%= form_for [current_user, @project, @unit] do |f| %>
+  <div class="row">
+    <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
+      <div class="panel form-panel">
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns text-center">
+            <h4><strong><%= t('.form_title') %></strong></h4>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <div class="<%= "error" if @unit.errors[:name].any? %>">
+              <%= f.label :name %>
+              <%= f.text_field :name, autofocus: true %>
+
+              <% if @unit.errors[:name].any? %>
+                <small class="error"><%= @unit.errors.full_messages_for(:name).first %></small>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <div class="<%= "error" if @unit.errors[:private_area].any? %>">
+              <%= f.label :private_area %>
+              <%= f.text_field :private_area, autofocus: true %>
+
+              <% if @unit.errors[:private_area].any? %>
+                <small class="error"><%= @unit.errors.full_messages_for(:private_area).first %></small>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <div class="<%= "error" if @unit.errors[:common_area].any? %>">
+              <%= f.label :common_area %>
+              <%= f.text_field :common_area, autofocus: true %>
+
+              <% if @unit.errors[:common_area].any? %>
+                <small class="error"><%= @unit.errors.full_messages_for(:common_area).first %></small>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <div class="<%= "error" if @unit.errors[:box_area].any? %>">
+              <%= f.label :box_area %>
+              <%= f.text_field :box_area, autofocus: true %>
+
+              <% if @unit.errors[:box_area].any? %>
+                <small class="error"><%= @unit.errors.full_messages_for(:box_area).first %></small>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <%= f.check_box :exchanged %>
+            <%= f.label :exchanged %>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <%= f.submit t('.submit'), class: "button expand" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

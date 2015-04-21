@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      unit: Unit
+    attributes:
+      unit:
+        name: Name
+        private_area: Private Area
+        common_area: Common Area
+        box_area: Box Area
+        total_area: Total Area
+        exchanged: Exchanged Unit

@@ -3,15 +3,18 @@ en:
     index:
       title: "My Projects"
       search_field_placeholder: "Search"
+      no_projects_found: "No projects found"
       empty_projects: "No project"
       new_project_button: "New Empreendimento"
     show:
       form_title: "Project Informations"
       name: "Name"
+      search_field_placeholder: "Search"
+      no_units_found: "No units found"
     new:
       title: "New Project"
       form_title: "Project Informations"
       submit: "Save"
-    new:
+    edit:
       form_title: "Project Informations"
       submit: "Save"      

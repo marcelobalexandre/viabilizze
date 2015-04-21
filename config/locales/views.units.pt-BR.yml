@@ -1,0 +1,6 @@
+pt-BR:
+  units:
+    new:
+      title: "Nova Unidade"
+      form_title: "Informações da Unidade"
+      submit: "Salvar"

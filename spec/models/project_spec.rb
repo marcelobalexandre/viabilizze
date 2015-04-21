@@ -6,8 +6,10 @@ describe Project do
 
   it { expect(subject).to respond_to(:name) }
   it { expect(subject).to respond_to(:user_id) }
-
+  it { expect(subject).to respond_to(:units) }
+  
   it { expect(subject).to belong_to(:user) }
+  it { expect(subject).to have_many(:units) }
 
   it { expect(subject).to validate_presence_of(:name) }
   it { expect(subject).to validate_uniqueness_of(:name).scoped_to(:user_id) }

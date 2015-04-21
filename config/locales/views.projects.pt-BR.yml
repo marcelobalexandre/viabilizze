@@ -3,11 +3,14 @@ pt-BR:
     index:
       title: "Meus Empreendimentos"
       search_field_placeholder: "Pesquisar"
+      no_projects_found: "Nenhum empreendimento encontrado"
       empty_projects: "Nenhum empreendimento"
       new_project_button: "Adicionar Empreendimento"
     show:
       form_title: "Informações do Empreendimento"
       name: "Nome"
+      search_field_placeholder: "Pesquisar"
+      no_units_found: "Nenhuma unidade encontrada"
     new:
       title: "Novo Empreendimento"
       form_title: "Informações do Empreendimento"

@@ -14,6 +14,12 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+
+    if params[:search]
+      @units = @project.units.where("name like ?", "%#{params[:search]}%").order(:name).paginate(page: params[:page])
+    else
+      @units = @project.units.order(:name).paginate(page: params[:page])
+    end 
   end
 
   def new
@@ -47,16 +53,6 @@ class ProjectsController < ApplicationController
   end
 
   private
-
-  def validate_user
-    if params[:user_id]
-      @user = User.where(id: params[:user_id]).first
-      if @user != current_user
-        flash[:alert] = t('.restricted_access')
-        redirect_to root_url
-      end      
-    end
-  end
 
   def project_params
     params.require(:project).permit(:name)
