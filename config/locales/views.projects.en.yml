@@ -5,12 +5,18 @@ en:
       search_field_placeholder: "Search"
       no_projects_found: "No projects found"
       empty_projects: "No project"
-      new_project_button: "New Empreendimento"
+      new_project_button: "New Empreendimento"      
     show:
       form_title: "Project Informations"
       name: "Name"
+      edit_button: "Edit"
+      units_form_title: "Units Informations"
+      quantity: "Quantity"
+      no_units: "No units"
       search_field_placeholder: "Search"
       no_units_found: "No units found"
+      add_unit_button: "Add Unit"
+      add_multiple_units_button: "Add Multiple Units"
     new:
       title: "New Project"
       form_title: "Project Informations"
@@ -18,3 +24,8 @@ en:
     edit:
       form_title: "Project Informations"
       submit: "Save"      
+    project:
+      no_units: "No units"
+      no_analysis: "No analysis"
+      unit: "unit"
+      units: "units"

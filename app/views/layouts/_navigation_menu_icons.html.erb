@@ -7,12 +7,11 @@
 <% end %>
 
 <!-- New User Project -->
-<% if current_page?(user_projects_path(current_user)) || 
-      current_page?(new_user_project_path(current_user)) ||
-      (@project && @project.errors.any?) %>
+<% if (controller.controller_name == "projects" && controller.action_name == "new") ||
+      (controller.controller_name == "projects" && controller.action_name == "create") %>
   <%= link_to(new_user_project_path(current_user), 
-              class: "item #{current_page?(new_user_project_path(current_user)) || 
-                             (@project && @project.errors.any?) ? "active disabled" : ""}", 
+              class: "item #{(controller.controller_name == "projects" && controller.action_name == "new") ||
+      (controller.controller_name == "projects" && controller.action_name == "create") ? "active disabled" : ""}", 
               title: t('.new_project_icon_title')) do %>
     <%= icon 'plus' %>
     <label class="show-for-medium-up"><%= t('.new_project_icon_label') %></label>
@@ -20,8 +19,7 @@
 <% end %>
 
 <!-- Show User Project -->
-<!-- /:locale/users/:user_id/projects/:project_id -->
-<% if !@project.nil? && !@project.id.nil? && current_page?(user_project_path(current_user, @project)) %>
+<% if controller.controller_name == "projects" && controller.action_name == "show" %>
   <%= link_to "#", class: "item active disabled", title: t('.show_project_icon_title') do %>
     <%= icon 'search' %>
     <label class="show-for-medium-up"><%= t('.show_project_icon_label') %></label>
@@ -29,8 +27,8 @@
 <% end %>
 
 <!-- Edit User Project -->
-<!-- /:locale/users/:user_id/projects/:project_id/edit -->
-<% if !@project.nil? && !@project.id.nil? && current_page?(edit_user_project_path(current_user, @project)) %>
+<% if (controller.controller_name == "projects" && controller.action_name == "edit")||
+      (controller.controller_name == "projects" && controller.action_name == "update") %>
   <%= link_to "#", class: "item active disabled", title: t('.edit_project_icon_title')  do %>
     <%= icon 'pencil' %>
     <label class="show-for-medium-up"><%= t('.edit_project_icon_label') %></label>
@@ -38,21 +36,32 @@
 <% end %>
 
 <!-- New User Project Unit -->
-<% if @project && 
-      @project.id &&
-      (current_page?(new_user_project_unit_path(current_user, @project)) ||
-       current_page?(user_project_units_path(current_user, @project))) %>
+<% if (controller.controller_name == "units" && controller.action_name == "new") ||
+      (controller.controller_name == "units" && controller.action_name == "create") ||
+      (controller.controller_name == "units" && controller.action_name == "index") %>
   <%= link_to(new_user_project_unit_path(current_user, @project), 
-              class: "item disabled #{current_page?(new_user_project_unit_path(current_user, @project)) ? "active" : ""}", 
+              class: "item disabled #{(controller.controller_name == "units" && controller.action_name == "new") ||
+      (controller.controller_name == "units" && controller.action_name == "create") ? "active" : ""}", 
               title: t('.new_unit_icon_title')) do %>
     <%= icon 'plus' %>
     <label class="show-for-medium-up"><%= t('.new_unit_icon_label') %></label>
   <% end %>
 
   <%= link_to(user_project_units_path(current_user, @project), id: 'copy-unit-button', 
-              class: "item #{current_page?(user_project_units_path(current_user, @project)) ? "active disabled" : ""}", title: t('.copy_unit_icon_title')) do %>
+              class: "item #{controller.controller_name == "units" && controller.action_name == "index" ? "active disabled" : ""}", title: t('.copy_unit_icon_title')) do %>
     <%= icon 'copy' %>
     <label class="show-for-medium-up"><%= t('.copy_unit_icon_label') %></label>
+  <% end %>
+<% end %>
+
+<!-- New User Project Multiple Units -->
+<% if (controller.controller_name == "multiple_units" && controller.action_name == "new") ||
+      (controller.controller_name == "multiple_units" && controller.action_name == "create") %>
+  <%= link_to(new_user_project_multiple_unit_path(current_user, @project), 
+              class: "item disabled active", 
+              title: t('.new_multiple_units_icon_title')) do %>
+    <%= icon 'asterisk' %>
+    <label class="show-for-medium-up"><%= t('.new_multiple_units_icon_label') %></label>
   <% end %>
 <% end %>
 

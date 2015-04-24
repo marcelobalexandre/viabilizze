@@ -3,8 +3,6 @@ class ProjectsController < ApplicationController
   before_action :validate_user, only: [:index, :show, :new, :edit]
 
   def index
-    @projects = current_user.projects.paginate(page: params[:page])  
-
     if params[:search]
       @projects = current_user.projects.where("name like ?", "%#{params[:search]}%").order(:name).paginate(page: params[:page])
     else

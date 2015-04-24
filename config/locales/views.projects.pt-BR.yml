@@ -5,12 +5,18 @@ pt-BR:
       search_field_placeholder: "Pesquisar"
       no_projects_found: "Nenhum empreendimento encontrado"
       empty_projects: "Nenhum empreendimento"
-      new_project_button: "Adicionar Empreendimento"
+      new_project_button: "Adicionar Empreendimento"      
     show:
       form_title: "Informações do Empreendimento"
       name: "Nome"
+      edit_button: "Alterar"
+      units_form_title: "Informações das Unidades"
+      quantity: "Quantidade"
+      no_units: "Nenhuma unidade"
       search_field_placeholder: "Pesquisar"
       no_units_found: "Nenhuma unidade encontrada"
+      add_unit_button: "Adicionar Unidade"
+      add_multiple_units_button: "Adicionar Múltiplas Unidades"
     new:
       title: "Novo Empreendimento"
       form_title: "Informações do Empreendimento"
@@ -18,3 +24,8 @@ pt-BR:
     edit:
       form_title: "Informações do Empreendimento"
       submit: "Salvar"
+    project:
+      no_units: "Nenhuma unidade"
+      no_analysis: "Nenhuma análise"
+      unit: "unidade"
+      units: "unidades"

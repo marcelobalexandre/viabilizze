@@ -3,7 +3,7 @@ pt-BR:
     index:
       title: "Copiar Unidade"
       search_field_placeholder: "Pesquisar"
-      no_units_found: "Nenhuma Unidade Encontrada"
+      no_units_found: "Nenhuma unidade encontrada"
     new:
       title: "Nova Unidade"
       form_title: "Informações da Unidade"

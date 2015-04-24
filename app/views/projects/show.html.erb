@@ -20,25 +20,25 @@
         <div class="small-12 medium-12 large-12 columns">
           <%= link_to(edit_user_project_path(current_user, @project), class: 'button expand edit-project-button') do %>
             <%= icon 'pencil' %>
-            Alterar
+            <%= t('.edit_button') %>
           <% end %> 
         </div>
       </div>
 
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns text-center">
-          <h4><strong>Informações das Unidades</strong></h4>
+          <h4><strong><%= t('.units_form_title') %></strong></h4>
         </div>
       </div>
 
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
-          <h6><strong>Quantidade</strong></h6>
+          <h6><strong><%= t('.quantity') %></strong></h6>
           
           <% if @units.count > 0 %>
             <%= @units.count %>
           <% else %>
-            Nenhuma unidade
+            <%= t('.no_units') %>
           <% end %>
         </div>
       </div>
@@ -49,13 +49,13 @@
             <li>
               <%= link_to(new_user_project_unit_path(current_user, @project), class: 'button expand') do %>
                 <%= icon 'plus' %>
-                Adicionar Unidade
+                <%= t('.add_unit_button') %>
               <% end %>               
             </li>
             <li>
               <%= link_to(new_user_project_multiple_unit_path(current_user, @project), class: 'button expand') do %>
                 <%= icon 'asterisk' %>
-                Adicionar Múltiplas Unidades
+                <%= t('.add_multiple_units_button') %>
               <% end %> 
             </li>
           </ul> 

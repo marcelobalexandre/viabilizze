@@ -11,13 +11,20 @@
       
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
-          <%= icon 'warning' %> Nenhuma unidade
+          <% if project.units.count == 0 %>
+            <%= icon 'warning' %> <%= t('.no_units') %>
+          <% elsif project.units.count == 1 %>
+            <%= "#{project.units.count} #{t('.unit')}" %>
+          <% else %>
+            <%= "#{project.units.count} #{t('.units')}" %>
+          <% end %>
         </div>
       </div>
       
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
-          <%= icon 'warning' %> Nenhuma análise
+          <%= icon 'warning' %>
+          <%= t('.no_analysis') %>
         </div>
       </div>    
     <% end %>    

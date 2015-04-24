@@ -1,29 +1,50 @@
 <div id="helpModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
   <h2 id="modalTitle">Ajuda</h2>
   
+  <!-- User Projects -->
   <% if current_page?(user_projects_path(current_user)) %>
     <p class="lead"><%= t('.my_projects_title') %></p>
     <p><%= t('.my_projects_help') %></p>
   <% end %>
 
-  <% if current_page?(new_user_project_path(current_user)) ||
-        (@project and @project.errors.any?) %>
+  <!-- New User Project -->
+  <% if (controller.controller_name == "projects" && controller.action_name == "new") ||
+        (controller.controller_name == "projects" && controller.action_name == "create") %>
     <p class="lead"><%= t('.new_project_title') %></p>
     <p><%= t('.new_project_help') %></p>
   <% end %>
 
-  <% if !@project.nil? and 
-        !@project.id.nil? and 
-        current_page?(user_project_path(current_user, @project)) %>
+  <!-- Show User Project -->
+  <% if controller.controller_name == "projects" && controller.action_name == "show" %>
     <p class="lead"><%= t('.show_project_title') %></p>
     <p><%= t('.show_project_help') %></p>
   <% end %>
 
-  <% if !@project.nil? and 
-        !@project.id.nil? and 
-        current_page?(edit_user_project_path(current_user, @project)) %>
+  <!-- Edit User Project -->
+  <% if (controller.controller_name == "projects" && controller.action_name == "edit")||
+        (controller.controller_name == "projects" && controller.action_name == "update") %>
     <p class="lead"><%= t('.edit_project_title') %></p>
     <p><%= t('.edit_project_help') %></p>
+  <% end %>
+
+  <!-- New User Project Unit -->
+  <% if (controller.controller_name == "units" && controller.action_name == "new") ||
+        (controller.controller_name == "units" && controller.action_name == "create") %>
+    <p class="lead"><%= t('.new_unit_title') %></p>
+    <p><%= t('.new_unit_help') %></p>
+  <% end %>
+
+  <!-- Copy Unit -->
+  <% if controller.controller_name == "units" && controller.action_name == "index" %>
+    <p class="lead"><%= t('.copy_unit_title') %></p>
+    <p><%= t('.copy_unit_help') %></p>
+  <% end %>
+
+  <!-- New User Project Multiple Units -->
+  <% if (controller.controller_name == "multiple_units" && controller.action_name == "new") ||
+        (controller.controller_name == "multiple_units" && controller.action_name == "create") %>
+    <p class="lead"><%= t('.new_multiple_units_title') %></p>
+    <p><%= t('.new_multiple_units_help') %></p>
   <% end %>
 
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>

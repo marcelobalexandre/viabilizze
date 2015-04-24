@@ -1,5 +1,6 @@
 class MultipleUnitsController < ApplicationController
-  respond_to :html
+  before_action :authenticate_user!
+  before_action :validate_user, only: [:new]
 
   def new
     @project = Project.find(params[:project_id])
@@ -15,6 +16,7 @@ class MultipleUnitsController < ApplicationController
     if @multiple_units.valid?
       multiple_units_creator = MultipleUnitsCreator.new
       multiple_units_creator.create_multiple_units(@project, @multiple_units) 
+      flash[:success] = t('.flash_success')
       redirect_to user_project_path(current_user, @project)
     else
       render 'new'
