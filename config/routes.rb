@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :users do
       resources :projects do
         resources :units
+        resources :multiple_units, only: [:new, :create]
       end
     end
 

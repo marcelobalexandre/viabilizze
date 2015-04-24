@@ -1,0 +1,103 @@
+<% provide :title, t('.title') %>
+
+<%= form_for [current_user, @project, @multiple_units], url: user_project_multiple_units_path(current_user, @project, @multiple_units, locale: "pt-BR") do |f| %>
+  <div class="row">
+    <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
+      <div class="panel form-panel">
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns text-center">
+            <h4><strong><%= t('.form_title') %></strong></h4>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <div class="<%= "error" if @multiple_units.errors[:quantity].any? %>">
+              <%= f.label :quantity %>
+              <%= f.number_field :quantity, autofocus: true %>
+
+              <% if @multiple_units.errors[:quantity].any? %>
+                <small class="error"><%= @multiple_units.errors.full_messages_for(:quantity).first %></small>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <div class="<%= "error" if @multiple_units.errors[:name].any? %>">
+              <%= f.label :name %>
+              <%= f.text_field :name %>
+
+              <% if @multiple_units.errors[:name].any? %>
+                <small class="error"><%= @multiple_units.errors.full_messages_for(:name).first %></small>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <small>
+              <div class="multiple-units-name-explanation">
+                <%= t('.multiple_units_name_explanation') %>
+              </div>
+            </small>
+          </div>
+        </div>
+        
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <div class="<%= "error" if @multiple_units.errors[:private_area].any? %>">
+              <%= f.label :private_area %>
+              <%= f.number_field :private_area %>
+
+              <% if @multiple_units.errors[:private_area].any? %>
+                <small class="error"><%= @multiple_units.errors.full_messages_for(:private_area).first %></small>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <div class="<%= "error" if @multiple_units.errors[:common_area].any? %>">
+              <%= f.label :common_area %>
+              <%= f.number_field :common_area %>
+
+              <% if @multiple_units.errors[:common_area].any? %>
+                <small class="error"><%= @multiple_units.errors.full_messages_for(:common_area).first %></small>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <div class="<%= "error" if @multiple_units.errors[:box_area].any? %>">
+              <%= f.label :box_area %>
+              <%= f.number_field :box_area %>
+
+              <% if @multiple_units.errors[:box_area].any? %>
+                <small class="error"><%= @multiple_units.errors.full_messages_for(:box_area).first %></small>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <%= f.check_box :exchanged %>
+            <%= f.label :exchanged %>
+          </div>
+        </div>
+
+        <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns">
+            <%= f.submit t('.submit'), class: "button expand" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

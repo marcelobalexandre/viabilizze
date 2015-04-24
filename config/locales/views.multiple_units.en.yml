@@ -1,0 +1,7 @@
+en:
+  multiple_units:
+    new:
+      title: "New Units"
+      form_title: "Units Informations"
+      multiple_units_name_explanation: "The units will be added with the names plus numbers in sequence, for example, if you typed the name Apartment, the units will be added as: Apartment 01, Apartment 02, Apartment 03, etc."
+      submit: "Add Multiple Units"

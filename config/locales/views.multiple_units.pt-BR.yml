@@ -1,0 +1,7 @@
+pt-BR:
+  multiple_units:
+    new:
+      title: "Novas Unidades"
+      form_title: "Informações das Unidades"
+      multiple_units_name_explanation: "As unidades serão adicionadas com os nomes acrescidos de números em sequência, por exemplo: se o você digitou o nome Apartamento, as unidade serão adicionas como: Apartamento 01, Apartamento 02, Apartamento 03, etc."
+      submit: "Adicionar Múltiplas Unidades"

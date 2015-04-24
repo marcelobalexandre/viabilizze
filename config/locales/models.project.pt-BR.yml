@@ -1,7 +1,7 @@
 pt-BR:
   activerecord:
     models:
-      project: Empreendimento
+      project: "Empreendimento"
     attributes:
       project:
-        name: Nome
+        name: "Nome"

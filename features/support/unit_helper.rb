@@ -13,7 +13,7 @@ module UnitHelper
     fill_in "unit_common_area",  with: @new_unit[:common_area]
     fill_in "unit_box_area",     with: @new_unit[:box_area]
     
-    click_button "Salvar"
+    click_button "Adicionar"
 
     @unit = Unit.where(name: @new_unit[:name]).first
   end

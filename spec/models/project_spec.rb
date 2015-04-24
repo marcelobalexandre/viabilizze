@@ -14,7 +14,7 @@ describe Project do
   it { expect(subject).to validate_presence_of(:name) }
   it { expect(subject).to validate_uniqueness_of(:name).scoped_to(:user_id) }
 
-  describe "when name is already taken from the another user" do
+  describe "when name is already taken from project from another user" do
     before do
       another_user = FactoryGirl.create(:user)
       project_with_same_name = subject.dup

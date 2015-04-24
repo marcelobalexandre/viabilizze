@@ -1,0 +1,14 @@
+en:
+  activerecord:
+    attributes:
+      multiple_units:
+        quantity: "Number of Copies"
+        name: "Name"
+        private_area: "Private Area"
+        common_area: "Common Area"
+        box_area: "Box Area"
+        exchanged: "Exchanged Unit"
+  errors:
+    messages:
+      names_already_taken_singular: "can not be used. The name %{existing_name} is already in use"
+      names_already_taken_plural: "can not be used. The names %{existing_names} are already in use"

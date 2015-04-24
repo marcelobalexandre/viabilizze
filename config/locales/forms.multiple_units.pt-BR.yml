@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    attributes:
+      multiple_units:
+        quantity: "Quantidade de Cópias"
+        name: "Nome"
+        private_area: "Área Privativa"
+        common_area: "Área Comum"
+        box_area: "Área de Box"
+        exchanged: "Unidade Permutada"
+  errors:
+    messages:
+      names_already_taken_singular: "não pode ser utilizado. O nome %{existing_name} já está em uso"
+      names_already_taken_plural: "não pode ser utilizado. Os nomes %{existing_names} já estão em uso"

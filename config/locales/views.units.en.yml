@@ -7,4 +7,4 @@ en:
     new:
       title: "New Unit"
       form_title: "Unit Informations"
-      submit: "Salvar"
+      submit: "Add"

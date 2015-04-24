@@ -1,7 +1,7 @@
 en:
   activerecord:
     models:
-      project: Project
+      project: "Project"
     attributes:
       project:
-        name: Name
+        name: "Name"
