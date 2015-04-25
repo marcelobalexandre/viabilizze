@@ -45,4 +45,18 @@ describe Unit do
 
     it { expect(subject.total_area).to eq(30) }
   end
+
+  describe "#by_name" do
+    let(:unit_three) { FactoryGirl.create(:unit, name: "Unit Without Example 3") }
+    let(:unit_two) { FactoryGirl.create(:unit, name: "Unit With Example 2") }
+    let(:unit_one) { FactoryGirl.create(:unit, name: "Unit With Example 1") }      
+    
+    it "orders by ascending name" do
+      expect(Unit.all.by_name(nil)).to eq([unit_one, unit_two, unit_three])
+    end
+
+    it "search by name and orders by ascending name" do
+      expect(Unit.all.by_name('Unit With')).to eq([unit_one, unit_two])
+    end
+  end
 end

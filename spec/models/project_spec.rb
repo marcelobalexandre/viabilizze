@@ -27,4 +27,18 @@ describe Project do
   end
 
   it { expect(subject).to validate_presence_of(:user_id) }
+
+  describe "#by_name" do
+    let(:project_three) { FactoryGirl.create(:project, name: "Project Without Example 3") }
+    let(:project_two) { FactoryGirl.create(:project, name: "Project With Example 2") }
+    let(:project_one) { FactoryGirl.create(:project, name: "Project With Example 1") }      
+    
+    it "orders by ascending name" do
+      expect(Project.all.by_name(nil)).to eq([project_one, project_two, project_three])
+    end
+
+    it "search by name and orders by ascending name" do
+      expect(Project.all.by_name('Project With')).to eq([project_one, project_two])
+    end
+  end
 end
