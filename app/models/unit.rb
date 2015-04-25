@@ -8,7 +8,7 @@ class Unit < ActiveRecord::Base
   validates :private_area, numericality: { greater_than_or_equal_to: 0 }
   validates :common_area,  numericality: { greater_than_or_equal_to: 0 }
   validates :box_area,     numericality: { greater_than_or_equal_to: 0 }
-  validates :exchanged,    inclusion: { in: [true, false], message: 'não pode ficar em branco' }
+  validates :exchanged,    inclusion: { in: [true, false], message: :blank }
   validates :project_id,   presence: true
 
   def total_area

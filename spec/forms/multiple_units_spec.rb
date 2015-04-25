@@ -27,7 +27,7 @@ describe MultipleUnits do
   end
 
   describe "#verify_uniqueness_of_names" do
-    context "when some of the names is already taken from a unit from the same project" do
+    context "when one of the names is already taken from a unit from the same project" do
       before do
         project = FactoryGirl.create(:project)
         
@@ -37,7 +37,22 @@ describe MultipleUnits do
         subject.project_id = project.id      
       end
 
-      it { expect { subject.verify_uniqueness_of_names }.to change{subject.errors[:name].count}.from(0) }
+      it { expect { subject.verify_uniqueness_of_names }.to change{subject.errors[:name].count}.from(0).to(1) }      
+    end
+
+    context "when more than one of the names is already taken from a unit from the same project" do
+      before do
+        project = FactoryGirl.create(:project)
+        
+        unit_with_same_name = FactoryGirl.create(:unit, name: subject.names.first, project_id: project.id)
+        another_unit_with_same_name = FactoryGirl.create(:unit, name: subject.names.last, project_id: project.id)
+        project.units << unit_with_same_name
+        project.units << another_unit_with_same_name
+        
+        subject.project_id = project.id      
+      end
+
+      it { expect { subject.verify_uniqueness_of_names }.to change{subject.errors[:name].count}.from(0).to(1) }
     end
 
     context "when some of the names is already taken from a unit from the another project" do
