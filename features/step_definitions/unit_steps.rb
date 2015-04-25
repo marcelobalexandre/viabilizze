@@ -52,6 +52,35 @@ When(/^clico em uma unidade existente$/) do
   first('.unit-information').click
 end
 
+When(/^crio múltiplas unidades com dados válidos$/) do
+  new_multiple_units
+  register_new_multiple_units(@projects.first)
+end
+
+When(/^crio múltiplas unidades sem nome$/) do
+  new_multiple_units
+  @new_multiple_units[:name] = " "
+  register_new_multiple_units(@projects.first)
+end
+
+When(/^tento criar múltiplas unidades para empreendimento de outro usuário$/) do
+  visit "/pt-BR/users/#{@another_user.id}/projects/#{@project_from_another_user.id}/multiple_units/new"
+end
+
 Then(/^devo ver os dados da unidade selecionada nos campos da unidade sendo cadastrada$/) do
   expect(page).to have_content @projects.first.units.first.name
+end
+
+Then(/^devo ver uma mensagem de múltiplas unidades adicionadas com sucesso$/) do
+  expect(page).to have_content "Múltiplas unidades adicionadas com sucesso."
+end
+
+Then(/^devo visualizar o empreendimento com as novas unidades$/) do
+  expect(page).to have_content @projects.first.name
+  expect(@multiple_units.count).to be > 0
+  @multiple_units.each { |unit| expect(page).to have_content unit[:name] }  
+end
+
+Then(/^devo ver uma mensagem de nome para múltiplas unidades ausente$/) do
+  expect(page).to have_content "Nome não pode ficar em branco"
 end
