@@ -16,8 +16,7 @@ describe MultipleUnits do
   it { expect(subject).to validate_numericality_of(:quantity).is_greater_than_or_equal_to(2) }
   
   it { expect(subject).to validate_presence_of(:name) }
-  # it { expect(subject).to validate_uniqueness_of(:name).scoped_to(:project_id) }
-
+  
   describe "#names" do
     before do
       subject.quantity = 3
@@ -27,31 +26,33 @@ describe MultipleUnits do
     it { expect(subject.names).to eq([ 'Unit 01', 'Unit 02', 'Unit 03' ]) }
   end
 
-  describe "when some of the names is already taken from a unit from the same project" do
-    before do
-      project = FactoryGirl.create(:project)
-      
-      unit_with_same_name = FactoryGirl.create(:unit, name: subject.names.first, project_id: project.id)
-      project.units << unit_with_same_name
-      
-      subject.project_id = project.id      
+  describe "#verify_uniqueness_of_names" do
+    context "when some of the names is already taken from a unit from the same project" do
+      before do
+        project = FactoryGirl.create(:project)
+        
+        unit_with_same_name = FactoryGirl.create(:unit, name: subject.names.first, project_id: project.id)
+        project.units << unit_with_same_name
+        
+        subject.project_id = project.id      
+      end
+
+      it { expect { subject.verify_uniqueness_of_names }.to change{subject.errors[:name].count}.from(0) }
     end
 
-    it { expect(subject.valid?).to be(false) }
-  end
+    context "when some of the names is already taken from a unit from the another project" do
+      before do
+        project = FactoryGirl.create(:project)
+        
+        another_project = FactoryGirl.create(:project)
+        unit_with_same_name = FactoryGirl.create(:unit, name: subject.names.first, project_id: another_project.id)
+        another_project.units << unit_with_same_name
+        
+        subject.project_id = project.id      
+      end
 
-  describe "when some of the names is already taken from a unit from the another project" do
-    before do
-      project = FactoryGirl.create(:project)
-      
-      another_project = FactoryGirl.create(:project)
-      unit_with_same_name = FactoryGirl.create(:unit, name: subject.names.first, project_id: another_project.id)
-      another_project.units << unit_with_same_name
-      
-      subject.project_id = project.id      
+      it { expect { subject.verify_uniqueness_of_names }.not_to change{subject.errors[:name].count}.from(0) }
     end
-
-    it { expect(subject.valid?).to be(true) }
   end
 
   it { expect(subject).to validate_numericality_of(:private_area).is_greater_than_or_equal_to(0) }
