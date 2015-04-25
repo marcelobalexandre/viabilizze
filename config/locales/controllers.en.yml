@@ -19,6 +19,10 @@ en:
       restricted_access: "You tried to access a page not allowed and was redirected."
     create:
       flash_success: "Unit added successfully."
+    edit:
+      restricted_access: "You tried to access a page not allowed and was redirected."
+    update:
+      flash_success: "Unit updated successfully."
   multiple_units:
     new:
       restricted_access: "You tried to access a page not allowed and was redirected."

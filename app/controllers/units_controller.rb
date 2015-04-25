@@ -38,6 +38,23 @@ class UnitsController < ApplicationController
     end
   end
 
+  def edit
+    @project = Project.find(params[:project_id])
+    @unit = Unit.find(params[:id])    
+  end
+
+  def update
+    @project = Project.find(params[:project_id])
+    @unit = Unit.find(params[:id])
+
+    if @unit.update(unit_params)
+      flash[:success] = t('.flash_success')
+      redirect_to user_project_unit_path(current_user, @project, @unit)
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def unit_params

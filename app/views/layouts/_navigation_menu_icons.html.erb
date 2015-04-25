@@ -73,6 +73,15 @@
   <% end %>    
 <% end %>
 
+<!-- Edit User Project Unit -->
+<% if (controller.controller_name == "units" && controller.action_name == "edit")||
+      (controller.controller_name == "units" && controller.action_name == "update") %>
+  <%= link_to "#", class: "item active disabled", title: t('.edit_unit_icon_title')  do %>
+    <%= icon 'pencil' %>
+    <label class="show-for-medium-up"><%= t('.edit_unit_icon_label') %></label>
+  <% end %>    
+<% end %>
+
 <!-- Sign Out -->
 <%= link_to(destroy_user_session_path, :method => :delete, class: 'item right', title: t('.sign_out_icon_title')) do %>
   <%= icon 'sign-out' %>

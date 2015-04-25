@@ -53,5 +53,12 @@
     <p><%= t('.show_unit_help') %></p>
   <% end %>
 
+  <!-- Edit User Project Unit -->
+  <% if (controller.controller_name == "units" && controller.action_name == "edit")||
+        (controller.controller_name == "units" && controller.action_name == "update") %>
+    <p class="lead"><%= t('.edit_unit_title') %></p>
+    <p><%= t('.edit_unit_help') %></p>
+  <% end %>
+
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>

@@ -19,6 +19,10 @@ pt-BR:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
     create:
       flash_success: "Unidade adicionada com sucesso."
+    edit:
+      restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
+    update:
+      flash_success: "Unidade atualizada com sucesso."
   multiple_units:
     new:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
