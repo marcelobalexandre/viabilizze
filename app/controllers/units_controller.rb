@@ -4,12 +4,7 @@ class UnitsController < ApplicationController
 
   def index
     @project = Project.find(params[:project_id])
-    
-    if params[:search]
-      @units = @project.units.where("name like ?", "%#{params[:search]}%").order(:name).paginate(page: params[:page])
-    else
-      @units = @project.units.order(:name).paginate(page: params[:page])
-    end 
+    @units = @project.units.by_name(params[:search]).paginate(page: params[:page])
   end
 
   def show

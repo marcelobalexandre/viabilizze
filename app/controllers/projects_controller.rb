@@ -3,21 +3,12 @@ class ProjectsController < ApplicationController
   before_action :validate_user, only: [:index, :show, :new, :edit]
 
   def index
-    if params[:search]
-      @projects = current_user.projects.where("name like ?", "%#{params[:search]}%").order(:name).paginate(page: params[:page])
-    else
-      @projects = current_user.projects.order(:name).paginate(page: params[:page])
-    end  
+    @projects = current_user.projects.by_name(params[:search]).paginate(page: params[:page])
   end
 
   def show
     @project = Project.find(params[:id])
-
-    if params[:search]
-      @units = @project.units.where("name like ?", "%#{params[:search]}%").order(:name).paginate(page: params[:page])
-    else
-      @units = @project.units.order(:name).paginate(page: params[:page])
-    end 
+    @units = @project.units.by_name(params[:search]).paginate(page: params[:page])  
   end
 
   def new

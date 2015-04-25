@@ -14,4 +14,12 @@ class Unit < ActiveRecord::Base
   def total_area
     self.private_area + self.common_area + self.box_area
   end
+
+  def self.by_name(name)
+    if name.present? 
+      where("name like ?", "%#{name}%").order(:name)
+    else 
+      order(:name)
+    end
+  end
 end
