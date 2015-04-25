@@ -12,6 +12,8 @@ en:
       restricted_access: "You tried to access a page not allowed and was redirected."
     update:
       flash_success: "Project updated successfully."
+    destroy:
+      flash_success: "Project deleted successfully."
   units:
     show:
       restricted_access: "You tried to access a page not allowed and was redirected."

@@ -12,8 +12,6 @@ pt-BR:
       edit_button: "Alterar"
       delete_question: "Você tem certeza?"
       delete_button: "Excluir"
-      delete_question: "Você tem certeza?"
-      delete_button: "Delete"
       units_form_title: "Informações das Unidades"
       quantity: "Quantidade"
       no_units: "Nenhuma unidade"

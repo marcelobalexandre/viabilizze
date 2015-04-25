@@ -9,7 +9,7 @@ Funcionalidade: Excluir Unidade
     Dado que estou conectado
     E que tenho empreendimentos com unidades cadastrados
 
-  Cenário: Usuário excluir unidade própria
+  Cenário: Usuário exclui unidade própria
     Ao excluir uma unidade própria o usuário deve receber
     uma mensagem de unidade excluída com sucesso.
 

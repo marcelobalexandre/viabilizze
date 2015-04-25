@@ -69,6 +69,13 @@ When(/^abro um empreendimento de outro usuário para edição$/) do
   visit "/pt-BR/users/#{@another_user.id}/projects/#{@project_from_another_user.id}/edit"
 end
 
+When(/^excluo um empreendimento próprio$/) do
+  visit "/pt-BR/users/#{@user.id}/projects/#{@projects.first.id}"
+  expect do
+    click_link('Excluir', match: :first)
+  end.to change(Project.all, :count).by(-1)
+end
+
 Then(/^devo ver uma mensagem de empreendimento criado com sucesso$/) do
   expect(page).to have_content "Empreendimento criado com sucesso."
 end
@@ -150,4 +157,6 @@ Then(/^devo visualizar o empreendimento atualizado$/) do
   expect(page).to have_content "New Project Name"
 end
 
-
+Then(/^devo ver uma mensagem de empreendimento excluído com sucesso$/) do
+  expect(page).to have_content "Empreendimento excluído com sucesso."
+end

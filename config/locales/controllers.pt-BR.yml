@@ -12,6 +12,8 @@ pt-BR:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
     update:
       flash_success: "Empreendimento atualizado com sucesso."
+    destroy:
+      flash_success: "Empreendimento excluído com sucesso."
   units:
     show:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."

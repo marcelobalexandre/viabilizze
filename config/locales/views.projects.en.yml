@@ -10,7 +10,7 @@ en:
       form_title: "Project Informations"
       name: "Name"
       edit_button: "Edit"
-      delete_question: "Você tem certeza?"
+      delete_question: "Are you sure?"
       delete_button: "Delete"
       units_form_title: "Are you sure?"
       quantity: "Quantity"
