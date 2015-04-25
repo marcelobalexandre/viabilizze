@@ -65,6 +65,14 @@
   <% end %>
 <% end %>
 
+<!-- Show User Project Unit -->
+<% if controller.controller_name == "units" && controller.action_name == "show" %>
+  <%= link_to "#", class: "item active disabled", title: t('.show_unit_icon_title') do %>
+    <%= icon 'search' %>
+    <label class="show-for-medium-up"><%= t('.show_unit_icon_label') %></label>
+  <% end %>    
+<% end %>
+
 <!-- Sign Out -->
 <%= link_to(destroy_user_session_path, :method => :delete, class: 'item right', title: t('.sign_out_icon_title')) do %>
   <%= icon 'sign-out' %>

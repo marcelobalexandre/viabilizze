@@ -13,6 +13,8 @@ pt-BR:
     update:
       flash_success: "Empreendimento atualizado com sucesso."
   units:
+    show:
+      restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
     new:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
     create:

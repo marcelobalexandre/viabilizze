@@ -1,7 +1,7 @@
 # language: pt
 
 Funcionalidade: Visualizar Empreendimento
-  Para que possa visualizar os dados de um um empreendimento
+  Para que possa visualizar os dados de um empreendimento
   como um usuário
   eu quero poder visualizar um empreendimento
 

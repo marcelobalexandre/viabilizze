@@ -1,11 +1,19 @@
 Given(/^que tenho empreendimentos com unidades cadastrados$/) do
-    @projects = FactoryGirl.create_list(:project, 3, user_id: @user.id)
-    @projects.each do |project| 
-      units = FactoryGirl.create_list(:unit, 3, project_id: project.id)  
-      units.each { |unit| project.units << unit }
+  @projects = FactoryGirl.create_list(:project, 3, user_id: @user.id)
+  @projects.each do |project| 
+    units = FactoryGirl.create_list(:unit, 3, project_id: project.id)  
+    units.each { |unit| project.units << unit }
 
-      @user.projects << project
-    end
+    @user.projects << project
+  end
+end
+
+Given(/^que existem empreendimentos com unidades de outros usuários cadastrados$/) do
+  @another_user = FactoryGirl.create(:user)
+  @project_from_another_user = FactoryGirl.create(:project, user_id: @another_user.id)
+  units = FactoryGirl.create_list(:unit, 3, project_id: @project_from_another_user.id)  
+  units.each { |unit| @project_from_another_user.units << unit }
+  @another_user.projects << @project_from_another_user
 end
 
 When(/^crio uma unidade com dados válidos$/) do
@@ -67,6 +75,14 @@ When(/^tento criar múltiplas unidades para empreendimento de outro usuário$/) 
   visit "/pt-BR/users/#{@another_user.id}/projects/#{@project_from_another_user.id}/multiple_units/new"
 end
 
+When(/^abrir uma unidade própria$/) do
+  visit "/pt-BR/users/#{@user.id}/projects/#{@projects.first.id}/units/#{@projects.first.units.first.id}"
+end
+
+When(/^abrir uma unidade de outro usuário$/) do
+  visit "/pt-BR/users/#{@another_user.id}/projects/#{@project_from_another_user.id}/units/#{@project_from_another_user.units.first.id}"
+end
+
 Then(/^devo ver os dados da unidade selecionada nos campos da unidade sendo cadastrada$/) do
   expect(page).to have_content @projects.first.units.first.name
 end
@@ -83,4 +99,8 @@ end
 
 Then(/^devo ver uma mensagem de nome para múltiplas unidades ausente$/) do
   expect(page).to have_content "Nome não pode ficar em branco"
+end
+
+Then(/^devo visualizar minha unidade$/) do
+  expect(page).to have_content @projects.first.units.first.name
 end

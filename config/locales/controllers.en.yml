@@ -13,6 +13,8 @@ en:
     update:
       flash_success: "Project updated successfully."
   units:
+    show:
+      restricted_access: "You tried to access a page not allowed and was redirected."
     new:
       restricted_access: "You tried to access a page not allowed and was redirected."
     create:
