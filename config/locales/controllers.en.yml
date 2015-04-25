@@ -23,6 +23,8 @@ en:
       restricted_access: "You tried to access a page not allowed and was redirected."
     update:
       flash_success: "Unit updated successfully."
+    destroy:
+      flash_success: "Unit deleted successfully."
   multiple_units:
     new:
       restricted_access: "You tried to access a page not allowed and was redirected."

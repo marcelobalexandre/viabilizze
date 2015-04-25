@@ -18,10 +18,20 @@
 
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
-          <%= link_to(edit_user_project_path(current_user, @project), class: 'button expand edit-project-button') do %>
-            <%= icon 'pencil' %>
-            <%= t('.edit_button') %>
-          <% end %> 
+          <ul class="stack button-group project-buttons-stack">
+            <li>
+              <%= link_to(edit_user_project_path(current_user, @project), class: 'button expand') do %>
+                <%= icon 'pencil' %>
+                <%= t('.edit_button') %>
+              <% end %> 
+            </li>
+            <li>
+              <%= link_to(user_project_path(current_user, @project), method: :delete, data: { confirm: t('.delete_question') }, class: 'button expand') do %>
+                <%= icon 'trash' %>
+                <%= t('.delete_button') %>
+              <% end %> 
+            </li>
+          </ul> 
         </div>
       </div>
 

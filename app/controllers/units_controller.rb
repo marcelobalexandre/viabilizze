@@ -55,6 +55,14 @@ class UnitsController < ApplicationController
     end
   end
 
+  def destroy
+    @project = Project.find(params[:project_id])
+    @unit = Unit.find(params[:id])
+    @unit.destroy
+    flash[:success] = t('.flash_success')
+    redirect_to user_project_path(current_user, @project)   
+  end
+
   private
 
   def unit_params

@@ -93,6 +93,13 @@ When(/^abro uma unidade de outro usuário para edição$/) do
   visit "/pt-BR/users/#{@another_user.id}/projects/#{@project_from_another_user.id}/units/#{@project_from_another_user.units.first.id}/edit"
 end
 
+When(/^excluo uma unidade própria$/) do
+  visit "/pt-BR/users/#{@user.id}/projects/#{@projects.first.id}/units/#{@projects.first.units.first.id}"
+  expect do
+    click_link('Excluir', match: :first)
+  end.to change(Unit.all, :count).by(-1)
+end
+
 Then(/^devo ver os dados da unidade selecionada nos campos da unidade sendo cadastrada$/) do
   expect(page).to have_content @projects.first.units.first.name
 end
@@ -121,6 +128,10 @@ end
 
 Then(/^devo visualizar a unidade atualizada$/) do
   expect(page).to have_content "New Unit Name"
+end
+
+Then(/^devo ver uma mensagem de unidade excluída com sucesso$/) do
+  expect(page).to have_content "Unidade excluída com sucesso."
 end
 
 

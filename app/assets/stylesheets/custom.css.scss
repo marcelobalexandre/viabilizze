@@ -82,6 +82,11 @@ a.edit-project-button {
   margin-top: 1em;
 }
 
+ul.project-buttons-stack {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 ul.add-units-stack {
   margin-top: 1em;
 }
@@ -90,4 +95,8 @@ ul.add-units-stack {
   line-height: 1.5em;
   margin-top: -1.4em;
   margin-bottom: 1.5em;  
+}
+
+.unit-label {
+  margin-top: -0.5em;
 }

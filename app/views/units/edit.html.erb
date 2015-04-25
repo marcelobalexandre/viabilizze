@@ -27,7 +27,7 @@
           <div class="small-12 medium-12 large-12 columns">
             <div class="<%= "error" if @unit.errors[:private_area].any? %>">
               <%= f.label :private_area %>
-              <%= f.text_field :private_area %>
+              <%= f.number_field :private_area %>
 
               <% if @unit.errors[:private_area].any? %>
                 <small class="error"><%= @unit.errors.full_messages_for(:private_area).first %></small>
@@ -40,7 +40,7 @@
           <div class="small-12 medium-12 large-12 columns">
             <div class="<%= "error" if @unit.errors[:common_area].any? %>">
               <%= f.label :common_area %>
-              <%= f.text_field :common_area %>
+              <%= f.number_field :common_area %>
 
               <% if @unit.errors[:common_area].any? %>
                 <small class="error"><%= @unit.errors.full_messages_for(:common_area).first %></small>
@@ -53,7 +53,7 @@
           <div class="small-12 medium-12 large-12 columns">
             <div class="<%= "error" if @unit.errors[:box_area].any? %>">
               <%= f.label :box_area %>
-              <%= f.text_field :box_area %>
+              <%= f.number_field :box_area %>
 
               <% if @unit.errors[:box_area].any? %>
                 <small class="error"><%= @unit.errors.full_messages_for(:box_area).first %></small>

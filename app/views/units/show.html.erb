@@ -12,44 +12,54 @@
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
             <h6><strong><%= t('.name') %></strong></h6>
-            <p><%= @unit.name %></p>
+            <p class="unit-label"><%= @unit.name %></p>
         </div>
       </div>
 
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
-            <h6><strong><%= t('.private_area') %></strong></h6>
-            <p><%= @unit.private_area %></p>
+            <h6 class="unit-label"><strong><%= t('.private_area') %></strong></h6>
+            <p class="unit-label"><%= @unit.private_area %></p>
         </div>
       </div>
 
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
-            <h6><strong><%= t('.common_area') %></strong></h6>
-            <p><%= @unit.common_area %></p>
+            <h6 class="unit-label"><strong><%= t('.common_area') %></strong></h6>
+            <p class="unit-label"><%= @unit.common_area %></p>
         </div>
       </div>
 
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
-            <h6><strong><%= t('.box_area') %></strong></h6>
-            <p><%= @unit.box_area %></p>
+            <h6 class="unit-label"><strong><%= t('.box_area') %></strong></h6>
+            <p class="unit-label"><%= @unit.box_area %></p>
         </div>
       </div>
 
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
-            <h6><strong><%= t('.exchanged') %></strong></h6>
-            <p><%= if @unit.exchanged then t('.exchanged_yes') else t('.exchanged_no') end %></p>
+            <h6 class="unit-label"><strong><%= t('.exchanged') %></strong></h6>
+            <p class="unit-label"><%= if @unit.exchanged then t('.exchanged_yes') else t('.exchanged_no') end %></p>
         </div>
       </div>
 
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
-          <%= link_to(edit_user_project_unit_path(current_user, @project, @unit), class: 'button expand edit-project-button') do %>
-            <%= icon 'pencil' %>
-            <%= t('.edit_button') %>
-          <% end %> 
+          <ul class="stack button-group">
+            <li>
+              <%= link_to(edit_user_project_unit_path(current_user, @project, @unit), class: 'button expand edit-project-button') do %>
+                <%= icon 'pencil' %>
+                <%= t('.edit_button') %>
+              <% end %> 
+            </li>
+            <li>
+              <%= link_to(user_project_unit_path(current_user, @project, @unit), method: :delete, data: { confirm: t('.delete_question') }, class: 'button expand') do %>
+                <%= icon 'trash' %>
+                <%= t('.delete_button') %>
+              <% end %> 
+            </li>
+          </ul> 
         </div>
       </div>      
     </div>

@@ -14,6 +14,8 @@ pt-BR:
       exchanged_yes: "Sim"
       exchanged_no: "Não"
       edit_button: "Alterar"
+      delete_question: "Você tem certeza?"
+      delete_button: "Excluir"
     new:
       title: "Nova Unidade"
       form_title: "Informações da Unidade"

@@ -23,6 +23,8 @@ pt-BR:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
     update:
       flash_success: "Unidade atualizada com sucesso."
+    destroy:
+      flash_success: "Unidade excluída com sucesso."
   multiple_units:
     new:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
