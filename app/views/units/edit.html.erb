@@ -71,7 +71,10 @@
 
         <div class="row collapse">
           <div class="small-12 medium-12 large-12 columns">
-            <%= f.submit t('.submit'), class: "button expand" %>
+            <%= button_tag(type: 'submit', class: "button expand") do %>
+             <%= icon 'check' %>
+             <%= t('.submit') %>
+            <% end %>
           </div>
         </div>
       </div>

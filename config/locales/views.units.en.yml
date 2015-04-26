@@ -14,6 +14,9 @@ en:
       exchanged_yes: "Yes"
       exchanged_no: "No"
       edit_button: "Edit"    
+      delete_question: "Are you sure?"
+      delete_button: "Delete"
+      back_button: "Back"
     new:
       title: "New Unit"
       form_title: "Unit Informations"

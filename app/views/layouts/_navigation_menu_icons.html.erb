@@ -7,7 +7,8 @@
 <% end %>
 
 <!-- New User Project -->
-<% if (controller.controller_name == "projects" && controller.action_name == "new") ||
+<% if (controller.controller_name == "projects" && controller.action_name == "index") ||
+      (controller.controller_name == "projects" && controller.action_name == "new") ||
       (controller.controller_name == "projects" && controller.action_name == "create") %>
   <%= link_to(new_user_project_path(current_user), 
               class: "item #{(controller.controller_name == "projects" && controller.action_name == "new") ||

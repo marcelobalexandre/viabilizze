@@ -16,6 +16,7 @@ pt-BR:
       edit_button: "Alterar"
       delete_question: "Você tem certeza?"
       delete_button: "Excluir"
+      back_button: "Voltar"
     new:
       title: "Nova Unidade"
       form_title: "Informações da Unidade"

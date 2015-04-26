@@ -59,6 +59,12 @@
                 <%= t('.delete_button') %>
               <% end %> 
             </li>
+            <li>
+              <%= link_to(user_project_path(current_user, @project), class: 'button expand') do %>
+                <%= icon 'arrow-left' %>
+                <%= t('.back_button') %>
+              <% end %> 
+            </li>
           </ul> 
         </div>
       </div>      
