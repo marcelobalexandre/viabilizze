@@ -3,7 +3,7 @@
     font-size: 8em;
     line-height: 0;
   }
-  
+
   h1 {
     font-weight: bold;
     margin-top: -0.6em;
@@ -26,7 +26,7 @@
 
 p.create-user-agreement {
   line-height: 0.8em;
-  margin-top: 1em; 
+  margin-top: 1em;
 }
 
 .alert-box {
@@ -34,7 +34,7 @@ p.create-user-agreement {
 }
 
 i.button-icon-small {
-  font-size: 1.2em;  
+  font-size: 1.2em;
 }
 
 .form-panel {
@@ -94,9 +94,28 @@ ul.add-units-stack {
 .multiple-units-name-explanation {
   line-height: 1.5em;
   margin-top: -1.4em;
-  margin-bottom: 1.5em;  
+  margin-bottom: 1.5em;
 }
 
 .unit-label {
+  margin-top: -0.5em;
+}
+
+.sensitivity-analisys-button {
+  margin-top: 1em;
+  margin-bottom: -0.8em;
+}
+
+.new-sensitivity-analysis-label {
+  margin-top: -0.5em;
+  margin-bottom: 0.8em;
+}
+
+.sensitivity-analysis-name {
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+
+.sensitivity-analysis-label {
   margin-top: -0.5em;
 }

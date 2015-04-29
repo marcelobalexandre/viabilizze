@@ -1,0 +1,37 @@
+pt-BR:
+  sensitivity_analyses:
+    index:
+      title: "Análises de Sensibilidade - %{project_name}"
+      empty_sensitivity_analyses: "Nenhuma análise de sensibilidade"
+      new_sensitivity_analysis_button: "Adicionar Análise de Sensibilidade"
+    show:
+      form_title: "Informações Gerais"
+      name: "Nome"
+      incomplete: "Incompleto"
+      net_profit_margin: "Margem de Lucro Líquido Desejado"
+      sales_commissions_rate: "Percentual de Comissão sobre Vendas"
+      sales_taxes_rate: "Taxa de Impostos sobre Vendas"
+      sales_charges_rate: "Outras Taxas sobre Vendas"
+      individualization_costs: "Custos de Individualização"
+      cost_per_square_meter: "Custos por Metro Quadrado"
+      land_acquisition_cost: "Custo do Terreno"
+      exchanged_units_expenses: "Outras Despesas de Permuta"
+      edit_button: "Alterar"
+      delete_question: "Você tem certeza?"
+      delete_button: "Excluir"
+      back_button: "Voltar"
+    new:
+      title: "Nova Análise de Sensibilidade"
+      form_title: "Informações Gerais"
+      project: "Empreendimento"
+      units: "Unidades"
+      submit: "Salvar"
+    edit:
+      form_title: "Informações Gerais"
+      project: "Empreendimento"
+      units: "Unidades"
+      submit: "Salvar"
+    sensitivity_analysis:
+      incomplete_analysis: "Análise incompleta"
+      charts: "Gráficos"
+      reports: "Relatórios"

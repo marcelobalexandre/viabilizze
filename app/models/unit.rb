@@ -1,6 +1,4 @@
 class Unit < ActiveRecord::Base
-  self.per_page = 10
-  
   belongs_to :project
 
   validates :name, presence: true,
@@ -22,4 +20,6 @@ class Unit < ActiveRecord::Base
       order(:name)
     end
   end
+
+  self.per_page = 10
 end

@@ -1,7 +1,7 @@
 Given(/^que tenho empreendimentos com unidades cadastrados$/) do
   @projects = FactoryGirl.create_list(:project, 3, user_id: @user.id)
-  @projects.each do |project| 
-    units = FactoryGirl.create_list(:unit, 3, project_id: project.id)  
+  @projects.each do |project|
+    units = FactoryGirl.create_list(:unit, 3, project_id: project.id)
     units.each { |unit| project.units << unit }
 
     @user.projects << project
@@ -11,7 +11,7 @@ end
 Given(/^que existem empreendimentos com unidades de outros usuários cadastrados$/) do
   @another_user = FactoryGirl.create(:user)
   @project_from_another_user = FactoryGirl.create(:project, user_id: @another_user.id)
-  units = FactoryGirl.create_list(:unit, 3, project_id: @project_from_another_user.id)  
+  units = FactoryGirl.create_list(:unit, 3, project_id: @project_from_another_user.id)
   units.each { |unit| @project_from_another_user.units << unit }
   @another_user.projects << @project_from_another_user
 end
@@ -29,19 +29,6 @@ end
 
 When(/^tento criar uma unidade para empreendimento de outro usuário$/) do
   visit "/pt-BR/users/#{@another_user.id}/projects/#{@project_from_another_user.id}/units/new"
-end
-
-Then(/^devo ver uma mensagem de unidade adicionada com sucesso$/) do
-  expect(page).to have_content "Unidade adicionada com sucesso."
-end
-
-Then(/^devo visualizar o empreendimento com a nova unidade$/) do
-  expect(page).to have_content @projects.first.name
-  expect(page).to have_content @new_unit[:name]
-end
-
-Then(/^devo ver uma mensagem de nome da unidade ausente$/) do
-  expect(page).to have_content "Nome não pode ficar em branco"
 end
 
 When(/^acesso um empreendimento próprio$/) do
@@ -100,6 +87,19 @@ When(/^excluo uma unidade própria$/) do
   end.to change(Unit.all, :count).by(-1)
 end
 
+Then(/^devo ver uma mensagem de unidade adicionada com sucesso$/) do
+  expect(page).to have_content "Unidade adicionada com sucesso."
+end
+
+Then(/^devo visualizar o empreendimento com a nova unidade$/) do
+  expect(page).to have_content @projects.first.name
+  expect(page).to have_content @new_unit[:name]
+end
+
+Then(/^devo ver uma mensagem de nome da unidade ausente$/) do
+  expect(page).to have_content "Nome não pode ficar em branco"
+end
+
 Then(/^devo ver os dados da unidade selecionada nos campos da unidade sendo cadastrada$/) do
   expect(page).to have_content @projects.first.units.first.name
 end
@@ -111,7 +111,7 @@ end
 Then(/^devo visualizar o empreendimento com as novas unidades$/) do
   expect(page).to have_content @projects.first.name
   expect(@multiple_units.count).to be > 0
-  @multiple_units.each { |unit| expect(page).to have_content unit[:name] }  
+  @multiple_units.each { |unit| expect(page).to have_content unit[:name] }
 end
 
 Then(/^devo ver uma mensagem de nome para múltiplas unidades ausente$/) do

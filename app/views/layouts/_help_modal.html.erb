@@ -1,6 +1,6 @@
 <div id="helpModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
   <h2 id="modalTitle">Ajuda</h2>
-  
+
   <!-- User Projects -->
   <% if current_page?(user_projects_path(current_user)) %>
     <p class="lead"><%= t('.my_projects_title') %></p>
@@ -58,6 +58,32 @@
         (controller.controller_name == "units" && controller.action_name == "update") %>
     <p class="lead"><%= t('.edit_unit_title') %></p>
     <p><%= t('.edit_unit_help') %></p>
+  <% end %>
+
+  <!-- User Project Sensitivity Analyses -->
+  <% if controller.controller_name == "sensitivity_analyses" && controller.action_name == "index" %>
+    <p class="lead"><%= t('.sensitivity_analyses_title') %></p>
+    <p><%= t('.sensitivity_analyses_help') %></p>
+  <% end %>
+
+  <!-- New User Project Sensitivity Analysis -->
+  <% if (controller.controller_name == "sensitivity_analyses" && controller.action_name == "new") ||
+        (controller.controller_name == "sensitivity_analyses" && controller.action_name == "create") %>
+    <p class="lead"><%= t('.new_sensitivity_analysis_title') %></p>
+    <p><%= t('.new_sensitivity_analysis_help') %></p>
+  <% end %>
+
+  <!-- Show User Project Sensitivity Analysis -->
+  <% if controller.controller_name == "sensitivity_analyses" && controller.action_name == "show" %>
+    <p class="lead"><%= t('.show_sensitivity_analysis_title') %></p>
+    <p><%= t('.show_sensitivity_analysis_help') %></p>
+  <% end %>
+
+  <!-- Edit User Project Sensitivity Analysis -->
+  <% if (controller.controller_name == "sensitivity_analyses" && controller.action_name == "edit") ||
+        (controller.controller_name == "sensitivity_analyses" && controller.action_name == "update") %>
+    <p class="lead"><%= t('.edit_sensitivity_analysis_title') %></p>
+    <p><%= t('.edit_sensitivity_analysis_help') %></p>
   <% end %>
 
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>

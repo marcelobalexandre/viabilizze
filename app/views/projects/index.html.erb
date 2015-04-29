@@ -15,7 +15,7 @@
             <div class="small-10 medium-10 large-11 columns">
               <%= text_field_tag :search, params[:search], placeholder: t('.search_field_placeholder') %>
             </div>
-            
+
             <div class="small-2 medium-2 large-1 columns">
               <%= button_tag(type: 'submit', id: 'search-button', class: 'button postfix', name: nil) do %>
                   <%= icon 'search', class: 'button-icon-small' %>
@@ -33,12 +33,12 @@
         <% end %>
 
         <%= render @projects %>
-        
+
         <div class="row collapse">
           <div class="small-12 medium-12 large-12 columns">
-            <%= will_paginate @projects, renderer: FoundationPagination::Rails %>            
+            <%= will_paginate @projects, renderer: FoundationPagination::Rails %>
           </div>
-        </div>        
+        </div>
       </div>
     </div>
 <% else %>

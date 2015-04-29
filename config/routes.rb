@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :projects do
         resources :units
         resources :multiple_units, only: [:new, :create]
+        resources :sensitivity_analyses
       end
     end
 

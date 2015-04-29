@@ -5,7 +5,7 @@ en:
       search_field_placeholder: "Search"
       no_projects_found: "No projects found"
       empty_projects: "No project"
-      new_project_button: "New Empreendimento"      
+      new_project_button: "New Empreendimento"
     show:
       form_title: "Project Informations"
       name: "Name"
@@ -25,9 +25,10 @@ en:
       submit: "Save"
     edit:
       form_title: "Project Informations"
-      submit: "Save"      
+      submit: "Save"
     project:
       no_units: "No units"
       no_analysis: "No analysis"
       unit: "unit"
       units: "units"
+      sensitivity_analyses: "Sensitivity Analyses"

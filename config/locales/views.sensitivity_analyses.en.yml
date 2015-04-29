@@ -1,0 +1,37 @@
+en:
+  sensitivity_analyses:
+    index:
+      title: "Sensitivity Analyses - %{project_name}"
+      empty_sensitivity_analyses: "No sensitivity analyses"
+      new_sensitivity_analysis_button: "New Sensitivity Analyses"
+    show:
+      form_title: "General Informations"
+      name: "Name"
+      incomplete: "Incomplete"
+      net_profit_margin: "Net Profit Margin"
+      sales_commissions_rate: "Sales Commissions Rate"
+      sales_taxes_rate: "Sales Taxes Rate"
+      sales_charges_rate: "Sales Charges Rate"
+      individualization_costs: "Individualization Costs"
+      cost_per_square_meter: "Cost per Square Meter"
+      land_acquisition_cost: "Land Acquisition Cost"
+      exchanged_units_expenses: "Exchanged Units Expenses"
+      edit_button: "Edit"
+      delete_question: "Are you sure?"
+      delete_button: "Delte"
+      back_button: "Back"
+    new:
+      title: "New Sensitivity Analyses"
+      form_title: "General Informations"
+      project: "Project"
+      units: "Units"
+      submit: "Save"
+    edit:
+      form_title: "General Informations"
+      project: "Project"
+      units: "Units"
+      submit: "Save"
+    sensitivity_analysis:
+      incomplete_analysis: "Incomplete analysis"
+      charts: "Charts"
+      reports: "Reports"

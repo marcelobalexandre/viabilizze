@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      sensitivity_analysis: "Análise de Sensibilidade"
+    attributes:
+      sensitivity_analysis:
+        name: "Nome"
+        net_profit_margin: "Margem de Lucro Líquido Desejado"
+        sales_commissions_rate: "Percentual de Comissão sobre Vendas"
+        sales_taxes_rate: "Taxa de Impostos sobre Vendas"
+        sales_charges_rate: "Outras Taxas sobre Vendas"
+        individualization_costs: "Custos de Individualização"
+        cost_per_square_meter: "Custos por Metro Quadrado"
+        land_acquisition_cost: "Custo do Terreno"
+        exchanged_units_expenses: "Outras Despesas de Permuta"

@@ -1,0 +1,15 @@
+en:
+  activerecord:
+    models:
+      sensitivity_analysis: "Sensitivity Analysis"
+    attributes:
+      sensitivity_analysis:
+        name: "Name"
+        net_profit_margin: "Net Profit Margin"
+        sales_commissions_rate: "Sales Commissions Rate"
+        sales_taxes_rate: "Sales Taxes Rate"
+        sales_charges_rate: "Sales Charges Rate"
+        individualization_costs: "Individualization Costs"
+        cost_per_square_meter: "Cost Per Square Meter"
+        land_acquisition_cost: "Land Acquisition Cost"
+        exchanged_units_expenses: "Exchanged Units Expenses"

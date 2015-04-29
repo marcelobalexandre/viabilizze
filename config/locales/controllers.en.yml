@@ -32,3 +32,16 @@ en:
       restricted_access: "You tried to access a page not allowed and was redirected."
     create:
       flash_success: "Multiple units added successfully."
+  sensitivity_analyses:
+    show:
+      restricted_access: "You tried to access a page not allowed and was redirected."
+    new:
+      restricted_access: "You tried to access a page not allowed and was redirected."
+    create:
+      flash_success: "Sensitivity Analysis added successfully."
+    edit:
+      restricted_access: "You tried to access a page not allowed and was redirected."
+    update:
+      flash_success: "Sensitivity updated successfully."
+    destroy:
+      flash_success: "Sensitivity deleted successfully."

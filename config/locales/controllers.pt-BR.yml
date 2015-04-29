@@ -32,5 +32,16 @@ pt-BR:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
     create:
       flash_success: "Múltiplas unidades adicionadas com sucesso."
-
-  
+  sensitivity_analyses:
+    show:
+      restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
+    new:
+      restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
+    create:
+      flash_success: "Análise de Sensibilidade adicionada com sucesso."
+    edit:
+      restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
+    update:
+      flash_success: "Análise de Sensibilidade atualizada com sucesso."
+    destroy:
+      flash_success: "Análise de Sensibilidade excluída com sucesso."

@@ -7,9 +7,11 @@ describe Project do
   it { expect(subject).to respond_to(:name) }
   it { expect(subject).to respond_to(:user_id) }
   it { expect(subject).to respond_to(:units) }
-  
+  it { expect(subject).to respond_to(:sensitivity_analyses) }
+
   it { expect(subject).to belong_to(:user) }
   it { expect(subject).to have_many(:units) }
+  it { expect(subject).to have_many(:sensitivity_analyses) }
 
   it { expect(subject).to validate_presence_of(:name) }
   it { expect(subject).to validate_uniqueness_of(:name).scoped_to(:user_id) }
@@ -31,8 +33,8 @@ describe Project do
   describe "#by_name" do
     let(:project_three) { FactoryGirl.create(:project, name: "Project Without Example 3") }
     let(:project_two) { FactoryGirl.create(:project, name: "Project With Example 2") }
-    let(:project_one) { FactoryGirl.create(:project, name: "Project With Example 1") }      
-    
+    let(:project_one) { FactoryGirl.create(:project, name: "Project With Example 1") }
+
     it "orders by ascending name" do
       expect(Project.all.by_name(nil)).to eq([project_one, project_two, project_three])
     end

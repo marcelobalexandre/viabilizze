@@ -1,4 +1,4 @@
-<% provide :title, t('.title') %>
+<% provide :title, @unit.name %>
 
 <%= form_for [current_user, @project, @unit] do |f| %>
   <div class="row">

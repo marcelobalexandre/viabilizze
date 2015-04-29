@@ -1,0 +1,150 @@
+<% provide :title, @sensitivity_analysis.name %>
+
+<div class="row">
+  <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
+    <div class="panel form-panel">
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns text-center">
+          <h4><strong><%= t('.form_title') %></strong></h4>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+            <h6><strong><%= t('.name') %></strong></h6>
+            <p class="sensitivity-analysis-label"><%= @sensitivity_analysis.name %></p>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+            <h6 class="sensitivity-analysis-label"><strong><%= t('.net_profit_margin') %></strong></h6>
+            <p class="sensitivity-analysis-label">
+              <% if @sensitivity_analysis.net_profit_margin %>
+                <%= @sensitivity_analysis.net_profit_margin %>
+              <% else %>
+                <%= t('.incomplete') %>
+              <% end %>
+            </p>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+            <h6 class="sensitivity-analysis-label"><strong><%= t('.sales_commissions_rate') %></strong></h6>
+            <p class="sensitivity-analysis-label">
+              <% if @sensitivity_analysis.sales_commissions_rate %>
+                <%= @sensitivity_analysis.sales_commissions_rate %>
+              <% else %>
+                <%= t('.incomplete') %>
+              <% end %>
+            </p>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+            <h6 class="sensitivity-analysis-label"><strong><%= t('.sales_taxes_rate') %></strong></h6>
+            <p class="sensitivity-analysis-label">
+            <% if @sensitivity_analysis.sales_taxes_rate %>
+              <%= @sensitivity_analysis.sales_taxes_rate %>
+            <% else %>
+              <%= t('.incomplete') %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+            <h6 class="sensitivity-analysis-label"><strong><%= t('.sales_charges_rate') %></strong></h6>
+            <p class="sensitivity-analysis-label">
+              <% if @sensitivity_analysis.sales_charges_rate %>
+                <%= @sensitivity_analysis.sales_charges_rate %>
+              <% else %>
+                <%= t('.incomplete') %>
+              <% end %>
+            </p>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+            <h6 class="sensitivity-analysis-label"><strong><%= t('.individualization_costs') %></strong></h6>
+            <p class="sensitivity-analysis-label">
+              <% if @sensitivity_analysis.individualization_costs %>
+                <%= @sensitivity_analysis.individualization_costs %>
+              <% else %>
+                <%= t('.incomplete') %>
+              <% end %>
+            </p>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+            <h6 class="sensitivity-analysis-label"><strong><%= t('.cost_per_square_meter') %></strong></h6>
+            <p class="sensitivity-analysis-label">
+              <% if @sensitivity_analysis.cost_per_square_meter %>
+                <%= @sensitivity_analysis.cost_per_square_meter %>
+              <% else %>
+                <%= t('.incomplete') %>
+              <% end %>
+            </p>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+            <h6 class="sensitivity-analysis-label"><strong><%= t('.land_acquisition_cost') %></strong></h6>
+            <p class="sensitivity-analysis-label">
+              <% if @sensitivity_analysis.land_acquisition_cost %>
+                <%= @sensitivity_analysis.land_acquisition_cost %>
+              <% else %>
+                <%= t('.incomplete') %>
+              <% end %>
+            </p>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+            <h6 class="sensitivity-analysis-label"><strong><%= t('.exchanged_units_expenses') %></strong></h6>
+            <p class="sensitivity-analysis-label">
+              <% if @sensitivity_analysis.exchanged_units_expenses %>
+                <%= @sensitivity_analysis.exchanged_units_expenses %>
+              <% else %>
+                <%= t('.incomplete') %>
+              <% end %>
+            </p>
+        </div>
+      </div>
+
+      <div class="row collapse">
+        <div class="small-12 medium-12 large-12 columns">
+          <ul class="stack button-group">
+            <li>
+              <%= link_to(edit_user_project_sensitivity_analysis_path(current_user, @project, @sensitivity_analysis), class: 'button expand edit-project-button') do %>
+                <%= icon 'pencil' %>
+                <%= t('.edit_button') %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(user_project_sensitivity_analysis_path(current_user, @project, @sensitivity_analysis), method: :delete, data: { confirm: t('.delete_question') }, class: 'button expand') do %>
+                <%= icon 'trash' %>
+                <%= t('.delete_button') %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(user_project_sensitivity_analyses_path(current_user, @project), class: 'button expand') do %>
+                <%= icon 'arrow-left' %>
+                <%= t('.back_button') %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
