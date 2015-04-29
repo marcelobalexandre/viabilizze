@@ -3,17 +3,14 @@ class UnitsController < ApplicationController
   before_action :validate_user, only: [:index, :show, :new, :edit]
 
   def index
-    @project = Project.find(params[:project_id])
-    @units = @project.units.by_name(params[:search]).paginate(page: params[:page])
+    @units = current_project.units.by_name(params[:search]).paginate(page: params[:page])
   end
 
   def show
-    @project = Project.find(params[:project_id])
     @unit = Unit.find(params[:id])
   end
 
   def new
-    @project = Project.find(params[:project_id])
     @unit = Unit.new
 
     if params[:unit_id]
@@ -23,50 +20,46 @@ class UnitsController < ApplicationController
       @unit.common_area = unit_to_copy.common_area
       @unit.box_area = unit_to_copy.box_area
       @unit.exchanged = unit_to_copy.exchanged
-    end 
+    end
   end
 
   def create
-    @project = Project.find(params[:project_id])
-    @unit = @project.units.build(unit_params)
+    @unit = current_project.units.build(unit_params)
 
     if @unit.save
       flash[:success] = t('.flash_success')
-      redirect_to user_project_path(current_user, @project)
+      redirect_to user_project_path(current_user, current_project)
     else
       render 'new'
     end
   end
 
   def edit
-    @project = Project.find(params[:project_id])
-    @unit = Unit.find(params[:id])    
+    @unit = Unit.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:project_id])
     @unit = Unit.find(params[:id])
 
     if @unit.update(unit_params)
       flash[:success] = t('.flash_success')
-      redirect_to user_project_unit_path(current_user, @project, @unit)
+      redirect_to user_project_unit_path(current_user, current_project, @unit)
     else
       render 'edit'
     end
   end
 
   def destroy
-    @project = Project.find(params[:project_id])
     @unit = Unit.find(params[:id])
     @unit.destroy
     flash[:success] = t('.flash_success')
-    redirect_to user_project_path(current_user, @project)   
+    redirect_to user_project_path(current_user, current_project)
   end
 
   private
 
   def unit_params
-    params.require(:unit).permit(:name, 
+    params.require(:unit).permit(:name,
                                  :private_area,
                                  :common_area,
                                  :box_area,

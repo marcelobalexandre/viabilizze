@@ -40,7 +40,7 @@
 <% if (controller.controller_name == "units" && controller.action_name == "new") ||
       (controller.controller_name == "units" && controller.action_name == "create") ||
       (controller.controller_name == "units" && controller.action_name == "index") %>
-  <%= link_to(new_user_project_unit_path(current_user, @project),
+  <%= link_to(new_user_project_unit_path(current_user, current_project),
               class: "item disabled #{(controller.controller_name == "units" && controller.action_name == "new") ||
       (controller.controller_name == "units" && controller.action_name == "create") ? "active" : ""}",
               title: t('.new_unit_icon_title')) do %>
@@ -48,7 +48,7 @@
     <label class="show-for-medium-up"><%= t('.new_unit_icon_label') %></label>
   <% end %>
 
-  <%= link_to(user_project_units_path(current_user, @project), id: 'copy-unit-button',
+  <%= link_to(user_project_units_path(current_user, current_project), id: 'copy-unit-button',
               class: "item #{controller.controller_name == "units" && controller.action_name == "index" ? "active disabled" : ""}", title: t('.copy_unit_icon_title')) do %>
     <%= icon 'copy' %>
     <label class="show-for-medium-up"><%= t('.copy_unit_icon_label') %></label>
@@ -58,7 +58,7 @@
 <!-- New User Project Multiple Units -->
 <% if (controller.controller_name == "multiple_units" && controller.action_name == "new") ||
       (controller.controller_name == "multiple_units" && controller.action_name == "create") %>
-  <%= link_to(new_user_project_multiple_unit_path(current_user, @project),
+  <%= link_to(new_user_project_multiple_unit_path(current_user, current_project),
               class: "item disabled active",
               title: t('.new_multiple_units_icon_title')) do %>
     <%= icon 'asterisk' %>
@@ -85,14 +85,14 @@
 
 <!-- User Project Sensitivity Analyses -->
 <% if controller.controller_name == "sensitivity_analyses" && controller.action_name == "index" %>
-  <%= link_to(user_project_sensitivity_analyses_path(current_user, @project),
+  <%= link_to(user_project_sensitivity_analyses_path(current_user, current_project),
               class: "item active disabled",
               title: t('.sensitivity_analyses_icon_title')) do %>
     <%= icon 'bar-chart' %>
     <label class="show-for-medium-up"><%= t('.sensitivity_analyses_icon_label') %></label>
   <% end %>
 
-  <%= link_to(new_user_project_sensitivity_analysis_path(current_user, @project),
+  <%= link_to(new_user_project_sensitivity_analysis_path(current_user, current_project),
               class: "item",
               title: t('.new_sensitivity_analysis_icon_title')) do %>
     <%= icon 'plus' %>
@@ -103,7 +103,7 @@
 <!-- New User Project Sensitivity Analyses -->
 <% if (controller.controller_name == "sensitivity_analyses" && controller.action_name == "new") ||
       (controller.controller_name == "sensitivity_analyses" && controller.action_name == "create") %>
-  <%= link_to(new_user_project_sensitivity_analysis_path(current_user, @project),
+  <%= link_to(new_user_project_sensitivity_analysis_path(current_user, current_project),
               class: "item active disabled",
               title: t('.new_sensitivity_analysis_icon_title')) do %>
     <%= icon 'plus' %>

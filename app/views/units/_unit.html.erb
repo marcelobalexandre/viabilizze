@@ -1,7 +1,7 @@
 <div class="row collapse">
   <div class="small-12 medium-12 large-12 project columns">
-    <% if current_page?(user_project_units_path(current_user, @project)) %>
-      <%= link_to new_user_project_unit_path(current_user, @project, unit_id: unit.id) do %>
+    <% if controller.controller_name == "units" && controller.action_name == "index"  %>
+      <%= link_to new_user_project_unit_path(current_user, current_project, unit_id: unit.id) do %>
         <%= render partial: 'units/unit_data', locals: { unit: unit } %>
       <% end %>
     <% else %>

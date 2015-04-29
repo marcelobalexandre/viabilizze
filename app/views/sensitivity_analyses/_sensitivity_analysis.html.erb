@@ -1,6 +1,6 @@
 <div class="row collapse">
   <div class="small-12 medium-12 large-12 project columns">
-    <%= link_to user_project_sensitivity_analysis_path(current_user, @project, sensitivity_analysis) do %>
+    <%= link_to user_project_sensitivity_analysis_path(current_user, current_project, sensitivity_analysis) do %>
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
           <div class="sensitivity-analysis-name">
@@ -40,7 +40,7 @@
 
 <div class="row collapse">
   <div class="small-12 medium-12 large-12 columns">
-    <% if @project.sensitivity_analyses.last != sensitivity_analysis %>
+    <% if current_project.sensitivity_analyses.last != sensitivity_analysis %>
       <hr>
     <% end %>
   </div>

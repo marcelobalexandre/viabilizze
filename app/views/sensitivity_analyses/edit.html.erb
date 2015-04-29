@@ -1,6 +1,6 @@
 <% provide :title, @sensitivity_analysis.name %>
 
-<%= form_for [current_user, @project, @sensitivity_analysis] do |f| %>
+<%= form_for [current_user, current_project, @sensitivity_analysis] do |f| %>
   <div class="row">
     <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
       <div class="panel form-panel">
@@ -13,14 +13,14 @@
         <div class="row collapse">
           <div class="small-12 medium-12 large-12 columns">
               <h6><%= t('.project') %></h6>
-              <p class="new-sensitivity-analysis-label"><strong><%= @project.name %></strong></p>
+              <p class="new-sensitivity-analysis-label"><strong><%= current_project.name %></strong></p>
           </div>
         </div>
 
         <div class="row collapse">
           <div class="small-12 medium-12 large-12 columns">
               <h6><%= t('.units') %></h6>
-              <p class="new-sensitivity-analysis-label"><strong><%= @project.units.count %></strong></p>
+              <p class="new-sensitivity-analysis-label"><strong><%= current_project.units.count %></strong></p>
           </div>
         </div>
 

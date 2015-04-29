@@ -124,19 +124,19 @@
         <div class="small-12 medium-12 large-12 columns">
           <ul class="stack button-group">
             <li>
-              <%= link_to(edit_user_project_sensitivity_analysis_path(current_user, @project, @sensitivity_analysis), class: 'button expand edit-project-button') do %>
+              <%= link_to(edit_user_project_sensitivity_analysis_path(current_user, current_project, @sensitivity_analysis), class: 'button expand edit-project-button') do %>
                 <%= icon 'pencil' %>
                 <%= t('.edit_button') %>
               <% end %>
             </li>
             <li>
-              <%= link_to(user_project_sensitivity_analysis_path(current_user, @project, @sensitivity_analysis), method: :delete, data: { confirm: t('.delete_question') }, class: 'button expand') do %>
+              <%= link_to(user_project_sensitivity_analysis_path(current_user, current_project, @sensitivity_analysis), method: :delete, data: { confirm: t('.delete_question') }, class: 'button expand') do %>
                 <%= icon 'trash' %>
                 <%= t('.delete_button') %>
               <% end %>
             </li>
             <li>
-              <%= link_to(user_project_sensitivity_analyses_path(current_user, @project), class: 'button expand') do %>
+              <%= link_to(user_project_sensitivity_analyses_path(current_user, current_project), class: 'button expand') do %>
                 <%= icon 'arrow-left' %>
                 <%= t('.back_button') %>
               <% end %>

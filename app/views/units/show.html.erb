@@ -48,26 +48,26 @@
         <div class="small-12 medium-12 large-12 columns">
           <ul class="stack button-group">
             <li>
-              <%= link_to(edit_user_project_unit_path(current_user, @project, @unit), class: 'button expand edit-project-button') do %>
+              <%= link_to(edit_user_project_unit_path(current_user, current_project, @unit), class: 'button expand edit-project-button') do %>
                 <%= icon 'pencil' %>
                 <%= t('.edit_button') %>
-              <% end %> 
+              <% end %>
             </li>
             <li>
-              <%= link_to(user_project_unit_path(current_user, @project, @unit), method: :delete, data: { confirm: t('.delete_question') }, class: 'button expand') do %>
+              <%= link_to(user_project_unit_path(current_user, current_project, @unit), method: :delete, data: { confirm: t('.delete_question') }, class: 'button expand') do %>
                 <%= icon 'trash' %>
                 <%= t('.delete_button') %>
-              <% end %> 
+              <% end %>
             </li>
             <li>
-              <%= link_to(user_project_path(current_user, @project), class: 'button expand') do %>
+              <%= link_to(user_project_path(current_user, current_project), class: 'button expand') do %>
                 <%= icon 'arrow-left' %>
                 <%= t('.back_button') %>
-              <% end %> 
+              <% end %>
             </li>
-          </ul> 
+          </ul>
         </div>
-      </div>      
+      </div>
     </div>
   </div>
 </div>

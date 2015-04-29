@@ -1,6 +1,6 @@
 <% provide :title, t('.title') %>
 
-<%= form_for [current_user, @project, @unit] do |f| %>
+<%= form_for [current_user, current_project, @unit] do |f| %>
   <div class="row">
     <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
       <div class="panel form-panel">
