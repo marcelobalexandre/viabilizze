@@ -27,8 +27,10 @@ describe SensitivityAnalysis do
   it { expect(subject).to respond_to(:result) }
   it { expect(subject).to respond_to(:profit_rate) }
   it { expect(subject).to respond_to(:project_id) }
+  it { expect(subject).to respond_to(:unit_sensitivity_analyses) }
 
   it { expect(subject).to belong_to(:project) }
+  it { expect(subject).to have_many(:unit_sensitivity_analyses) }
 
   it { expect(subject).to validate_presence_of(:name) }
   it { expect(subject).to validate_uniqueness_of(:name).scoped_to(:project_id) }

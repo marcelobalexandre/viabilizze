@@ -1,6 +1,8 @@
 class SensitivityAnalysis < ActiveRecord::Base
   belongs_to :project
 
+  has_many :unit_sensitivity_analyses, dependent: :delete_all
+
   validates :name, presence: true,
                    uniqueness: { scope: :project_id, case_sensitive: false }
   validates :project_id, presence: true

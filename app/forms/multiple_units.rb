@@ -1,12 +1,6 @@
 class MultipleUnits
   include ActiveModel::Model
 
-  class << self
-    def i18n_scope
-      :activerecord
-    end
-  end
-
   attr_accessor(:quantity,
                 :name,
                 :private_area,
@@ -18,7 +12,7 @@ class MultipleUnits
   def names
     names = []
     1.upto(self.quantity.to_i) do |i|
-      names << "#{self.name} #{i.to_s.rjust(2, '0')}"      
+      names << "#{self.name} #{i.to_s.rjust(2, '0')}"
     end
     names
   end
@@ -44,6 +38,12 @@ class MultipleUnits
 
     if existing_names.length > 1
       errors.add :name, :names_already_taken_plural, existing_names: existing_names.sort.join(", ")
+    end
+  end
+
+  class << self
+    def i18n_scope
+      :activerecord
     end
   end
 end

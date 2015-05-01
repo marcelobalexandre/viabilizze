@@ -1,6 +1,8 @@
 class Unit < ActiveRecord::Base
   belongs_to :project
 
+  has_many :unit_sensitivity_analyses, dependent: :delete_all
+
   validates :name, presence: true,
                    uniqueness: { scope: :project_id, case_sensitive: false }
   validates :private_area, numericality: { greater_than_or_equal_to: 0 }
@@ -14,9 +16,9 @@ class Unit < ActiveRecord::Base
   end
 
   def self.by_name(name)
-    if name.present? 
+    if name.present?
       where("name like ?", "%#{name}%").order(:name)
-    else 
+    else
       order(:name)
     end
   end

@@ -1,0 +1,5 @@
+en:
+  activerecord:
+    attributes:
+      unit_sensitivity_analysis:
+        sale_price: "Sale Price"

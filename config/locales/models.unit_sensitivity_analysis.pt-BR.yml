@@ -1,0 +1,5 @@
+pt-BR:
+  activerecord:
+    attributes:
+      unit_sensitivity_analysis:
+        sale_price: "Preço de Venda Praticado"

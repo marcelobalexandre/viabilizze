@@ -11,8 +11,10 @@ describe Unit do
   it { expect(subject).to respond_to(:total_area) }
   it { expect(subject).to respond_to(:exchanged) }
   it { expect(subject).to respond_to(:project_id) }
+  it { expect(subject).to respond_to(:unit_sensitivity_analyses) }
 
   it { expect(subject).to belong_to(:project) }
+  it { expect(subject).to have_many(:unit_sensitivity_analyses) }
 
   it { expect(subject).to validate_presence_of(:name) }
   it { expect(subject).to validate_uniqueness_of(:name).scoped_to(:project_id) }
@@ -49,8 +51,8 @@ describe Unit do
   describe "#by_name" do
     let(:unit_three) { FactoryGirl.create(:unit, name: "Unit Without Example 3") }
     let(:unit_two) { FactoryGirl.create(:unit, name: "Unit With Example 2") }
-    let(:unit_one) { FactoryGirl.create(:unit, name: "Unit With Example 1") }      
-    
+    let(:unit_one) { FactoryGirl.create(:unit, name: "Unit With Example 1") }
+
     it "orders by ascending name" do
       expect(Unit.all.by_name(nil)).to eq([unit_one, unit_two, unit_three])
     end
