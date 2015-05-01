@@ -6,27 +6,15 @@ pt-BR:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
     new:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
-    create:
-      flash_success: "Empreendimento criado com sucesso."
     edit:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
-    update:
-      flash_success: "Empreendimento atualizado com sucesso."
-    destroy:
-      flash_success: "Empreendimento excluído com sucesso."
   units:
     show:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
     new:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
-    create:
-      flash_success: "Unidade adicionada com sucesso."
     edit:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
-    update:
-      flash_success: "Unidade atualizada com sucesso."
-    destroy:
-      flash_success: "Unidade excluída com sucesso."
   multiple_units:
     new:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
@@ -37,11 +25,5 @@ pt-BR:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
     new:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
-    create:
-      flash_success: "Análise de Sensibilidade adicionada com sucesso."
     edit:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
-    update:
-      flash_success: "Análise de Sensibilidade atualizada com sucesso."
-    destroy:
-      flash_success: "Análise de Sensibilidade excluída com sucesso."

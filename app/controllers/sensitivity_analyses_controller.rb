@@ -15,14 +15,8 @@ class SensitivityAnalysesController < ApplicationController
   end
 
   def create
-    @sensitivity_analysis = current_project.sensitivity_analyses.build(sensitivity_analysis_params)
-
-    if @sensitivity_analysis.save
-      flash[:success] = t('.flash_success')
-      redirect_to user_project_sensitivity_analysis_path(current_user, current_project, @sensitivity_analysis)
-    else
-      render 'new'
-    end
+    @sensitivity_analysis = current_project.sensitivity_analyses.create(sensitivity_analysis_params)
+    respond_with(current_user, current_project, @sensitivity_analysis)
   end
 
   def edit
@@ -31,20 +25,14 @@ class SensitivityAnalysesController < ApplicationController
 
   def update
     @sensitivity_analysis = SensitivityAnalysis.find(params[:id])
-
-    if @sensitivity_analysis.update(sensitivity_analysis_params)
-      flash[:success] = t('.flash_success')
-      redirect_to user_project_sensitivity_analysis_path(current_user, current_project, @sensitivity_analysis)
-    else
-      render 'edit'
-    end
+    @sensitivity_analysis.update(sensitivity_analysis_params)
+    respond_with(current_user, current_project, @sensitivity_analysis)
   end
 
   def destroy
     @sensitivity_analysis = SensitivityAnalysis.find(params[:id])
     @sensitivity_analysis.destroy
-    flash[:success] = t('.flash_success')
-    redirect_to user_project_sensitivity_analyses_path(current_user, current_project)
+    respond_with(@sensitivity_analysis, location: user_project_sensitivity_analyses_path(current_user, current_project))
   end
 
   private

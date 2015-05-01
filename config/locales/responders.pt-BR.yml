@@ -1,0 +1,24 @@
+pt-BR:
+  flash:
+    actions:
+      create:
+        notice: "%{resource_name} criado com sucesso."
+      update:
+        notice: "%{resource_name} atualizado com sucesso."
+      destroy:
+        notice: "%{resource_name} excluído com sucesso."
+        alert: "%{resource_name} não pode ser excluído."
+    units:
+      create:
+        notice: "Unidade adicionada com sucesso."
+      update:
+        notice: "Unidade atualizada com sucesso."
+      destroy:
+        notice: "Unidade excluída com sucesso."
+    sensitivity_analyses:
+      create:
+        notice: "Análise de Sensibilidade adicionada com sucesso."
+      update:
+        notice: "Análise de Sensibilidade atualizada com sucesso."
+      destroy:
+        notice: "Análise de Sensibilidade excluída com sucesso."

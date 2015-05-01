@@ -24,14 +24,8 @@ class UnitsController < ApplicationController
   end
 
   def create
-    @unit = current_project.units.build(unit_params)
-
-    if @unit.save
-      flash[:success] = t('.flash_success')
-      redirect_to user_project_path(current_user, current_project)
-    else
-      render 'new'
-    end
+    @unit = current_project.units.create(unit_params)
+    respond_with(@unit, location: user_project_path(current_user, current_project))
   end
 
   def edit
@@ -40,20 +34,14 @@ class UnitsController < ApplicationController
 
   def update
     @unit = Unit.find(params[:id])
-
-    if @unit.update(unit_params)
-      flash[:success] = t('.flash_success')
-      redirect_to user_project_unit_path(current_user, current_project, @unit)
-    else
-      render 'edit'
-    end
+    @unit.update(unit_params)
+    respond_with(current_user, current_project, @unit)
   end
 
   def destroy
     @unit = Unit.find(params[:id])
     @unit.destroy
-    flash[:success] = t('.flash_success')
-    redirect_to user_project_path(current_user, current_project)
+    respond_with(@unit, location: user_project_path(current_user, current_project))
   end
 
   private

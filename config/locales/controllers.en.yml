@@ -6,42 +6,24 @@ en:
       restricted_access: "You tried to access a page not allowed and was redirected."
     new:
       restricted_access: "You tried to access a page not allowed and was redirected."
-    create:
-      flash_success: "Project created successfully."
     edit:
       restricted_access: "You tried to access a page not allowed and was redirected."
-    update:
-      flash_success: "Project updated successfully."
-    destroy:
-      flash_success: "Project deleted successfully."
   units:
     show:
       restricted_access: "You tried to access a page not allowed and was redirected."
     new:
       restricted_access: "You tried to access a page not allowed and was redirected."
-    create:
-      flash_success: "Unit added successfully."
     edit:
       restricted_access: "You tried to access a page not allowed and was redirected."
-    update:
-      flash_success: "Unit updated successfully."
-    destroy:
-      flash_success: "Unit deleted successfully."
   multiple_units:
     new:
       restricted_access: "You tried to access a page not allowed and was redirected."
     create:
-      flash_success: "Multiple units added successfully."
+      flash_success: "Multiple Units was successfully added."
   sensitivity_analyses:
     show:
       restricted_access: "You tried to access a page not allowed and was redirected."
     new:
       restricted_access: "You tried to access a page not allowed and was redirected."
-    create:
-      flash_success: "Sensitivity Analysis added successfully."
     edit:
       restricted_access: "You tried to access a page not allowed and was redirected."
-    update:
-      flash_success: "Sensitivity updated successfully."
-    destroy:
-      flash_success: "Sensitivity deleted successfully."

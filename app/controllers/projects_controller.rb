@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @units = @project.units.by_name(params[:search]).paginate(page: params[:page])  
+    @units = @project.units.by_name(params[:search]).paginate(page: params[:page])
   end
 
   def new
@@ -16,36 +16,24 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = current_user.projects.build(project_params)
-
-    if @project.save
-      flash[:success] = t('.flash_success')
-      redirect_to user_project_path(current_user, @project)
-    else
-      render 'new'
-    end
+    @project = current_user.projects.create(project_params)
+    respond_with(current_user, @project)
   end
 
   def edit
-    @project = Project.find(params[:id])    
+    @project = Project.find(params[:id])
   end
 
   def update
     @project = Project.find(params[:id])
-
-    if @project.update(project_params)
-      flash[:success] = t('.flash_success')
-      redirect_to user_project_path(current_user, @project)
-    else
-      render 'edit'
-    end
+    @project.update(project_params)
+    respond_with(current_user, @project)
   end
 
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    flash[:success] = t('.flash_success')
-    redirect_to user_projects_path(current_user)   
+    respond_with(@project, location: user_projects_path(current_user))
   end
 
   private

@@ -13,6 +13,7 @@ gem 'foundation-rails', '5.5.1.2'
 gem 'foundation-icons-sass-rails'
 gem 'font-awesome-sass'
 gem 'devise'
+gem 'responders'
 gem 'will_paginate'
 gem 'will_paginate-foundation'
 
@@ -20,14 +21,14 @@ group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
-  gem 'spring'  
+  gem 'spring'
 end
 
 group :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'cucumber-rails', require: false
   gem 'shoulda-matchers'
-  gem 'factory_girl_rails'  
+  gem 'factory_girl_rails'
   gem 'email_spec'
   gem 'show_me_the_cookies'
   gem 'database_cleaner'
