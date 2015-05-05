@@ -154,6 +154,33 @@
         </div>
 
         <div class="row collapse">
+          <div class="small-12 medium-12 large-12 columns text-center">
+            <h4><strong><%= t('.units_form_title') %></strong></h4>
+          </div>
+        </div>
+
+        <% @sensitivity_analysis.unit_sensitivity_analyses.each do |unit_sensitivity_analysis| %>
+          <%= f.fields_for :unit_sensitivity_analyses, unit_sensitivity_analysis do |unit_sensitivity_analysis_form| %>
+            <%= unit_sensitivity_analysis_form.hidden_field :unit_id %>
+
+            <div class="row collapse">
+              <div class="small-12 medium-12 large-12 columns unit-name">
+                <%= unit_sensitivity_analysis.unit.name %>
+              </div>
+            </div>
+
+            <div class="row collapse">
+              <div class="small-12 medium-12 large-12 columns">
+                <%= unit_sensitivity_analysis_form.label :sale_price %>
+                <%= unit_sensitivity_analysis_form.number_field :sale_price %>
+              </div>
+            </div>
+
+            <hr>
+          <% end %>
+        <% end %>
+
+        <div class="row collapse">
           <div class="small-12 medium-12 large-12 columns">
             <%= button_tag(type: 'submit', class: "button expand") do %>
              <%= icon 'check' %>

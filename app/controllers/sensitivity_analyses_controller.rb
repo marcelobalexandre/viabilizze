@@ -8,10 +8,12 @@ class SensitivityAnalysesController < ApplicationController
 
   def show
     @sensitivity_analysis = SensitivityAnalysis.find(params[:id])
+    UnitSensitivityAnalysesInitializer.call(@sensitivity_analysis)
   end
 
   def new
-    @sensitivity_analysis = SensitivityAnalysis.new
+    @sensitivity_analysis = current_project.sensitivity_analyses.build
+    UnitSensitivityAnalysesInitializer.call(@sensitivity_analysis)
   end
 
   def create
@@ -21,6 +23,7 @@ class SensitivityAnalysesController < ApplicationController
 
   def edit
     @sensitivity_analysis = SensitivityAnalysis.find(params[:id])
+    UnitSensitivityAnalysesInitializer.call(@sensitivity_analysis)
   end
 
   def update
@@ -46,6 +49,7 @@ class SensitivityAnalysesController < ApplicationController
                                                  :individualization_costs,
                                                  :cost_per_square_meter,
                                                  :land_acquisition_cost,
-                                                 :exchanged_units_expenses)
+                                                 :exchanged_units_expenses,
+                                                 unit_sensitivity_analyses_attributes: [:id, :sale_price, :unit_id])
   end
 end

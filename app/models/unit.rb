@@ -1,7 +1,7 @@
 class Unit < ActiveRecord::Base
   belongs_to :project
 
-  has_many :unit_sensitivity_analyses, dependent: :delete_all
+  has_many :unit_sensitivity_analyses, dependent: :destroy
 
   validates :name, presence: true,
                    uniqueness: { scope: :project_id, case_sensitive: false }
@@ -9,7 +9,7 @@ class Unit < ActiveRecord::Base
   validates :common_area,  numericality: { greater_than_or_equal_to: 0 }
   validates :box_area,     numericality: { greater_than_or_equal_to: 0 }
   validates :exchanged,    inclusion: { in: [true, false], message: :blank }
-  validates :project_id,   presence: true
+  validates :project,      presence: true
 
   def total_area
     self.private_area + self.common_area + self.box_area

@@ -1,11 +1,11 @@
 class SensitivityAnalysis < ActiveRecord::Base
   belongs_to :project
-
-  has_many :unit_sensitivity_analyses, dependent: :delete_all
+  has_many :unit_sensitivity_analyses, dependent: :destroy, inverse_of: :sensitivity_analysis
+  accepts_nested_attributes_for :unit_sensitivity_analyses
 
   validates :name, presence: true,
                    uniqueness: { scope: :project_id, case_sensitive: false }
-  validates :project_id, presence: true
+  validates :project, presence: true
 
   def expected_revenue
   end

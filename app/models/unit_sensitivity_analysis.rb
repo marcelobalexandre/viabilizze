@@ -2,8 +2,8 @@ class UnitSensitivityAnalysis < ActiveRecord::Base
   belongs_to :unit
   belongs_to :sensitivity_analysis
 
-  validates :unit_id, presence: true
-  validates :sensitivity_analysis_id, presence: true
+  validates :unit, presence: true
+  validates :sensitivity_analysis, presence: true
 
   def net_profit_margin
   end

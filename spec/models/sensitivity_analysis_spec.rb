@@ -2,7 +2,8 @@ require 'spec_helper'
 require 'rails_helper'
 
 describe SensitivityAnalysis do
-  subject(:sensitivity_analysis) { FactoryGirl.build(:sensitivity_analysis) }
+  let(:project) { FactoryGirl.create(:project) }
+  subject(:sensitivity_analysis) { FactoryGirl.build(:sensitivity_analysis, project: project) }
 
   it { expect(subject).to respond_to(:name) }
   it { expect(subject).to respond_to(:net_profit_margin) }
@@ -47,5 +48,5 @@ describe SensitivityAnalysis do
     it { expect(subject).to be_valid }
   end
 
-  it { expect(subject).to validate_presence_of(:project_id) }
+  it { expect(subject).to validate_presence_of(:project) }
 end

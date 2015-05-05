@@ -1,11 +1,11 @@
 class Project < ActiveRecord::Base
   belongs_to :user
-  has_many :units, dependent: :delete_all
-  has_many :sensitivity_analyses, dependent: :delete_all
+  has_many :units, dependent: :destroy
+  has_many :sensitivity_analyses, dependent: :destroy
 
   validates :name, presence: true,
                    uniqueness: { scope: :user_id, case_sensitive: false }
-  validates :user_id, presence: true
+  validates :user, presence: true
 
   def self.by_name(name)
     if name.present?

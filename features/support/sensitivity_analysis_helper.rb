@@ -6,7 +6,7 @@ module SensitivityAnalysisHelper
   def register_new_sensitivity_analysis(project)
     visit "/pt-BR/users/#{project.user.id}/projects/#{project.id}/sensitivity_analyses/new"
 
-    fill_in "sensitivity_analysis_name",         with: @new_sensitivity_analysis[:name]
+    fill_in "sensitivity_analysis_name", with: @new_sensitivity_analysis[:name]
 
     click_button "Salvar"
 

@@ -12,8 +12,7 @@ class MultipleUnitsController < ApplicationController
     @multiple_units.project_id = current_project.id
 
     if @multiple_units.valid?
-      multiple_units_creator = MultipleUnitsCreator.new
-      multiple_units_creator.create_multiple_units(current_project, @multiple_units)
+      MultipleUnitsCreator.call(current_project, @multiple_units)
       flash[:success] = t('.flash_success')
       redirect_to user_project_path(current_user, current_project)
     else

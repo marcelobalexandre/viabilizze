@@ -16,6 +16,7 @@ pt-BR:
       cost_per_square_meter: "Custos por Metro Quadrado"
       land_acquisition_cost: "Custo do Terreno"
       exchanged_units_expenses: "Outras Despesas de Permuta"
+      units_form_title: "Informações das Unidades"
       edit_button: "Alterar"
       delete_question: "Você tem certeza?"
       delete_button: "Excluir"
@@ -25,11 +26,13 @@ pt-BR:
       form_title: "Informações Gerais"
       project: "Empreendimento"
       units: "Unidades"
+      units_form_title: "Informações das Unidades"
       submit: "Salvar"
     edit:
       form_title: "Informações Gerais"
       project: "Empreendimento"
       units: "Unidades"
+      units_form_title: "Informações das Unidades"
       submit: "Salvar"
     sensitivity_analysis:
       incomplete_analysis: "Análise incompleta"

@@ -28,7 +28,7 @@ describe Project do
     it { expect(subject).to be_valid }
   end
 
-  it { expect(subject).to validate_presence_of(:user_id) }
+  it { expect(subject).to validate_presence_of(:user) }
 
   describe "#by_name" do
     let(:project_three) { FactoryGirl.create(:project, name: "Project Without Example 3") }

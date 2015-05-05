@@ -25,6 +25,6 @@ describe UnitSensitivityAnalysis do
   it { expect(subject).to belong_to(:unit) }
   it { expect(subject).to belong_to(:sensitivity_analysis) }
 
-  it { expect(subject).to validate_presence_of(:unit_id) }
-  it { expect(subject).to validate_presence_of(:sensitivity_analysis_id) }
+  it { expect(subject).to validate_presence_of(:unit) }
+  it { expect(subject).to validate_presence_of(:sensitivity_analysis) }
 end

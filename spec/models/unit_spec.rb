@@ -36,7 +36,7 @@ describe Unit do
   it { expect(subject).to validate_numericality_of(:box_area).is_greater_than_or_equal_to(0) }
 
   it { expect(subject).to validate_presence_of(:exchanged) }
-  it { expect(subject).to validate_presence_of(:project_id) }
+  it { expect(subject).to validate_presence_of(:project) }
 
   describe "#total_area" do
     before do
