@@ -39,13 +39,20 @@ describe Unit do
   it { expect(subject).to validate_presence_of(:project) }
 
   describe "#total_area" do
-    before do
-      subject.private_area = 10
-      subject.common_area  = 10
-      subject.box_area     = 10
-    end
+    [ # private_area | common_area | box_area | total_area
+      [        10.00,        10.00,     10.00,       30.00 ],
+      [       381.43,       200.21,      0.00,      581.64 ],
+      [        74.05,        41.71,     10.81,      126.57 ]
+    ].each do |private_area, common_area, box_area, total_area|
+      # Formula: private_area * common_area * box_area
+      it "calculates the total area" do
+        unit = FactoryGirl.build(:unit, private_area: private_area,
+                                        common_area: common_area,
+                                        box_area: box_area)
 
-    it { expect(subject.total_area).to eq(30) }
+        expect(unit.total_area).to eq(total_area)
+      end
+    end
   end
 
   describe "#by_name" do

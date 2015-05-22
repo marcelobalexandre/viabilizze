@@ -25,9 +25,9 @@
         </div>
 
         <div class="row collapse">
+          <%= f.label :name %>
           <div class="small-12 medium-12 large-12 columns">
             <div class="<%= "error" if @sensitivity_analysis.errors[:name].any? %>">
-              <%= f.label :name %>
               <%= f.text_field :name, autofocus: true %>
 
               <% if @sensitivity_analysis.errors[:name].any? %>
@@ -41,7 +41,7 @@
           <%= f.label :net_profit_margin %>
           <div class="small-9 medium-9 large-9 columns">
             <div class="<%= "error" if @sensitivity_analysis.errors[:net_profit_margin].any? %>">
-              <%= f.number_field :net_profit_margin %>
+              <%= f.number_field :net_profit_margin, step: 'any' %>
 
               <% if @sensitivity_analysis.errors[:net_profit_margin].any? %>
                 <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:net_profit_margin).first %></small>
@@ -57,7 +57,7 @@
           <%= f.label :sales_commissions_rate %>
           <div class="small-9 medium-9 large-9 columns">
             <div class="<%= "error" if @sensitivity_analysis.errors[:sales_commissions_rate].any? %>">
-              <%= f.number_field :sales_commissions_rate %>
+              <%= f.number_field :sales_commissions_rate, step: 'any' %>
 
               <% if @sensitivity_analysis.errors[:sales_commissions_rate].any? %>
                 <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:sales_commissions_rate).first %></small>
@@ -73,7 +73,7 @@
           <%= f.label :sales_taxes_rate %>
           <div class="small-9 medium-9 large-9 columns">
             <div class="<%= "error" if @sensitivity_analysis.errors[:sales_taxes_rate].any? %>">
-              <%= f.number_field :sales_taxes_rate %>
+              <%= f.number_field :sales_taxes_rate, step: 'any' %>
 
               <% if @sensitivity_analysis.errors[:sales_taxes_rate].any? %>
                 <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:sales_taxes_rate).first %></small>
@@ -89,7 +89,7 @@
           <%= f.label :sales_charges_rate %>
           <div class="small-9 medium-9 large-9 columns">
             <div class="<%= "error" if @sensitivity_analysis.errors[:sales_charges_rate].any? %>">
-              <%= f.number_field :sales_charges_rate %>
+              <%= f.number_field :sales_charges_rate, step: 'any' %>
 
               <% if @sensitivity_analysis.errors[:sales_charges_rate].any? %>
                 <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:sales_charges_rate).first %></small>
@@ -102,10 +102,13 @@
         </div>
 
         <div class="row collapse">
-          <div class="small-12 medium-12 large-12 columns">
+          <%= f.label :individualization_costs %>
+          <div class="small-3 medium-3 large-3 columns">
+            <span class="prefix"><%= t('.currency') %></span>
+          </div>
+          <div class="small-9 medium-9 large-9 columns">
             <div class="<%= "error" if @sensitivity_analysis.errors[:individualization_costs].any? %>">
-              <%= f.label :individualization_costs %>
-              <%= f.number_field :individualization_costs %>
+              <%= f.number_field :individualization_costs, step: 'any' %>
 
               <% if @sensitivity_analysis.errors[:individualization_costs].any? %>
                 <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:individualization_costs).first %></small>
@@ -115,10 +118,13 @@
         </div>
 
         <div class="row collapse">
-          <div class="small-12 medium-12 large-12 columns">
+          <%= f.label :cost_per_square_meter %>
+          <div class="small-3 medium-3 large-3 columns">
+            <span class="prefix"><%= t('.currency') %></span>
+          </div>
+          <div class="small-9 medium-9 large-9 columns">
             <div class="<%= "error" if @sensitivity_analysis.errors[:cost_per_square_meter].any? %>">
-              <%= f.label :cost_per_square_meter %>
-              <%= f.number_field :cost_per_square_meter %>
+              <%= f.number_field :cost_per_square_meter, step: 'any' %>
 
               <% if @sensitivity_analysis.errors[:cost_per_square_meter].any? %>
                 <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:cost_per_square_meter).first %></small>
@@ -128,10 +134,13 @@
         </div>
 
         <div class="row collapse">
-          <div class="small-12 medium-12 large-12 columns">
+          <%= f.label :land_acquisition_cost %>
+          <div class="small-3 medium-3 large-3 columns">
+            <span class="prefix"><%= t('.currency') %></span>
+          </div>
+          <div class="small-9 medium-9 large-9 columns">
             <div class="<%= "error" if @sensitivity_analysis.errors[:land_acquisition_cost].any? %>">
-              <%= f.label :land_acquisition_cost %>
-              <%= f.number_field :land_acquisition_cost %>
+              <%= f.number_field :land_acquisition_cost, step: 'any' %>
 
               <% if @sensitivity_analysis.errors[:land_acquisition_cost].any? %>
                 <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:land_acquisition_cost).first %></small>
@@ -141,10 +150,13 @@
         </div>
 
         <div class="row collapse">
-          <div class="small-12 medium-12 large-12 columns">
+          <%= f.label :exchanged_units_expenses %>
+          <div class="small-3 medium-3 large-3 columns">
+            <span class="prefix"><%= t('.currency') %></span>
+          </div>
+          <div class="small-9 medium-9 large-9 columns">
             <div class="<%= "error" if @sensitivity_analysis.errors[:exchanged_units_expenses].any? %>">
-              <%= f.label :exchanged_units_expenses %>
-              <%= f.number_field :exchanged_units_expenses %>
+              <%= f.number_field :exchanged_units_expenses, step: 'any' %>
 
               <% if @sensitivity_analysis.errors[:exchanged_units_expenses].any? %>
                 <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:exchanged_units_expenses).first %></small>
@@ -170,9 +182,12 @@
             </div>
 
             <div class="row collapse">
-              <div class="small-12 medium-12 large-12 columns">
-                <%= unit_sensitivity_analysis_form.label :sale_price %>
-                <%= unit_sensitivity_analysis_form.number_field :sale_price %>
+              <%= unit_sensitivity_analysis_form.label :sale_price %>
+              <div class="small-3 medium-3 large-3 columns">
+                <span class="prefix"><%= t('.currency') %></span>
+              </div>
+              <div class="small-9 medium-9 large-9 columns">
+                <%= unit_sensitivity_analysis_form.number_field :sale_price, step: 'any' %>
               </div>
             </div>
 

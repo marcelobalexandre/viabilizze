@@ -12,7 +12,7 @@ class Unit < ActiveRecord::Base
   validates :project,      presence: true
 
   def total_area
-    self.private_area + self.common_area + self.box_area
+    (self.private_area + self.common_area + self.box_area).round(2)
   end
 
   def self.by_name(name)

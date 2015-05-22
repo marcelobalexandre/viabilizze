@@ -9,8 +9,6 @@ describe SensitivityAnalysis do
   it { expect(subject).to respond_to(:net_profit_margin) }
   it { expect(subject).to respond_to(:expected_revenue) }
   it { expect(subject).to respond_to(:revenue) }
-  it { expect(subject).to respond_to(:selling_price) }
-  it { expect(subject).to respond_to(:sale_price) }
   it { expect(subject).to respond_to(:sales_commissions_rate) }
   it { expect(subject).to respond_to(:sales_commissions) }
   it { expect(subject).to respond_to(:sales_taxes_rate) }
@@ -26,7 +24,7 @@ describe SensitivityAnalysis do
   it { expect(subject).to respond_to(:inss) }
   it { expect(subject).to respond_to(:markup) }
   it { expect(subject).to respond_to(:result) }
-  it { expect(subject).to respond_to(:profit_rate) }
+  it { expect(subject).to respond_to(:average_profit_rate) }
   it { expect(subject).to respond_to(:project_id) }
   it { expect(subject).to respond_to(:unit_sensitivity_analyses) }
 
@@ -49,4 +47,336 @@ describe SensitivityAnalysis do
   end
 
   it { expect(subject).to validate_presence_of(:project) }
+
+  describe "#expected_revenue" do
+    [ # unit_one_selling_price | unit_two_selling_price | unit_three_selling_price | expected_revenue
+      [                 100.00,                  100.00,                    100.00,            300.00 ],
+      [                1234.56,                 3500.23,                      0.00,           4734.79 ],
+      [                2400.21,                 3500.20,                   2222.22,           8122.63 ]
+    ].each do |unit_one_selling_price, unit_two_selling_price, unit_three_selling_price, expected_revenue|
+      # Formula: sum all units selling price
+      it "calculates the expected revenue" do
+        unit_one_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_one_sensitivity_analysis).to receive(:selling_price).and_return(unit_one_selling_price)
+        unit_two_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_two_sensitivity_analysis).to receive(:selling_price).and_return(unit_two_selling_price)
+        unit_three_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_three_sensitivity_analysis).to receive(:selling_price).and_return(unit_three_selling_price)
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+        sensitivity_analysis.unit_sensitivity_analyses << unit_one_sensitivity_analysis
+        sensitivity_analysis.unit_sensitivity_analyses << unit_two_sensitivity_analysis
+        sensitivity_analysis.unit_sensitivity_analyses << unit_three_sensitivity_analysis
+
+        expect(sensitivity_analysis.expected_revenue).to eq(expected_revenue)
+      end
+    end
+  end
+
+  describe "#revenue" do
+    [ # unit_one_sale_price | unit_two_sale_price | unit_three_sale_price | revenue
+      [              100.00,               100.00,                 100.00,   300.00 ],
+      [             1234.56,              3500.23,                   0.00,  4734.79 ],
+      [             2400.21,              3500.20,                2222.22,  8122.63 ]
+    ].each do |unit_one_sale_price, unit_two_sale_price, unit_three_sale_price, revenue|
+      # Formula: sum all units sale price
+      it "calculates the revenue" do
+        unit_one_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_one_sensitivity_analysis).to receive(:sale_price).and_return(unit_one_sale_price)
+        unit_two_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_two_sensitivity_analysis).to receive(:sale_price).and_return(unit_two_sale_price)
+        unit_three_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_three_sensitivity_analysis).to receive(:sale_price).and_return(unit_three_sale_price)
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+        sensitivity_analysis.unit_sensitivity_analyses << unit_one_sensitivity_analysis
+        sensitivity_analysis.unit_sensitivity_analyses << unit_two_sensitivity_analysis
+        sensitivity_analysis.unit_sensitivity_analyses << unit_three_sensitivity_analysis
+
+        expect(sensitivity_analysis.revenue).to eq(revenue)
+      end
+    end
+  end
+
+  describe "#sales_commissions" do
+    [ # unit_one_sales_commissions | unit_two_sales_commissions | unit_three_sales_commissions | sales_commissions
+      [                     100.00,                      100.00,                        100.00,            300.00 ],
+      [                    1234.56,                     3500.23,                          0.00,           4734.79 ],
+      [                    2400.21,                     3500.20,                       2222.22,           8122.63 ]
+    ].each do |unit_one_sales_commissions, unit_two_sales_commissions, unit_three_sales_commissions, sales_commissions|
+      # Formula: sum all units sales commissions
+      it "calculates the sales commissions" do
+        unit_one_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_one_sensitivity_analysis).to receive(:sales_commissions).and_return(unit_one_sales_commissions)
+        unit_two_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_two_sensitivity_analysis).to receive(:sales_commissions).and_return(unit_two_sales_commissions)
+        unit_three_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_three_sensitivity_analysis).to receive(:sales_commissions).and_return(unit_three_sales_commissions)
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+        sensitivity_analysis.unit_sensitivity_analyses << unit_one_sensitivity_analysis
+        sensitivity_analysis.unit_sensitivity_analyses << unit_two_sensitivity_analysis
+        sensitivity_analysis.unit_sensitivity_analyses << unit_three_sensitivity_analysis
+
+        expect(sensitivity_analysis.sales_commissions).to eq(sales_commissions)
+      end
+    end
+  end
+
+  describe "#sales_taxes" do
+    [ # unit_one_sales_taxes | unit_two_sales_taxes | unit_three_sales_taxes | sales_taxes
+      [               100.00,                100.00,                  100.00,       300.00 ],
+      [              1234.56,               3500.23,                    0.00,      4734.79 ],
+      [              2400.21,               3500.20,                 2222.22,      8122.63 ]
+    ].each do |unit_one_sales_taxes, unit_two_sales_taxes, unit_three_sales_taxes, sales_taxes|
+      # Formula: sum all units sales taxes
+      it "calculates the sales taxes" do
+        unit_one_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_one_sensitivity_analysis).to receive(:sales_taxes).and_return(unit_one_sales_taxes)
+        unit_two_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_two_sensitivity_analysis).to receive(:sales_taxes).and_return(unit_two_sales_taxes)
+        unit_three_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_three_sensitivity_analysis).to receive(:sales_taxes).and_return(unit_three_sales_taxes)
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+        sensitivity_analysis.unit_sensitivity_analyses << unit_one_sensitivity_analysis
+        sensitivity_analysis.unit_sensitivity_analyses << unit_two_sensitivity_analysis
+        sensitivity_analysis.unit_sensitivity_analyses << unit_three_sensitivity_analysis
+
+        expect(sensitivity_analysis.sales_taxes).to eq(sales_taxes)
+      end
+    end
+  end
+
+  describe "#sales_charges" do
+    [ # unit_one_sales_charges | unit_two_sales_charges | unit_three_sales_charges | sales_charges
+      [                 100.00,                  100.00,                    100.00,         300.00 ],
+      [                1234.56,                 3500.23,                      0.00,        4734.79 ],
+      [                2400.21,                 3500.20,                   2222.22,        8122.63 ]
+    ].each do |unit_one_sales_charges, unit_two_sales_charges, unit_three_sales_charges, sales_charges|
+      # Formula: sum all units sales charges
+      it "calculates the sales charges" do
+        unit_one_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_one_sensitivity_analysis).to receive(:sales_charges).and_return(unit_one_sales_charges)
+        unit_two_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_two_sensitivity_analysis).to receive(:sales_charges).and_return(unit_two_sales_charges)
+        unit_three_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_three_sensitivity_analysis).to receive(:sales_charges).and_return(unit_three_sales_charges)
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+        sensitivity_analysis.unit_sensitivity_analyses << unit_one_sensitivity_analysis
+        sensitivity_analysis.unit_sensitivity_analyses << unit_two_sensitivity_analysis
+        sensitivity_analysis.unit_sensitivity_analyses << unit_three_sensitivity_analysis
+
+        expect(sensitivity_analysis.sales_charges).to eq(sales_charges)
+      end
+    end
+  end
+
+  describe "#land_acquisition_cost_per_total_area_not_exchanged" do
+    [ # land_acquisition_cost | total_area_not_exchanged | land_acquisition_cost_per_not_exchanged_units
+      [               4000.00,                    708.21,                                           5.65 ],
+      [               3875.23,                    801.23,                                           4.84 ],
+      [               5201.02,                    600.00,                                           8.67 ]
+    ].each do |land_acquisition_cost, total_area_not_exchanged, land_acquisition_cost_per_total_area_not_exchanged|
+      # Formula: land_acquisition_cost / project.total_area_not_exchanged
+      it "calculates the land acquisition cost per total area not exchanged" do
+        unit = FactoryGirl.build(:unit, private_area: total_area_not_exchanged, common_area: 0.00, box_area: 0.00, exchanged: false)
+        project = FactoryGirl.build(:project)
+        project.units << unit
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis, project: project,
+                                                                        land_acquisition_cost: land_acquisition_cost)
+
+        expect(sensitivity_analysis.land_acquisition_cost_per_total_area_not_exchanged).to eq(land_acquisition_cost_per_total_area_not_exchanged)
+      end
+    end
+  end
+
+  describe "#construction_costs" do
+    [ # units | unit_construction_costs | construction_costs
+      [     1,                  4000.00,             4000.00 ],
+      [     3,                  2341.22,             7023.66 ]
+    ].each do |units, unit_construction_costs, construction_costs|
+      # Formula: sum all units construction_costs
+      it "calculates the construction costs" do
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+        units.times do
+          unit_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+          allow(unit_sensitivity_analysis).to receive(:construction_costs).and_return(unit_construction_costs)
+          sensitivity_analysis.unit_sensitivity_analyses << unit_sensitivity_analysis
+        end
+
+        expect(sensitivity_analysis.construction_costs).to eq(construction_costs)
+      end
+    end
+  end
+
+  describe "#exchanged_units_construction_costs" do
+    [ # not_exchanged | not_exchanged_construction_costs | exchanged | exchanged_construction_costs | exchanged_units_construction_costs
+      [             3,                            100.00,          1,                         200.00,                              200.00 ],
+      [             4,                            201.23,          2,                         123.98,                              247.96 ]
+    ].each do |not_exchanged, not_exchanged_construction_costs, exchanged, exchanged_construction_costs, exchanged_units_construction_costs|
+      # Formula: sum the construction costs of all exchanged units
+      it "calculates the exchanged units construction costs" do
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+        not_exchanged.times do
+          unit = FactoryGirl.build(:unit, exchanged: false)
+          unit_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis, unit: unit)
+          allow(unit_sensitivity_analysis).to receive(:construction_costs).and_return(not_exchanged_construction_costs)
+          sensitivity_analysis.unit_sensitivity_analyses << unit_sensitivity_analysis
+        end
+        exchanged.times do
+          unit = FactoryGirl.build(:unit, exchanged: true)
+          unit_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis, unit: unit)
+          allow(unit_sensitivity_analysis).to receive(:construction_costs).and_return(exchanged_construction_costs)
+          sensitivity_analysis.unit_sensitivity_analyses << unit_sensitivity_analysis
+        end
+
+        expect(sensitivity_analysis.exchanged_units_construction_costs).to eq(exchanged_units_construction_costs)
+      end
+    end
+  end
+
+  describe "#exchanged_units_construction_costs_per_total_area_not_exchanged" do
+    [ # exchanged_units_construction_costs | total_area_not_exchanged | exchanged_units_construction_costs_per_total_area_not_exchanged
+      [                            2000.00,                  150.00,                                                         13.33 ],
+      [                            3241.87,                  521.34,                                                          6.22 ]
+    ].each do |exchanged_units_construction_costs, total_area_not_exchanged, exchanged_units_construction_costs_per_total_area_not_exchanged|
+      # Formula: exchanged_units_construction_costs / project.total_area_not_exchanged
+      it "calculates the exchanged units construction costs per total area not exchanged" do
+        project = FactoryGirl.build(:project)
+        allow(project).to receive(:total_area_not_exchanged).and_return(total_area_not_exchanged)
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis, project: project)
+        allow(sensitivity_analysis).to receive(:exchanged_units_construction_costs).and_return(exchanged_units_construction_costs)
+
+        expect(sensitivity_analysis.exchanged_units_construction_costs_per_total_area_not_exchanged).to eq(exchanged_units_construction_costs_per_total_area_not_exchanged)
+      end
+    end
+  end
+
+  describe "#exchanged_units_expenses_per_total_area_not_exchanged" do
+    [ # exchanged_units_expenses | total_area_not_exchanged | exchanged_units_expenses_per_total_area_not_exchanged
+      [                  2000.00,                    150.00,                                                  13.33 ],
+      [                  3241.87,                    521.34,                                                   6.22 ]
+    ].each do |exchanged_units_expenses, total_area_not_exchanged, exchanged_units_expenses_per_total_area_not_exchanged|
+      # Formula: exchanged_units_expenses / total_area_not_exchanged
+      it "calculates the exchanged units expenses per total area not exchanged" do
+        project = FactoryGirl.build(:project)
+        allow(project).to receive(:total_area_not_exchanged).and_return(total_area_not_exchanged)
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis, project: project)
+        allow(sensitivity_analysis).to receive(:exchanged_units_expenses).and_return(exchanged_units_expenses)
+
+        expect(sensitivity_analysis.exchanged_units_expenses_per_total_area_not_exchanged).to eq(exchanged_units_expenses_per_total_area_not_exchanged)
+      end
+    end
+  end
+
+  describe "#inss_calculation_base" do
+    [ # construction_costs | inss_calculation_base
+      [            2000.00,                 440.00 ],
+      [            7826.21,                1721.77 ]
+    ].each do |construction_costs, inss_calculation_base|
+      # Formula: (construction_costs * 22) / 100
+      it "calculates the inss calculation base" do
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+        allow(sensitivity_analysis).to receive(:construction_costs).and_return(construction_costs)
+
+        expect(sensitivity_analysis.inss_calculation_base).to eq(inss_calculation_base)
+      end
+    end
+  end
+
+  describe "#inss" do
+    [ # inss_calculation_base |    inss
+      [               2000.00,   310.00 ],
+      [               7826.21,  1213.06 ]
+    ].each do |inss_calculation_base, inss|
+      # Formula: ((inss_calculation_base * 31) / 100) / 2
+      it "calculates the inss" do
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+        allow(sensitivity_analysis).to receive(:inss_calculation_base).and_return(inss_calculation_base)
+
+        expect(sensitivity_analysis.inss).to eq(inss)
+      end
+    end
+  end
+
+  describe "#inss_per_total_area_not_exchanged" do
+    [ #    inss | total_area_not_exchanged | inss_per_total_area_not_exchanged
+      [ 2000.00,                    150.00,                              13.33 ],
+      [ 3241.87,                    521.34,                               6.22 ]
+    ].each do |inss, total_area_not_exchanged, inss_per_total_area_not_exchanged|
+      # Formula: inss / total_area_not_exchanged
+      it "calculates the inss per total area not exchanged" do
+        project = FactoryGirl.build(:project)
+        allow(project).to receive(:total_area_not_exchanged).and_return(total_area_not_exchanged)
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis, project: project)
+        allow(sensitivity_analysis).to receive(:inss).and_return(inss)
+
+        expect(sensitivity_analysis.inss_per_total_area_not_exchanged).to eq(inss_per_total_area_not_exchanged)
+      end
+    end
+  end
+
+    describe "#markup" do
+    [ # selling_price | sales_taxes_rate | sales_charges_rate | net_profit_margin |  markup
+      [          6.00,              5.93,                3.00,              15.00,  1.42714 ],
+      [          4.00,              5.93,                5.00,              17.00,  1.46908 ],
+      [          0.00,              0.00,                0.00,               0.00,     1.00 ]
+    ].each do |sales_commissions_rate, sales_taxes_rate, sales_charges_rate, net_profit_margin, markup|
+      # Formula: 100 / (100 - sales_commissions_rate - sales_taxes_rate - sales_charges_rate - net_profit_margin)
+      it "calculates the markup" do
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis, project: project,
+                                                                        sales_commissions_rate: sales_commissions_rate,
+                                                                        sales_taxes_rate: sales_taxes_rate,
+                                                                        sales_charges_rate: sales_charges_rate,
+                                                                        net_profit_margin: net_profit_margin)
+
+        expect(sensitivity_analysis.markup).to eq(markup)
+      end
+    end
+  end
+
+  describe "#result" do
+    [ # unit_one_result | unit_two_result | unit_three_result |  result
+      [          100.00,           100.00,             100.00,   300.00 ],
+      [         1234.56,          3500.23,               0.00,  4734.79 ],
+      [         2400.21,          3500.20,            2222.22,  8122.63 ]
+    ].each do |unit_one_result, unit_two_result, unit_three_result, result|
+      # Formula: sum all units result
+      it "calculates the result" do
+        unit_one_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_one_sensitivity_analysis).to receive(:result).and_return(unit_one_result)
+        unit_two_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_two_sensitivity_analysis).to receive(:result).and_return(unit_two_result)
+        unit_three_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_three_sensitivity_analysis).to receive(:result).and_return(unit_three_result)
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+        sensitivity_analysis.unit_sensitivity_analyses << unit_one_sensitivity_analysis
+        sensitivity_analysis.unit_sensitivity_analyses << unit_two_sensitivity_analysis
+        sensitivity_analysis.unit_sensitivity_analyses << unit_three_sensitivity_analysis
+
+        expect(sensitivity_analysis.result).to eq(result)
+      end
+    end
+  end
+
+  describe "#average_profit_rate" do
+    [ # unit_one_profit_rate | unit_two_profit_rate | unit_three_profit_rate |  average_profit_rate
+      [                10.00,                 10.00,                   10.00,                 10.00 ],
+      [                10.00,                 10.00,                    0.00,                 10.00 ],
+      [                 8.23,                 -3.12,                    6.45,                  3.85 ],
+    ].each do |unit_one_profit_rate, unit_two_profit_rate, unit_three_profit_rate, average_profit_rate|
+      # Formula: sum all units profit rate where profit rate not 0
+      it "calculates the average profit rate" do
+        unit_one_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_one_sensitivity_analysis).to receive(:profit_rate).and_return(unit_one_profit_rate)
+        unit_two_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_two_sensitivity_analysis).to receive(:profit_rate).and_return(unit_two_profit_rate)
+        unit_three_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_three_sensitivity_analysis).to receive(:profit_rate).and_return(unit_three_profit_rate)
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+        sensitivity_analysis.unit_sensitivity_analyses << unit_one_sensitivity_analysis
+        sensitivity_analysis.unit_sensitivity_analyses << unit_two_sensitivity_analysis
+        sensitivity_analysis.unit_sensitivity_analyses << unit_three_sensitivity_analysis
+
+        expect(sensitivity_analysis.average_profit_rate).to eq(average_profit_rate)
+      end
+    end
+  end
 end

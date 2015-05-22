@@ -27,12 +27,14 @@ en:
       project: "Project"
       units: "Units"
       units_form_title: "Units Informations"
+      currency: "$"
       submit: "Save"
     edit:
       form_title: "General Informations"
       project: "Project"
       units: "Units"
       units_form_title: "Units Informations"
+      currency: "$"
       submit: "Save"
     sensitivity_analysis:
       incomplete_analysis: "Incomplete analysis"

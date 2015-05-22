@@ -27,12 +27,14 @@ pt-BR:
       project: "Empreendimento"
       units: "Unidades"
       units_form_title: "Informações das Unidades"
+      currency: "R$"
       submit: "Salvar"
     edit:
       form_title: "Informações Gerais"
       project: "Empreendimento"
       units: "Unidades"
       units_form_title: "Informações das Unidades"
+      currency: "R$"
       submit: "Salvar"
     sensitivity_analysis:
       incomplete_analysis: "Análise incompleta"

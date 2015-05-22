@@ -7,6 +7,15 @@ class Project < ActiveRecord::Base
                    uniqueness: { scope: :user_id, case_sensitive: false }
   validates :user, presence: true
 
+  def total_units_not_exchanged
+    self.units.select { |unit| !unit.exchanged }.count
+
+  end
+
+  def total_area_not_exchanged
+    self.units.select { |unit| !unit.exchanged }.inject(0) { |sum, unit| sum + unit.total_area }
+  end
+
   def self.by_name(name)
     if name.present?
       where("name like ?", "%#{name}%").order(:name)
