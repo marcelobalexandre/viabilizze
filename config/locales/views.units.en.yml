@@ -3,7 +3,7 @@ en:
     index:
       title: "Copy Unit"
       search_field_placeholder: "Search"
-      no_units_found: "No units found" 
+      no_units_found: "No units found"
     show:
       form_title: "Unit Informations"
       name: "Name"
@@ -13,14 +13,14 @@ en:
       exchanged: "Exchanged Unit"
       exchanged_yes: "Yes"
       exchanged_no: "No"
-      edit_button: "Edit"    
+      edit_button: "Edit"
       delete_question: "Are you sure?"
       delete_button: "Delete"
       back_button: "Back"
     new:
       title: "New Unit"
-      form_title: "Unit Informations"
       submit: "Add"
     edit:
-      form_title: "Unit Informations"
       submit: "Save"
+    form:
+      form_title: "Unit Informations"

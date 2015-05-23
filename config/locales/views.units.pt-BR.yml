@@ -19,8 +19,8 @@ pt-BR:
       back_button: "Voltar"
     new:
       title: "Nova Unidade"
-      form_title: "Informações da Unidade"
       submit: "Adicionar"
     edit:
-      form_title: "Informações da Unidade"
       submit: "Salvar"
+    form:
+      form_title: "Informações da Unidade"

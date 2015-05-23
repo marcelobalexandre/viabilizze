@@ -1,37 +1,3 @@
 <% provide :title, @project.name %>
 
-<%= form_for [current_user, @project] do |f| %>
-  <div class="row">
-    <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
-      <div class="panel form-panel">
-        <div class="row collapse">
-          <div class="small-12 medium-12 large-12 columns text-center">
-            <h4><strong><%= t('.form_title') %></strong></h4>
-          </div>
-        </div>
-
-        <div class="row collapse">
-          <%= f.label :name %>
-          <div class="small-12 medium-12 large-12 columns">
-            <div class="<%= "error" if @project.errors[:name].any? %>">
-              <%= f.text_field :name, autofocus: true %>
-
-              <% if @project.errors[:name].any? %>
-                <small class="error"><%= @project.errors.full_messages_for(:name).first %></small>
-              <% end %>
-            </div>
-          </div>
-        </div>
-
-        <div class="row collapse">
-          <div class="small-12 medium-12 large-12 columns">
-            <%= button_tag(type: 'submit', class: "button expand") do %>
-             <%= icon 'check' %>
-             <%= t('.submit') %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
+<%= render 'form' %>

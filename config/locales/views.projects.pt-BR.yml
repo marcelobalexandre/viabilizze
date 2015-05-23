@@ -21,9 +21,7 @@ pt-BR:
       add_multiple_units_button: "Adicionar Múltiplas Unidades"
     new:
       title: "Novo Empreendimento"
-      form_title: "Informações do Empreendimento"
-      submit: "Salvar"
-    edit:
+    form:
       form_title: "Informações do Empreendimento"
       submit: "Salvar"
     project:

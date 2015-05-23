@@ -21,9 +21,7 @@ en:
       add_multiple_units_button: "Add Multiple Units"
     new:
       title: "New Project"
-      form_title: "Project Informations"
-      submit: "Save"
-    edit:
+    form:
       form_title: "Project Informations"
       submit: "Save"
     project:
