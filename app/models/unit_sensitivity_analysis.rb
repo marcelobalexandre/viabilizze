@@ -28,27 +28,47 @@ class UnitSensitivityAnalysis < ActiveRecord::Base
   end
 
   def individualization_costs
+    unless self.sensitivity_analysis.individualization_costs
+      return 0.00
+    end
+
     individualization_costs = (self.sensitivity_analysis.individualization_costs /
                                self.sensitivity_analysis.project.total_units_not_exchanged).round(2)
     self.unit.exchanged ? 0.00 : individualization_costs
   end
 
   def land_acquisition_cost
+    unless self.sensitivity_analysis.land_acquisition_cost_per_total_area_not_exchanged
+      return 0.00
+    end
+
     land_acquisition_cost = (self.sensitivity_analysis.land_acquisition_cost_per_total_area_not_exchanged * self.unit.total_area).round(2)
     self.unit.exchanged ? 0.00 : land_acquisition_cost
   end
 
   def construction_costs
+    unless self.sensitivity_analysis.cost_per_square_meter
+      return 0.00
+    end
+
     (self.sensitivity_analysis.cost_per_square_meter * self.unit.total_area).round(2)
   end
 
   def exchanged_units_construction_costs
+    unless self.sensitivity_analysis.exchanged_units_construction_costs_per_total_area_not_exchanged
+      return 0.00
+    end
+
     exchanged_units_construction_costs = (self.unit.total_area *
                                           self.sensitivity_analysis.exchanged_units_construction_costs_per_total_area_not_exchanged).round(2)
     self.unit.exchanged ? 0.00 : exchanged_units_construction_costs
   end
 
   def exchanged_units_expenses
+    unless self.sensitivity_analysis.exchanged_units_expenses_per_total_area_not_exchanged
+      return 0.00
+    end
+
     exchanged_units_expenses = (self.unit.total_area * self.sensitivity_analysis.exchanged_units_expenses_per_total_area_not_exchanged).round(2)
     self.unit.exchanged ? 0.00 : exchanged_units_expenses
   end

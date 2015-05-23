@@ -28,6 +28,10 @@ class SensitivityAnalysis < ActiveRecord::Base
   end
 
   def land_acquisition_cost_per_total_area_not_exchanged
+    unless self.land_acquisition_cost
+      return 0.00
+    end
+
     (self.land_acquisition_cost / self.project.total_area_not_exchanged).round(2)
   end
 
@@ -36,6 +40,10 @@ class SensitivityAnalysis < ActiveRecord::Base
   end
 
   def exchanged_units_construction_costs
+    unless self.unit_sensitivity_analyses.any? { |unit_sensitivity_analysis| unit_sensitivity_analysis.unit.exchanged }
+      return 0.00
+    end
+
     (self.unit_sensitivity_analyses.select do |unit_sensitivity_analysis|
        unit_sensitivity_analysis.unit.exchanged
      end.inject(0) { |sum, unit_sensitivity_analysis| sum + unit_sensitivity_analysis.construction_costs }).round(2)
@@ -46,6 +54,10 @@ class SensitivityAnalysis < ActiveRecord::Base
   end
 
   def exchanged_units_expenses_per_total_area_not_exchanged
+    unless self.exchanged_units_expenses
+      return 0.00
+    end
+
     (self.exchanged_units_expenses / self.project.total_area_not_exchanged).round(2)
   end
 
@@ -62,6 +74,10 @@ class SensitivityAnalysis < ActiveRecord::Base
   end
 
   def markup
+    unless self.sales_commissions_rate && self.sales_taxes_rate && self.sales_charges_rate && self.net_profit_margin
+      return 0.00
+    end
+
     (100 / (100 - self.sales_commissions_rate - self.sales_taxes_rate - self.sales_charges_rate - self.net_profit_margin)).round(5)
   end
 
