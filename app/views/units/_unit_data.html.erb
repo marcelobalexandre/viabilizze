@@ -9,31 +9,31 @@
 <div class="row collapse">
   <div class="small-12 medium-12 large-12 columns">
     <div class="unit-information">
-      Área Privativa: <%= unit.private_area %>
-    </div>
-  </div>      
-</div> 
-
-<div class="row collapse">
-  <div class="small-12 medium-12 large-12 columns">
-    <div class="unit-information">
-      Área Comum: <%= unit.common_area %>
+      Área Privativa: <%= number_with_precision(unit.private_area, precision: 2, separator: '.') %> m²
     </div>
   </div>
-</div> 
+</div>
 
 <div class="row collapse">
   <div class="small-12 medium-12 large-12 columns">
     <div class="unit-information">
-      Área de Box: <%= unit.box_area %>
+      Área Comum: <%= number_with_precision(unit.common_area, precision: 2, separator: '.') %> m²
     </div>
   </div>
-</div> 
+</div>
 
 <div class="row collapse">
   <div class="small-12 medium-12 large-12 columns">
     <div class="unit-information">
-      Área Total: <%= unit.total_area %>
+      Área de Box: <%= number_with_precision(unit.box_area, precision: 2, separator: '.') %> m²
+    </div>
+  </div>
+</div>
+
+<div class="row collapse">
+  <div class="small-12 medium-12 large-12 columns">
+    <div class="unit-information">
+      Área Total: <%= number_with_precision(unit.total_area, precision: 2, separator: '.') %> m²
     </div>
   </div>
 </div>

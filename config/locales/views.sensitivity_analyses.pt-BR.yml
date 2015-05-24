@@ -17,6 +17,9 @@ pt-BR:
       land_acquisition_cost: "Custo do Terreno"
       exchanged_units_expenses: "Outras Despesas de Permuta"
       units_form_title: "Informações das Unidades"
+      selling_price: "Preço de Venda Sugerido"
+      sale_price: "Preço de Venda Praticado"
+      exchanged_unit: "Unidade Permutada"
       edit_button: "Alterar"
       delete_question: "Você tem certeza?"
       delete_button: "Excluir"
@@ -30,6 +33,7 @@ pt-BR:
       units_form_title: "Informações das Unidades"
       currency: "R$"
       selling_price: "Preço de Venda Sugerido"
+      exchanged_unit: "Unidade Permutada"
       submit: "Salvar"
     sensitivity_analysis:
       incomplete_analysis: "Análise incompleta"

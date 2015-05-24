@@ -1,11 +1,10 @@
 class Unit < ActiveRecord::Base
   belongs_to :project
-
   has_many :unit_sensitivity_analyses, dependent: :destroy
 
   validates :name, presence: true,
                    uniqueness: { scope: :project_id, case_sensitive: false }
-  validates :private_area, numericality: { greater_than_or_equal_to: 0 }
+  validates :private_area, numericality: { greater_than: 0 }
   validates :common_area,  numericality: { greater_than_or_equal_to: 0 }
   validates :box_area,     numericality: { greater_than_or_equal_to: 0 }
   validates :exchanged,    inclusion: { in: [true, false], message: :blank }

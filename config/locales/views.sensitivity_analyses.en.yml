@@ -17,6 +17,9 @@ en:
       land_acquisition_cost: "Land Acquisition Cost"
       exchanged_units_expenses: "Exchanged Units Expenses"
       units_form_title: "Units Informations"
+      selling_price: "Selling Price"
+      sale_price: "Sale Price"
+      exchanged_unit: "Exchanged Unit"
       edit_button: "Edit"
       delete_question: "Are you sure?"
       delete_button: "Delte"
@@ -30,6 +33,7 @@ en:
       units_form_title: "Units Informations"
       currency: "$"
       selling_price: "Selling Price"
+      exchanged_unit: "Exchanged Unit"
       submit: "Save"
     sensitivity_analysis:
       incomplete_analysis: "Incomplete analysis"

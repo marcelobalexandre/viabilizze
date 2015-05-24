@@ -50,7 +50,7 @@
           <%= f.label :private_area %>
           <div class="small-9 medium-9 large-9 columns">
             <div class="<%= "error" if @multiple_units.errors[:private_area].any? %>">
-              <%= f.number_field :private_area, step: 'any' %>
+              <%= f.number_field :private_area, step: 'any', value: number_with_precision(f.object.private_area, precision: 2, separator: '.') %>
 
               <% if @multiple_units.errors[:private_area].any? %>
                 <small class="error"><%= @multiple_units.errors.full_messages_for(:private_area).first %></small>
@@ -66,7 +66,7 @@
           <%= f.label :common_area %>
           <div class="small-9 medium-9 large-9 columns">
             <div class="<%= "error" if @multiple_units.errors[:common_area].any? %>">
-              <%= f.number_field :common_area, step: 'any' %>
+              <%= f.number_field :common_area, step: 'any', value: number_with_precision(f.object.common_area, precision: 2, separator: '.') %>
 
               <% if @multiple_units.errors[:common_area].any? %>
                 <small class="error"><%= @multiple_units.errors.full_messages_for(:common_area).first %></small>
@@ -82,7 +82,7 @@
           <%= f.label :box_area %>
           <div class="small-9 medium-9 large-9 columns">
             <div class="<%= "error" if @multiple_units.errors[:box_area].any? %>">
-              <%= f.number_field :box_area, step: 'any' %>
+              <%= f.number_field :box_area, step: 'any', value: number_with_precision(f.object.box_area, precision: 2, separator: '.') %>
 
               <% if @multiple_units.errors[:box_area].any? %>
                 <small class="error"><%= @multiple_units.errors.full_messages_for(:box_area).first %></small>

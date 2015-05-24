@@ -19,21 +19,21 @@
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
             <h6 class="unit-label"><strong><%= t('.private_area') %></strong></h6>
-            <p class="unit-label"><%= @unit.private_area %> m²</p>
+            <p class="unit-label"><%= number_with_precision(@unit.private_area, precision: 2, separator: '.') %> m²</p>
         </div>
       </div>
 
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
             <h6 class="unit-label"><strong><%= t('.common_area') %></strong></h6>
-            <p class="unit-label"><%= @unit.common_area %> m²</p>
+            <p class="unit-label"><%= number_with_precision(@unit.common_area, precision: 2, separator: '.') %> m²</p>
         </div>
       </div>
 
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
             <h6 class="unit-label"><strong><%= t('.box_area') %></strong></h6>
-            <p class="unit-label"><%= @unit.box_area %> m²</p>
+            <p class="unit-label"><%= number_with_precision(@unit.box_area, precision: 2, separator: '.') %> m²</p>
         </div>
       </div>
 

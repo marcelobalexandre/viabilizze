@@ -12,7 +12,7 @@ class MultipleUnits
   validates :quantity, numericality: { greater_than_or_equal_to: 2 }
   validates :name, presence: true
   validate :verify_uniqueness_of_names
-  validates :private_area, numericality: { greater_than_or_equal_to: 0 }
+  validates :private_area, numericality: { greater_than: 0 }
   validates :common_area, numericality: { greater_than_or_equal_to: 0 }
   validates :box_area, numericality: { greater_than_or_equal_to: 0 }
   validates :exchanged, inclusion: { in: [true, false], message: :blank }

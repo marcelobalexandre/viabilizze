@@ -70,7 +70,7 @@ describe MultipleUnits do
     end
   end
 
-  it { expect(subject).to validate_numericality_of(:private_area).is_greater_than_or_equal_to(0) }
+  it { expect(subject).to validate_numericality_of(:private_area).is_greater_than(0) }
   it { expect(subject).to validate_numericality_of(:common_area).is_greater_than_or_equal_to(0) }
   it { expect(subject).to validate_numericality_of(:box_area).is_greater_than_or_equal_to(0) }
 
