@@ -1,0 +1,8 @@
+# Save as .codeclimate.yml (note leading .) in project root directory
+languages:
+  Ruby: true
+  JavaScript: false
+exclude_paths:
+- "app/assets/javascripts/rails.validations.actionView.js"
+- "public/javascripts/rails.validations.js"
+- "config/initializers/client_side_validations.rb"
