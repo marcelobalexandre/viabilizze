@@ -1,6 +1,6 @@
 <% provide :title, t('.title') %>
 
-<%= form_for [current_user, current_project, @multiple_units], url: user_project_multiple_units_path(current_user, current_project, @multiple_units, locale: "pt-BR") do |f| %>
+<%= form_for [current_user, current_project, @multiple_units], validate: true, url: user_project_multiple_units_path(current_user, current_project, @multiple_units, locale: "pt-BR") do |f| %>
   <div class="row">
     <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
       <div class="panel form-panel">
@@ -96,7 +96,7 @@
 
         <div class="row collapse">
           <div class="small-12 medium-12 large-12 columns">
-            <%= f.check_box :exchanged %>
+            <%= f.check_box :exchanged, validate: false %>
             <%= f.label :exchanged %>
           </div>
         </div>

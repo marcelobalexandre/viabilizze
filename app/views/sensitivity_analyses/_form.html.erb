@@ -1,6 +1,6 @@
 <span data-selling-price-url="<%= selling_price_user_project_sensitivity_analyses_path %>"></span>
 
-<%= form_for [current_user, current_project, @sensitivity_analysis] do |f| %>
+<%= form_for [current_user, current_project, @sensitivity_analysis], validate: true do |f| %>
   <div class="row">
     <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
       <div class="panel form-panel">
