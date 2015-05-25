@@ -29,9 +29,9 @@
         <% end %>
       </li>
       <li>
-        <%= link_to('#', class: 'button expand') do %>
+        <%= link_to(report_user_project_sensitivity_analysis_path(current_user, current_project, sensitivity_analysis), class: 'button expand') do %>
           <%= icon 'file-text' %>
-          <%= t('.reports') %>
+          <%= t('.report') %>
         <% end %>
       </li>
     </ul>

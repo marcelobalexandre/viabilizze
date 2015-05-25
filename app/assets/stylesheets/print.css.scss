@@ -1,0 +1,12 @@
+@media print {
+  // Report
+
+  .row-alternate-color {
+    -webkit-print-color-adjust: exact;
+    background-color: #EEEEEE !important;
+  }
+
+  .report-header {
+    margin-top: 1em;
+  }
+}

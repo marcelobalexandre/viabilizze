@@ -124,3 +124,39 @@ ul.add-units-stack {
 .sensitivity-analysis-label {
   margin-top: -0.5em;
 }
+
+.row-alternate-color {
+  background-color: #EEEEEE;
+}
+
+.row-total-report {
+  border-top: 1px solid #222222;
+}
+
+.report-project-name {
+  border-bottom: 2px solid #222222;
+  text-align: center;
+}
+
+.report-header {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.report-title {
+  text-transform: uppercase;
+}
+
+.report-section {
+  margin-bottom: 1em;
+  line-height: 1.8em;
+}
+
+.report-section-row {
+  padding-left: 1.5em;
+  padding-right: 1em;
+}
+
+#print-report-button {
+  margin-top: 0.8em;
+}

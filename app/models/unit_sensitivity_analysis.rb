@@ -7,7 +7,7 @@ class UnitSensitivityAnalysis < ActiveRecord::Base
 
   def selling_price
     selling_price = ((self.individualization_costs + self.construction_costs + self.land_acquisition_cost +
-                      self.exchanged_units_construction_costs + self.exchanged_units_expenses + self.inss) *
+                      self.exchanged_units_construction_costs + self.exchanged_units_expenses) *
                      self.sensitivity_analysis.markup).round(2)
     self.unit.exchanged ? 0.00 : selling_price
   end
@@ -73,20 +73,21 @@ class UnitSensitivityAnalysis < ActiveRecord::Base
     self.unit.exchanged ? 0.00 : exchanged_units_expenses
   end
 
-  def inss
-    inss = (self.unit.total_area * self.sensitivity_analysis.inss_per_total_area_not_exchanged).round(2)
-    self.unit.exchanged ? 0.00 : inss
-  end
-
   def result
-    result = (self.sale_price - self.individualization_costs - self.construction_costs -
-              self.land_acquisition_cost - self.exchanged_units_construction_costs - self.exchanged_units_expenses -
-              self.inss - self.sales_commissions - self.sales_taxes - self.sales_charges).round(2)
-    self.unit.exchanged ? 0.00 : result
+    if self.unit.exchanged
+      0.00
+    else
+      (self.sale_price - self.individualization_costs - self.construction_costs -
+       self.land_acquisition_cost - self.exchanged_units_construction_costs - self.exchanged_units_expenses -
+       self.sales_commissions - self.sales_taxes - self.sales_charges).round(2)
+    end
   end
 
   def profit_rate
-    profit_rate = ((self.result / self.sale_price) * 100).round(2)
-    self.unit.exchanged ? 0.00 : profit_rate
+    if self.unit.exchanged
+      0.00
+    else
+      ((self.result / self.sale_price) * 100).round(2)
+    end
   end
 end

@@ -14,7 +14,6 @@ describe UnitSensitivityAnalysis do
   it { expect(subject).to respond_to(:construction_costs) }
   it { expect(subject).to respond_to(:exchanged_units_construction_costs) }
   it { expect(subject).to respond_to(:exchanged_units_expenses) }
-  it { expect(subject).to respond_to(:inss) }
   it { expect(subject).to respond_to(:result) }
   it { expect(subject).to respond_to(:profit_rate) }
   it { expect(subject).to respond_to(:unit_id) }
@@ -27,13 +26,13 @@ describe UnitSensitivityAnalysis do
   it { expect(subject).to validate_presence_of(:sensitivity_analysis) }
 
   describe "#selling_price" do
-    [ # individualization_costs | construction_costs | land_acquisition_cost | exchanged_units_construction_costs | exchanged_units_expenses |   inss | markup | exchanged | selling_price
-      [                  100.00,              100.00,                 100.00,                              100.00,                    100.00,  100.00,   15.00,      false,        9000.00 ],
-      [                  213.21,              221.10,                 121.00,                              133.20,                    101.01,  123.00,   12.00,      false,       10950.24 ],
-      [                  213.21,              221.10,                 121.00,                              133.20,                    101.01,  123.00,   12.00,      true,            0.00 ]
-    ].each do |individualization_costs, construction_costs, land_acquisition_cost, exchanged_units_construction_costs, exchanged_units_expenses, inss, markup, exchanged, selling_price|
+    [ # individualization_costs | construction_costs | land_acquisition_cost | exchanged_units_construction_costs | exchanged_units_expenses | markup | exchanged | selling_price
+      [                  100.00,              100.00,                 100.00,                              100.00,                    100.00,   15.00,      false,        7500.00 ],
+      [                  213.21,              221.10,                 121.00,                              133.20,                    101.01,   12.00,      false,        9474.24 ],
+      [                  213.21,              221.10,                 121.00,                              133.20,                    101.01,   12.00,      true,            0.00 ]
+    ].each do |individualization_costs, construction_costs, land_acquisition_cost, exchanged_units_construction_costs, exchanged_units_expenses, markup, exchanged, selling_price|
       # Formula: (individualization_costs + construction_costs + land_acquisition_cost +
-      #           exchanged_units_construction_costs + exchanged_units_expenses + inss) * markup
+      #           exchanged_units_construction_costs + exchanged_units_expenses) * markup
       it "calculates the selling price" do
         sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
         allow(sensitivity_analysis).to receive(:markup).and_return(markup)
@@ -45,7 +44,6 @@ describe UnitSensitivityAnalysis do
         allow(unit_sensitivity_analysis).to receive(:land_acquisition_cost).and_return(land_acquisition_cost)
         allow(unit_sensitivity_analysis).to receive(:exchanged_units_construction_costs).and_return(exchanged_units_construction_costs)
         allow(unit_sensitivity_analysis).to receive(:exchanged_units_expenses).and_return(exchanged_units_expenses)
-        allow(unit_sensitivity_analysis).to receive(:inss).and_return(inss)
 
         expect(unit_sensitivity_analysis.selling_price).to eq(selling_price)
       end
@@ -211,34 +209,15 @@ describe UnitSensitivityAnalysis do
     end
   end
 
-  describe "#inss" do
-    [ # total_area | inss_per_total_area_not_exchanged | exchanged |     inss
-      [     115.05,                             257.40,      false,   29613.87 ],
-      [     114.33,                             212.19,       true,       0.00 ],
-      [     120.13,                             142.89,      false,   17165.38 ]
-    ].each do |total_area, inss_per_total_area_not_exchanged, exchanged, inss|
-      # Formula: total_area * inss_per_total_area_not_exchanged
-      it "calculates the inss" do
-        unit = FactoryGirl.build(:unit, exchanged: exchanged)
-        allow(unit).to receive(:total_area).and_return(total_area)
-        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
-        allow(sensitivity_analysis).to receive(:inss_per_total_area_not_exchanged).and_return(inss_per_total_area_not_exchanged)
-        unit_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis, sensitivity_analysis: sensitivity_analysis, unit: unit)
-
-        expect(unit_sensitivity_analysis.inss).to eq(inss)
-      end
-    end
-  end
-
   describe "#result" do
-    [ # sale_price | individualization_costs | construction_costs | land_acquisition_cost | exchanged_units_construction_costs | exchanged_units_expenses |    inss | sales_commissions | sales_taxes | sales_charges | exchanged |   result
-      [   10000.00,                  1000.00,             1000.00,                1000.00,                             1000.00,                   1000.00,  1000.00,            1000.00,      1000.00,        1000.00,      false,   1000.00 ],
-      [   20200.12,                  1013.30,             2000.00,                1000.00,                                0.00,                      0.00,  2000.00,            1023.23,         0.00,        1000.00,      false,  12163.59 ],
-      [   10000.00,                  1000.00,             1000.00,                1000.00,                             1000.00,                   1000.00,  1000.00,            1000.00,      1000.00,        1000.00,       true,      0.00 ]
-    ].each do |sale_price, individualization_costs, construction_costs, land_acquisition_cost, exchanged_units_construction_costs, exchanged_units_expenses, inss, sales_commissions, sales_taxes, sales_charges, exchanged, result|
+    [ # sale_price | individualization_costs | construction_costs | land_acquisition_cost | exchanged_units_construction_costs | exchanged_units_expenses | sales_commissions | sales_taxes | sales_charges | exchanged |   result
+      [   10000.00,                  1000.00,             1000.00,                1000.00,                             1000.00,                   1000.00,            1000.00,      1000.00,        1000.00,      false,   2000.00 ],
+      [   20200.12,                  1013.30,             2000.00,                1000.00,                                0.00,                      0.00,            1023.23,         0.00,        1000.00,      false,  14163.59 ],
+      [   10000.00,                  1000.00,             1000.00,                1000.00,                             1000.00,                   1000.00,            1000.00,      1000.00,        1000.00,       true,      0.00 ]
+    ].each do |sale_price, individualization_costs, construction_costs, land_acquisition_cost, exchanged_units_construction_costs, exchanged_units_expenses, sales_commissions, sales_taxes, sales_charges, exchanged, result|
       # Formula: sale_price - individualization_costs - construction_costs -
       #          land_acquisition_cost - exchanged_units_construction_costs - exchanged_units_expenses
-      #          inss - sales_commissions - sales_taxes - sales_charges
+      #          sales_commissions - sales_taxes - sales_charges
       it "calculates the result" do
         unit = FactoryGirl.build(:unit, exchanged: exchanged)
         unit_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis, unit: unit,
@@ -248,7 +227,6 @@ describe UnitSensitivityAnalysis do
         allow(unit_sensitivity_analysis).to receive(:land_acquisition_cost).and_return(land_acquisition_cost)
         allow(unit_sensitivity_analysis).to receive(:exchanged_units_construction_costs).and_return(exchanged_units_construction_costs)
         allow(unit_sensitivity_analysis).to receive(:exchanged_units_expenses).and_return(exchanged_units_expenses)
-        allow(unit_sensitivity_analysis).to receive(:inss).and_return(inss)
         allow(unit_sensitivity_analysis).to receive(:sales_commissions).and_return(sales_commissions)
         allow(unit_sensitivity_analysis).to receive(:sales_taxes).and_return(sales_taxes)
         allow(unit_sensitivity_analysis).to receive(:sales_charges).and_return(sales_charges)

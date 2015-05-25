@@ -38,6 +38,10 @@ class SensitivityAnalysesController < ApplicationController
     respond_with(@sensitivity_analysis, location: user_project_sensitivity_analyses_path(current_user, current_project))
   end
 
+  def report
+    @sensitivity_analysis = SensitivityAnalysis.find(params[:id])
+  end
+
   def selling_price
     @sensitivity_analysis = params[:id] ? SensitivityAnalysis.find(params[:id]) : current_project.sensitivity_analyses.build
     @sensitivity_analysis.net_profit_margin = BigDecimal.new(params[:net_profit_margin])

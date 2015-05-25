@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         resources :multiple_units, only: [:new, :create]
         resources :sensitivity_analyses do
           get 'selling_price', on: :collection
+          get 'report', on: :member
         end
       end
     end

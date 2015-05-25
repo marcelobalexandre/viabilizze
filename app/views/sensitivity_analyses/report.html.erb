@@ -1,0 +1,165 @@
+<% provide :title, t('.title') %>
+
+<div class="row">
+  <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
+    <div class="row collapse">
+      <div class="small-12 medium-12 large-12 columns text-center report-header">
+        <h4 class="report-title"><strong><%= t('.report_title') %></strong></h4>
+
+        <h4 class="subheader"><%= @sensitivity_analysis.name %></h4>
+
+        <h4><strong><%= @sensitivity_analysis.project.name %></strong></h4>
+      </div>
+    </div>
+
+    <div class="row collapse">
+      <div class="small-12 medium-12 large-12 columns report-section">
+        <strong><%= "1. #{t('.incidences_on_sales')}" %></strong>
+
+        <div class="row report-section-row row-alternate-color">
+          <%= t('.sales_commissions_rate') %>
+          <div class="right"><%= "#{number_with_precision(@sensitivity_analysis.sales_commissions_rate, precision: 2)} %" %></div>
+        </div>
+
+        <div class="row report-section-row">
+          <%= t('.sales_taxes_rate') %>
+          <div class="right"><%= "#{number_with_precision(@sensitivity_analysis.sales_taxes_rate, precision: 2)} %" %></div>
+        </div>
+
+        <div class="row report-section-row row-alternate-color">
+          <%= t('.sales_charges_rate') %>
+          <div class="right"><%= "#{number_with_precision(@sensitivity_analysis.sales_charges_rate, precision: 2)} %" %></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row collapse">
+      <div class="small-12 medium-12 large-12 columns report-section">
+        <strong><%= "2. #{t('.expected_cost_per_square_meter')}" %></strong>
+
+        <div class="row report-section-row row-alternate-color">
+          <%= t('.cost_per_square_meter') %>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.cost_per_square_meter) %></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row collapse">
+      <div class="small-12 medium-12 large-12 columns report-section">
+        <strong><%= "3. #{t('.total_exchanged_units_costs')}" %></strong>
+
+        <div class="row report-section-row row-alternate-color">
+          <%= t('.exchanged_units_construction_costs') %>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.exchanged_units_construction_costs) %></div>
+        </div>
+
+        <div class="row report-section-row">
+          <%= t('.exchanged_units_expenses') %>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.exchanged_units_expenses) %></div>
+        </div>
+
+        <div class="row report-section-row row-total-report">
+          <strong><%= t('.total') %></strong>
+          <div class="right"><strong><%= number_to_currency(@sensitivity_analysis.total_exchanged_units_costs) %></strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row collapse">
+      <div class="small-12 medium-12 large-12 columns report-section">
+        <strong><%= "4. #{t('.total_construction_and_sales_costs')}" %></strong>
+
+        <div class="row report-section-row row-alternate-color">
+          <%= t('.construction_costs') %>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.construction_costs) %></div>
+        </div>
+
+        <div class="row report-section-row">
+          <%= t('.individualization_costs') %>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.individualization_costs) %></div>
+        </div>
+
+        <div class="row report-section-row row-alternate-color">
+          <%= t('.land_acquisition_cost') %>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.land_acquisition_cost) %></div>
+        </div>
+
+        <div class="row report-section-row">
+          <%= t('.sales_commissions') %>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.sales_commissions) %></div>
+        </div>
+
+        <div class="row report-section-row row-alternate-color">
+          <%= t('.sales_taxes') %>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.sales_taxes) %></div>
+        </div>
+
+        <div class="row report-section-row">
+          <%= t('.sales_charges') %>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.sales_charges) %></div>
+        </div>
+
+        <div class="row report-section-row row-alternate-color">
+          <%= t('.exchanged_units_expenses') %>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.exchanged_units_expenses) %></div>
+        </div>
+
+        <div class="row report-section-row row-total-report">
+          <strong><%= t('.total') %></strong>
+          <div class="right"><strong><%= number_to_currency(@sensitivity_analysis.total_construction_and_sales_costs) %></strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row collapse">
+      <div class="small-12 medium-12 large-12 columns report-section">
+        <strong><%= "5. #{t('.minimum_expected_result')}" %></strong>
+
+        <div class="row report-section-row row-alternate-color">
+          <%= t('.expected_revenue') %>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.expected_revenue) %></div>
+        </div>
+
+        <div class="row report-section-row">
+          <%= t('.minimum_expected_result') %>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.expected_result) %></div>
+        </div>
+
+        <div class="row report-section-row row-alternate-color">
+          <%= t('.net_profit_margin') %>
+          <div class="right"><%= "#{number_with_precision(@sensitivity_analysis.net_profit_margin, precision: 2)} %" %></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row collapse">
+      <div class="small-12 medium-12 large-12 columns report-section">
+        <strong><%= "6. #{t('.expected_result')}" %></strong>
+
+        <div class="row report-section-row row-alternate-color">
+          <%= t('.revenue') %>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.revenue) %></div>
+        </div>
+
+        <div class="row report-section-row">
+          <%= t('.result') %>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.result) %></div>
+        </div>
+
+        <div class="row report-section-row row-alternate-color">
+          <%= t('.average_profit_rate') %>
+          <div class="right"><%= "#{number_with_precision(@sensitivity_analysis.average_profit_rate, precision: 2)} %" %></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row collapse hide-for-print">
+      <div class="small-12 medium-12 large-12 columns">
+        <%= button_tag id: "print-report-button", class: "button expand" do %>
+          <%= icon("print") %>
+          <%= t('.print_button') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

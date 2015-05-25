@@ -1,4 +1,4 @@
-<div id="helpModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+<div id="helpModal" class="reveal-modal hide-for-print" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
   <h2 id="modalTitle">Ajuda</h2>
 
   <!-- User Projects -->
@@ -84,6 +84,12 @@
         (controller.controller_name == "sensitivity_analyses" && controller.action_name == "update") %>
     <p class="lead"><%= t('.edit_sensitivity_analysis_title') %></p>
     <p><%= t('.edit_sensitivity_analysis_help') %></p>
+  <% end %>
+
+  <!-- Report User Project Sensitivity Analysis -->
+  <% if (controller.controller_name == "sensitivity_analyses" && controller.action_name == "report") %>
+    <p class="lead"><%= t('.report_title') %></p>
+    <p><%= t('.report_help') %></p>
   <% end %>
 
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>

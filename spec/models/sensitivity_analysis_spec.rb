@@ -21,7 +21,6 @@ describe SensitivityAnalysis do
   it { expect(subject).to respond_to(:construction_costs) }
   it { expect(subject).to respond_to(:exchanged_units_construction_costs) }
   it { expect(subject).to respond_to(:exchanged_units_expenses) }
-  it { expect(subject).to respond_to(:inss) }
   it { expect(subject).to respond_to(:markup) }
   it { expect(subject).to respond_to(:result) }
   it { expect(subject).to respond_to(:average_profit_rate) }
@@ -266,49 +265,37 @@ describe SensitivityAnalysis do
     end
   end
 
-  describe "#inss_calculation_base" do
-    [ # construction_costs | inss_calculation_base
-      [            2000.00,                 440.00 ],
-      [            7826.21,                1721.77 ]
-    ].each do |construction_costs, inss_calculation_base|
-      # Formula: (construction_costs * 22) / 100
-      it "calculates the inss calculation base" do
+  describe "#total_exchanged_units_costs" do
+    [ # exchanged_units_construction_costs | exchanged_units_expenses | total_exchanged_units_costs
+      [                           2000.00,                   1000.00,                      3000.00 ],
+      [                           2123.45,                   1234.23,                      3357.68 ]
+    ].each do |exchanged_units_construction_costs, exchanged_units_expenses, total_exchanged_units_costs|
+      # Formula: exchanged_units_construction_costs + exchanged_units_expenses
+      it "calculates the total exchanged units costs" do
         sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+        allow(sensitivity_analysis).to receive(:exchanged_units_construction_costs).and_return(exchanged_units_construction_costs)
+        allow(sensitivity_analysis).to receive(:exchanged_units_expenses).and_return(exchanged_units_expenses)
+
+        expect(sensitivity_analysis.total_exchanged_units_costs).to eq(total_exchanged_units_costs)
+      end
+    end
+  end
+
+  describe "#total_construction_and_sales_costs" do
+    [ # construction_costs |    individualization_costs | land_acquisition_cost | sales_commissions | sales_taxes | sales_charges | exchanged_units_expenses | total_construction_and_sales_costs
+      [            1000.00,                     1000.00,                1000.00,            1000.00,      1000.00,        1000.00,                   1000.00,                             7000.00 ]
+    ].each do |construction_costs, individualization_costs, land_acquisition_cost, sales_commissions, sales_taxes, sales_charges, exchanged_units_expenses, total_construction_and_sales_costs|
+      # Formula: construction_costs + individualization_costs + land_acquisition_cost + sales_commissions + sales_taxes + sales_charges + exchanged_units_expenses
+      it "calculates the total construction and sales costs" do
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis, individualization_costs: individualization_costs,
+                                                                        land_acquisition_cost: land_acquisition_cost,
+                                                                        exchanged_units_expenses: exchanged_units_expenses)
         allow(sensitivity_analysis).to receive(:construction_costs).and_return(construction_costs)
+        allow(sensitivity_analysis).to receive(:sales_commissions).and_return(sales_commissions)
+        allow(sensitivity_analysis).to receive(:sales_taxes).and_return(sales_taxes)
+        allow(sensitivity_analysis).to receive(:sales_charges).and_return(sales_charges)
 
-        expect(sensitivity_analysis.inss_calculation_base).to eq(inss_calculation_base)
-      end
-    end
-  end
-
-  describe "#inss" do
-    [ # inss_calculation_base |    inss
-      [               2000.00,   310.00 ],
-      [               7826.21,  1213.06 ]
-    ].each do |inss_calculation_base, inss|
-      # Formula: ((inss_calculation_base * 31) / 100) / 2
-      it "calculates the inss" do
-        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
-        allow(sensitivity_analysis).to receive(:inss_calculation_base).and_return(inss_calculation_base)
-
-        expect(sensitivity_analysis.inss).to eq(inss)
-      end
-    end
-  end
-
-  describe "#inss_per_total_area_not_exchanged" do
-    [ #    inss | total_area_not_exchanged | inss_per_total_area_not_exchanged
-      [ 2000.00,                    150.00,                              13.33 ],
-      [ 3241.87,                    521.34,                               6.22 ]
-    ].each do |inss, total_area_not_exchanged, inss_per_total_area_not_exchanged|
-      # Formula: inss / total_area_not_exchanged
-      it "calculates the inss per total area not exchanged" do
-        project = FactoryGirl.build(:project)
-        allow(project).to receive(:total_area_not_exchanged).and_return(total_area_not_exchanged)
-        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis, project: project)
-        allow(sensitivity_analysis).to receive(:inss).and_return(inss)
-
-        expect(sensitivity_analysis.inss_per_total_area_not_exchanged).to eq(inss_per_total_area_not_exchanged)
+        expect(sensitivity_analysis.total_construction_and_sales_costs).to eq(total_construction_and_sales_costs)
       end
     end
   end
@@ -328,6 +315,21 @@ describe SensitivityAnalysis do
                                                                         net_profit_margin: net_profit_margin)
 
         expect(sensitivity_analysis.markup).to eq(markup)
+      end
+    end
+  end
+
+  describe "#expected_result" do
+    [ # net_profit_margin | expected_revenue | expected_result
+      [             10.00,           1000.00,           100.00 ],
+      [              7.56,           3500.23,           264.62 ]
+    ].each do |net_profit_margin, expected_revenue, expected_result|
+      # Formula: expected_revenue * (net_profit_margin / 100)
+      it "calculates the expected result" do
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis, net_profit_margin: net_profit_margin)
+        allow(sensitivity_analysis).to receive(:expected_revenue).and_return(expected_revenue)
+
+        expect(sensitivity_analysis.expected_result).to eq(expected_result)
       end
     end
   end

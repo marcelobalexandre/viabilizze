@@ -111,7 +111,7 @@
   <% end %>
 <% end %>
 
-<!-- Show User Project Sensitivity Analyses -->
+<!-- Show User Project Sensitivity Analysis -->
 <% if controller.controller_name == "sensitivity_analyses" && controller.action_name == "show" %>
   <%= link_to "#", class: "item active disabled", title: t('.show_sensitivity_analysis_icon_title') do %>
     <%= icon 'search' %>
@@ -119,13 +119,20 @@
   <% end %>
 <% end %>
 
-
-<!-- Edit User Project Sensitivity Analyses -->
+<!-- Edit User Project Sensitivity Analysis -->
 <% if (controller.controller_name == "sensitivity_analyses" && controller.action_name == "edit") ||
       (controller.controller_name == "sensitivity_analyses" && controller.action_name == "update") %>
   <%= link_to('#', class: "item active disabled", title: t('.edit_sensitivity_analysis_icon_title')) do %>
     <%= icon 'pencil' %>
     <label class="show-for-medium-up"><%= t('.edit_sensitivity_analysis_icon_label') %></label>
+  <% end %>
+<% end %>
+
+<!-- Report User Project Sensitivity Analysis-->
+<% if controller.controller_name == 'sensitivity_analyses' && controller.action_name == 'report' %>
+  <%= link_to('#', class: "item active disabled", title: t('.report_icon_title')) do %>
+    <%= icon 'file-text' %>
+    <label class="show-for-medium-up"><%= t('.report_icon_label') %></label>
   <% end %>
 <% end %>
 
