@@ -7,8 +7,12 @@ class UnitSensitivityAnalysis < ActiveRecord::Base
 
   def selling_price
     calculate_and_return_zero_if_exchanged do
-      costs_and_expenses = self.individualization_costs + self.construction_costs + self.land_acquisition_cost +
-                           self.exchanged_units_construction_costs + self.exchanged_units_expenses
+      to_sum = [self.individualization_costs,
+                self.construction_costs,
+                self.land_acquisition_cost,
+                self.exchanged_units_construction_costs,
+                self.exchanged_units_expenses]
+      costs_and_expenses = to_sum.inject(0) { |sum, number| sum + number }
       (costs_and_expenses * self.sensitivity_analysis.markup).round(2)
     end
   end
@@ -51,9 +55,16 @@ class UnitSensitivityAnalysis < ActiveRecord::Base
 
   def result
     calculate_and_return_zero_if_exchanged do
-      (self.sale_price - self.individualization_costs - self.construction_costs -
-       self.land_acquisition_cost - self.exchanged_units_construction_costs - self.exchanged_units_expenses -
-       self.sales_commissions - self.sales_taxes - self.sales_charges).round(2)
+      to_sum = [self.individualization_costs,
+                self.construction_costs,
+                self.land_acquisition_cost,
+                self.exchanged_units_construction_costs,
+                self.exchanged_units_expenses,
+                self.sales_commissions,
+                self.sales_taxes,
+                self.sales_charges]
+      total_costs_and_expenses = to_sum.inject(0) { |sum, number| sum + number }
+      (self.sale_price - total_costs_and_expenses).round(2)
     end
   end
 

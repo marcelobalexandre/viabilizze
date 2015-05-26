@@ -61,16 +61,20 @@ class SensitivityAnalysis < ActiveRecord::Base
   end
 
   def total_construction_and_sales_costs
-    (self.construction_costs + self.individualization_costs +
-     self.land_acquisition_cost + self.sales_commissions + self.sales_taxes +
-     self.sales_charges + self.exchanged_units_expenses).round(2)
+    to_sum = [self.construction_costs,
+              self.individualization_costs,
+              self.land_acquisition_cost,
+              self.sales_commissions,
+              self.sales_taxes,
+              self.sales_charges,
+              self.exchanged_units_expenses]
+    (to_sum.inject(0) { |sum, number| sum + number }).round(2)
   end
 
   def markup
-    (100 / (100 - self.sales_commissions_rate.to_s.to_d -
-                  self.sales_taxes_rate.to_s.to_d -
-                  self.sales_charges_rate.to_s.to_d -
-                  self.net_profit_margin.to_s.to_d)).round(5)
+    to_sum = [self.sales_commissions_rate, self.sales_taxes_rate, self.sales_charges_rate, self.net_profit_margin]
+    total_percentage = to_sum.inject(0) { |sum, number| sum + number.to_s.to_d }
+    (100 / (100 - total_percentage)).round(5)
   end
 
   def expected_result
