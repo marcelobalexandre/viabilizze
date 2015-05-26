@@ -42,6 +42,22 @@ class SensitivityAnalysesController < ApplicationController
     @sensitivity_analysis = SensitivityAnalysis.find(params[:id])
   end
 
+  def charts
+    @sensitivity_analysis = SensitivityAnalysis.find(params[:id])
+
+    data = { construction_costs: @sensitivity_analysis.construction_costs,
+             individualization_costs: @sensitivity_analysis.individualization_costs,
+             land_acquisition_cost: @sensitivity_analysis.land_acquisition_cost,
+             sales_commissions: @sensitivity_analysis.sales_commissions,
+             sales_taxes: @sensitivity_analysis.sales_taxes,
+             sales_charges: @sensitivity_analysis.sales_charges,
+             exchanged_units_expenses: @sensitivity_analysis.exchanged_units_expenses }
+    respond_to do |format|
+      format.html
+      format.json { render json: data, status: :ok }
+    end
+  end
+
   def selling_price
     @sensitivity_analysis = params[:id] ? SensitivityAnalysis.find(params[:id]) : current_project.sensitivity_analyses.build
     @sensitivity_analysis.assign_attributes(selling_price_params)

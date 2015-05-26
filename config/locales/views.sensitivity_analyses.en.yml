@@ -69,3 +69,8 @@ en:
       minimum_expected_result: "Minimum Expected Result"
       total: "Total"
       print_button: "Print"
+    charts:
+      title: "Charts"
+      chart_title: "Charts - Sensitivity Analysis"
+      total_construction_and_sales_costs: "Total Construction and Sales Costs"
+      print_button: "Print"

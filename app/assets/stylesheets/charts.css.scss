@@ -1,0 +1,17 @@
+#doughnut-chart {
+  width: 100%;
+  height: auto;
+}
+
+.chart-legend li span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+}
+
+.chart-legend {
+  ul {
+      list-style-type: none;
+    }
+}

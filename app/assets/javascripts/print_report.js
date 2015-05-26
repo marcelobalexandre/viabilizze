@@ -1,5 +1,9 @@
 $(document).on('page:change', function() {
     $("#print-report-button").click(function() {
-      print();
+        if ($("#doughnut-chart").get(0)) {
+            var doughnutChartURL = $("#doughnut-chart").get(0).toDataURL();
+        }
+
+        print();
     });
 });

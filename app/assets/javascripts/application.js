@@ -14,7 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require foundation
+//= require Chart
 //= require rails.validations
+//= require numeral.min.js
+//= require pt-br.min.js
 //= require_tree .
 
 $(function() {

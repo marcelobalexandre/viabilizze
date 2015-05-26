@@ -16,6 +16,7 @@ gem 'devise'
 gem 'responders'
 gem 'will_paginate'
 gem 'will_paginate-foundation'
+gem 'chart-js-rails'
 gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'
 
 group :development, :test do

@@ -69,3 +69,8 @@ pt-BR:
       minimum_expected_result: "Resultado Mínimo Desejado"
       total: "Total"
       print_button: "Imprimir"
+    charts:
+      title: "Gráficos"
+      chart_title: "Gráficos - Análise de Sensibilidade"
+      total_construction_and_sales_costs: "Custos e Despesas Totais de Construção e Vendas"
+      print_button: "Imprimir"

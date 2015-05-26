@@ -9,4 +9,12 @@
   .report-header {
     margin-top: 1em;
   }
+
+  .chart-header {
+    margin-top: 1em;
+  }
+
+  .chart-legend {
+    -webkit-print-color-adjust: exact;
+  }
 }

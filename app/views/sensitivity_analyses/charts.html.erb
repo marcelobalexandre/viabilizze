@@ -1,0 +1,39 @@
+<% provide :title, t('.title') %>
+
+<span data-charts-url="<%= charts_user_project_sensitivity_analysis_path(current_user, current_project, @sensitivity_analysis) %>"></span>
+
+<div class="row">
+  <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
+    <div class="row collapse">
+      <div class="small-12 medium-12 large-12 columns text-center chart-header">
+        <h4 class="chart-title"><strong><%= t('.chart_title') %></strong></h4>
+
+        <h4 class="subheader"><%= @sensitivity_analysis.name %></h4>
+
+        <h4><strong><%= @sensitivity_analysis.project.name %></strong></h4>
+      </div>
+    </div>
+
+    <div class="row collapse">
+      <div class="small-12 medium-12 large-12 columns text-center">
+        <h4><strong><%= t('.total_construction_and_sales_costs') %></strong></h4>
+      </div>
+    </div>
+
+    <div class="row collapse">
+      <div class="small-12 medium-12 large-12 columns">
+        <canvas id="doughnut-chart"></canvas>
+        <div id="doughnut-chart-legend" class="chart-legend"></div>
+      </div>
+    </div>
+
+    <div class="row collapse hide-for-print">
+      <div class="small-12 medium-12 large-12 columns">
+        <%= button_tag id: "print-report-button", class: "button expand" do %>
+          <%= icon("print") %>
+          <%= t('.print_button') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

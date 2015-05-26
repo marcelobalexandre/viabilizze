@@ -92,5 +92,11 @@
     <p><%= t('.report_help') %></p>
   <% end %>
 
+  <!-- Charts User Project Sensitivity Analysis -->
+  <% if (controller.controller_name == "sensitivity_analyses" && controller.action_name == "charts") %>
+    <p class="lead"><%= t('.charts_title') %></p>
+    <p><%= t('.charts_help') %></p>
+  <% end %>
+
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>

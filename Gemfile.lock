@@ -58,6 +58,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    chart-js-rails (0.0.9)
+      railties (> 3.1)
     codeclimate-test-reporter (0.4.7)
       simplecov (>= 0.7.1, < 1.0.0)
     coffee-rails (4.1.0)
@@ -82,7 +84,7 @@ GEM
       rails (>= 3, < 5)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
-    devise (3.5.0)
+    devise (3.5.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -128,7 +130,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mime-types (2.5)
+    mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.6.1)
     multi_json (1.11.0)
@@ -245,6 +247,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  chart-js-rails
   client_side_validations!
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
