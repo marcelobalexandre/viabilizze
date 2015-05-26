@@ -28,11 +28,7 @@ class SensitivityAnalysis < ActiveRecord::Base
   end
 
   def land_acquisition_cost_per_total_area_not_exchanged
-    if self.land_acquisition_cost.to_s.to_d == 0 || self.project.total_area_not_exchanged.to_s.to_d == 0
-      return 0.00
-    end
-
-    (self.land_acquisition_cost / self.project.total_area_not_exchanged).round(2)
+    division_by_total_area_not_exchanged(self.land_acquisition_cost)
   end
 
   def construction_costs
@@ -49,11 +45,7 @@ class SensitivityAnalysis < ActiveRecord::Base
   end
 
   def exchanged_units_expenses_per_total_area_not_exchanged
-    if self.exchanged_units_expenses.to_s.to_d == 0 || self.project.total_area_not_exchanged.to_s.to_d == 0
-      return 0.00
-    end
-
-    (self.exchanged_units_expenses / self.project.total_area_not_exchanged).round(2)
+    division_by_total_area_not_exchanged(self.exchanged_units_expenses)
   end
 
   def total_exchanged_units_costs
@@ -96,5 +88,13 @@ class SensitivityAnalysis < ActiveRecord::Base
 
   def not_exchanged_units
     self.unit_sensitivity_analyses.select { |unit_sensitivity_analysis| !unit_sensitivity_analysis.unit.exchanged }
+  end
+
+  def division_by_total_area_not_exchanged(number)
+    if number.to_s.to_d == 0 || self.project.total_area_not_exchanged.to_s.to_d == 0
+      return 0.00
+    end
+
+    (number / self.project.total_area_not_exchanged).round(2)
   end
 end
