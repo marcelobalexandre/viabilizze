@@ -19,58 +19,58 @@ $(document).on('page:change', function() {
     }
 });
 
-function createChart(data) {
+function createChart(sensitivity_analysis) {
     var context = $("#doughnut-chart").get(0).getContext("2d");
 
     var data = [
         {
-            value: parseFloat(data.construction_costs).toFixed(2),
+            value: parseFloat(sensitivity_analysis.construction_costs).toFixed(2),
             color:"#F7464A",
             highlight: "#FF5A5E",
             label: "Custo de Construção das Unidades"
         },
         {
-            value: parseFloat(data.individualization_costs).toFixed(2),
+            value: parseFloat(sensitivity_analysis.individualization_costs).toFixed(2),
             color: "#46BFBD",
             highlight: "#5AD3D1",
             label: "Individualização"
         },
         {
-            value: parseFloat(data.land_acquisition_cost).toFixed(2),
+            value: parseFloat(sensitivity_analysis.land_acquisition_cost).toFixed(2),
             color: "#FDB45C",
             highlight: "#FFC870",
             label: "Terreno"
         },
         {
-            value: parseFloat(data.sales_commissions).toFixed(2),
+            value: parseFloat(sensitivity_analysis.sales_commissions).toFixed(2),
             color: "#365BB0",
             highlight: "#5777C0",
             label: "Comissões"
         },
         {
-            value: parseFloat(data.sales_taxes).toFixed(2),
+            value: parseFloat(sensitivity_analysis.sales_taxes).toFixed(2),
             color: "#2ECF2E",
             highlight: "#54D954",
             label: "Impostos sobre Vendas"
         },
         {
-            value: parseFloat(data.sales_charges).toFixed(2),
+            value: parseFloat(sensitivity_analysis.sales_charges).toFixed(2),
             color: "#BB2A9F",
             highlight: "#C94EB2",
             label: "Outras Taxas sobre Vendas"
         },
         {
-            value: parseFloat(data.exchanged_units_expenses).toFixed(2),
+            value: parseFloat(sensitivity_analysis.exchanged_units_expenses).toFixed(2),
             color: "#FFFF39",
             highlight: "#FFFF63",
             label: "Outras Despesas de Permuta"
         }
-    ]
+    ];
 
     var options = {
         tooltipTemplate: "<%= numberToCurrency(value) %>",
         legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%> !important\"></span><%if(segments[i].label){%><%=segments[i].label%> <div class=\"right\"><%=numberToCurrency(segments[i].value)%></div><%}%></li><%}%></ul>"
-    }
+    };
 
     var doughnutChart = new Chart(context).Doughnut(data, options);
     document.getElementById('doughnut-chart-legend').innerHTML = doughnutChart.generateLegend();
