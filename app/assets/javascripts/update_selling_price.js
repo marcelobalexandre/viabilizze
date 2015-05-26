@@ -32,7 +32,6 @@ function updateSellingPrice() {
                 exchanged_units_expenses: exchanged_units_expenses
             },
             success: function(data, status, xhr) {
-                console.log(data);
                 input.val(data.selling_price);
             },
             error: function(xhr, status, error) {

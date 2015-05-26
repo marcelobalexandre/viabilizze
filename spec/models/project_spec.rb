@@ -8,6 +8,8 @@ describe Project do
   it { expect(subject).to respond_to(:user_id) }
   it { expect(subject).to respond_to(:units) }
   it { expect(subject).to respond_to(:sensitivity_analyses) }
+  it { expect(subject).to respond_to(:total_units_not_exchanged) }
+  it { expect(subject).to respond_to(:total_area_not_exchanged) }
 
   it { expect(subject).to belong_to(:user) }
   it { expect(subject).to have_many(:units) }
@@ -48,7 +50,8 @@ describe Project do
     [ # unit_one_exchanged | unit_two_exchanged | unit_three_exchanged | total_units_not_exchanged
       [              false,               false,                 false,                          3],
       [               true,               false,                 false,                          2],
-      [               true,                true,                 false,                          1]
+      [               true,                true,                 false,                          1],
+      [               true,                true,                  true,                          0]
     ].each do |unit_one_exchanged, unit_two_exchanged, unit_three_exchanged, total_units_not_exchanged|
       it "calculates the total of units not exchanged" do
         unit_one = FactoryGirl.build(:unit, exchanged: unit_one_exchanged)
@@ -66,23 +69,36 @@ describe Project do
   end
 
   describe "#total_area_not_exchanged" do
-    [ # unit_one_total_area | unit_two_total_area | exchanged_unit_total_area | total_area_not_exchanged
-      [              581.64,               126.57,                     200.21,                    708.21],
-      [              127.34,               116.00,                     123.12,                    243.34],
-      [              234.76,               228.23,                     309.17,                    462.99]
-    ].each do |unit_one_total_area, unit_two_total_area, exchanged_unit_total_area, total_area_not_exchanged|
-      # Formula: sum the total area of all not exchanged units
-      it "calculates the total area not exchanged" do
-        unit_one = FactoryGirl.build(:unit, private_area: unit_one_total_area, common_area: 0.00, box_area: 0.00, exchanged: false)
-        unit_two = FactoryGirl.build(:unit, private_area: unit_two_total_area, common_area: 0.00, box_area: 0.00, exchanged: false)
-        exchanged_unit = FactoryGirl.build(:unit, private_area: exchanged_unit_total_area, common_area: 0.00, box_area: 0.00, exchanged: true)
+    context "when has units not exchanged" do
+      [ # unit_one_total_area | unit_two_total_area | exchanged_unit_total_area | total_area_not_exchanged
+        [              581.64,               126.57,                     200.21,                    708.21],
+        [              127.34,               116.00,                     123.12,                    243.34],
+        [              234.76,               228.23,                     309.17,                    462.99]
+      ].each do |unit_one_total_area, unit_two_total_area, exchanged_unit_total_area, total_area_not_exchanged|
+        # Formula: sum the total area of all not exchanged units
+        it "calculates the total area not exchanged" do
+          unit_one = FactoryGirl.build(:unit, private_area: unit_one_total_area, common_area: 0.00, box_area: 0.00, exchanged: false)
+          unit_two = FactoryGirl.build(:unit, private_area: unit_two_total_area, common_area: 0.00, box_area: 0.00, exchanged: false)
+          exchanged_unit = FactoryGirl.build(:unit, private_area: exchanged_unit_total_area, common_area: 0.00, box_area: 0.00, exchanged: true)
 
-        project = FactoryGirl.build(:project)
-        project.units << unit_one
-        project.units << unit_two
-        project.units << exchanged_unit
+          project = FactoryGirl.build(:project)
+          project.units << unit_one
+          project.units << unit_two
+          project.units << exchanged_unit
 
-        expect(project.total_area_not_exchanged).to eq(total_area_not_exchanged)
+          expect(project.total_area_not_exchanged).to eq(total_area_not_exchanged)
+        end
+      end
+
+    context "when has no units not exchanged" do
+        it "returns zero" do
+          exchanged_unit = FactoryGirl.build(:unit, private_area: 100.00, common_area: 0.00, box_area: 0.00, exchanged: true)
+
+          project = FactoryGirl.build(:project)
+          project.units << exchanged_unit
+
+          expect(project.total_area_not_exchanged).to eq(0.00)
+        end
       end
     end
   end

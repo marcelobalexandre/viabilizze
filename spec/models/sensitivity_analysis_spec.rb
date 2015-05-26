@@ -18,10 +18,16 @@ describe SensitivityAnalysis do
   it { expect(subject).to respond_to(:individualization_costs) }
   it { expect(subject).to respond_to(:cost_per_square_meter) }
   it { expect(subject).to respond_to(:land_acquisition_cost) }
+  it { expect(subject).to respond_to(:land_acquisition_cost_per_total_area_not_exchanged) }
   it { expect(subject).to respond_to(:construction_costs) }
   it { expect(subject).to respond_to(:exchanged_units_construction_costs) }
+  it { expect(subject).to respond_to(:exchanged_units_construction_costs_per_total_area_not_exchanged) }
   it { expect(subject).to respond_to(:exchanged_units_expenses) }
+  it { expect(subject).to respond_to(:exchanged_units_expenses_per_total_area_not_exchanged) }
+  it { expect(subject).to respond_to(:total_exchanged_units_costs) }
+  it { expect(subject).to respond_to(:total_construction_and_sales_costs) }
   it { expect(subject).to respond_to(:markup) }
+  it { expect(subject).to respond_to(:expected_result) }
   it { expect(subject).to respond_to(:result) }
   it { expect(subject).to respond_to(:average_profit_rate) }
   it { expect(subject).to respond_to(:project_id) }
@@ -171,13 +177,14 @@ describe SensitivityAnalysis do
     [ # land_acquisition_cost | total_area_not_exchanged | land_acquisition_cost_per_not_exchanged_units
       [               4000.00,                    708.21,                                           5.65 ],
       [               3875.23,                    801.23,                                           4.84 ],
-      [               5201.02,                    600.00,                                           8.67 ]
+      [               5201.02,                    600.00,                                           8.67 ],
+      [               5201.02,                       nil,                                           0.00 ],
+      [                   nil,                    600.00,                                           0.00 ]
     ].each do |land_acquisition_cost, total_area_not_exchanged, land_acquisition_cost_per_total_area_not_exchanged|
       # Formula: land_acquisition_cost / project.total_area_not_exchanged
       it "calculates the land acquisition cost per total area not exchanged" do
-        unit = FactoryGirl.build(:unit, private_area: total_area_not_exchanged, common_area: 0.00, box_area: 0.00, exchanged: false)
         project = FactoryGirl.build(:project)
-        project.units << unit
+        allow(project).to receive(:total_area_not_exchanged).and_return(total_area_not_exchanged)
         sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis, project: project,
                                                                         land_acquisition_cost: land_acquisition_cost)
 
@@ -208,7 +215,8 @@ describe SensitivityAnalysis do
   describe "#exchanged_units_construction_costs" do
     [ # not_exchanged | not_exchanged_construction_costs | exchanged | exchanged_construction_costs | exchanged_units_construction_costs
       [             3,                            100.00,          1,                         200.00,                              200.00 ],
-      [             4,                            201.23,          2,                         123.98,                              247.96 ]
+      [             4,                            201.23,          2,                         123.98,                              247.96 ],
+      [             4,                            201.23,          0,                           0.00,                                0.00 ]
     ].each do |not_exchanged, not_exchanged_construction_costs, exchanged, exchanged_construction_costs, exchanged_units_construction_costs|
       # Formula: sum the construction costs of all exchanged units
       it "calculates the exchanged units construction costs" do
@@ -251,7 +259,9 @@ describe SensitivityAnalysis do
   describe "#exchanged_units_expenses_per_total_area_not_exchanged" do
     [ # exchanged_units_expenses | total_area_not_exchanged | exchanged_units_expenses_per_total_area_not_exchanged
       [                  2000.00,                    150.00,                                                  13.33 ],
-      [                  3241.87,                    521.34,                                                   6.22 ]
+      [                  3241.87,                    521.34,                                                   6.22 ],
+      [                  3241.87,                       nil,                                                   0.00 ],
+      [                      nil,                    100.00,                                                   0.00 ],
     ].each do |exchanged_units_expenses, total_area_not_exchanged, exchanged_units_expenses_per_total_area_not_exchanged|
       # Formula: exchanged_units_expenses / total_area_not_exchanged
       it "calculates the exchanged units expenses per total area not exchanged" do
@@ -304,7 +314,8 @@ describe SensitivityAnalysis do
     [ # selling_price | sales_taxes_rate | sales_charges_rate | net_profit_margin |  markup
       [          6.00,              5.93,                3.00,              15.00,  1.42714 ],
       [          4.00,              5.93,                5.00,              17.00,  1.46908 ],
-      [          0.00,              0.00,                0.00,               0.00,     1.00 ]
+      [          0.00,              0.00,                0.00,               0.00,     1.00 ],
+      [           nil,               nil,                 nil,                nil,     1.00 ]
     ].each do |sales_commissions_rate, sales_taxes_rate, sales_charges_rate, net_profit_margin, markup|
       # Formula: 100 / (100 - sales_commissions_rate - sales_taxes_rate - sales_charges_rate - net_profit_margin)
       it "calculates the markup" do
@@ -361,7 +372,7 @@ describe SensitivityAnalysis do
   describe "#average_profit_rate" do
     [ # unit_one_profit_rate | unit_two_profit_rate | unit_three_profit_rate |  average_profit_rate
       [                10.00,                 10.00,                   10.00,                 10.00 ],
-      [                10.00,                 10.00,                    0.00,                 10.00 ],
+      [                10.00,                 10.00,                    0.00,                  6.67 ],
       [                 8.23,                 -3.12,                    6.45,                  3.85 ],
     ].each do |unit_one_profit_rate, unit_two_profit_rate, unit_three_profit_rate, average_profit_rate|
       # Formula: sum all units profit rate where profit rate not 0
@@ -372,7 +383,9 @@ describe SensitivityAnalysis do
         allow(unit_two_sensitivity_analysis).to receive(:profit_rate).and_return(unit_two_profit_rate)
         unit_three_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
         allow(unit_three_sensitivity_analysis).to receive(:profit_rate).and_return(unit_three_profit_rate)
-        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+        project = FactoryGirl.build(:project)
+        allow(project).to receive(:total_units_not_exchanged).and_return(3)
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis, project: project)
         sensitivity_analysis.unit_sensitivity_analyses << unit_one_sensitivity_analysis
         sensitivity_analysis.unit_sensitivity_analyses << unit_two_sensitivity_analysis
         sensitivity_analysis.unit_sensitivity_analyses << unit_three_sensitivity_analysis

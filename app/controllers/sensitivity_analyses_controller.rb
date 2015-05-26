@@ -44,14 +44,14 @@ class SensitivityAnalysesController < ApplicationController
 
   def selling_price
     @sensitivity_analysis = params[:id] ? SensitivityAnalysis.find(params[:id]) : current_project.sensitivity_analyses.build
-    @sensitivity_analysis.net_profit_margin = BigDecimal.new(params[:net_profit_margin])
-    @sensitivity_analysis.sales_commissions_rate = BigDecimal.new(params[:sales_commissions_rate])
-    @sensitivity_analysis.sales_taxes_rate = BigDecimal.new(params[:sales_taxes_rate])
-    @sensitivity_analysis.sales_charges_rate = BigDecimal.new(params[:sales_charges_rate])
-    @sensitivity_analysis.individualization_costs = BigDecimal.new(params[:individualization_costs])
-    @sensitivity_analysis.cost_per_square_meter = BigDecimal.new(params[:cost_per_square_meter])
-    @sensitivity_analysis.land_acquisition_cost = BigDecimal.new(params[:land_acquisition_cost])
-    @sensitivity_analysis.exchanged_units_expenses = BigDecimal.new(params[:exchanged_units_expenses])
+    @sensitivity_analysis.net_profit_margin = params[:net_profit_margin].to_d
+    @sensitivity_analysis.sales_commissions_rate = params[:sales_commissions_rate].to_d
+    @sensitivity_analysis.sales_taxes_rate = params[:sales_taxes_rate].to_d
+    @sensitivity_analysis.sales_charges_rate = params[:sales_charges_rate].to_d
+    @sensitivity_analysis.individualization_costs = params[:individualization_costs].to_d
+    @sensitivity_analysis.cost_per_square_meter = params[:cost_per_square_meter].to_d
+    @sensitivity_analysis.land_acquisition_cost = params[:land_acquisition_cost].to_d
+    @sensitivity_analysis.exchanged_units_expenses = params[:exchanged_units_expenses].to_d
     UnitSensitivityAnalysesInitializer.call(@sensitivity_analysis)
 
     unit_sensitivity_analysis = @sensitivity_analysis.unit_sensitivity_analyses.select { |u| u.unit_id == params[:unit_id].to_i }.first
