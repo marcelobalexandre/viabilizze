@@ -18,17 +18,17 @@
 
         <div class="row report-section-row row-alternate-color">
           <%= t('.sales_commissions_rate') %>
-          <div class="right"><%= "#{number_with_precision(@sensitivity_analysis.sales_commissions_rate, precision: 2)} %" %></div>
+          <div class="right"><%= "#{number_with_precision(@sensitivity_analysis.sales_commissions_rate.to_s.to_d, precision: 2)} %" %></div>
         </div>
 
         <div class="row report-section-row">
           <%= t('.sales_taxes_rate') %>
-          <div class="right"><%= "#{number_with_precision(@sensitivity_analysis.sales_taxes_rate, precision: 2)} %" %></div>
+          <div class="right"><%= "#{number_with_precision(@sensitivity_analysis.sales_taxes_rate.to_s.to_d, precision: 2)} %" %></div>
         </div>
 
         <div class="row report-section-row row-alternate-color">
           <%= t('.sales_charges_rate') %>
-          <div class="right"><%= "#{number_with_precision(@sensitivity_analysis.sales_charges_rate, precision: 2)} %" %></div>
+          <div class="right"><%= "#{number_with_precision(@sensitivity_analysis.sales_charges_rate.to_s.to_d, precision: 2)} %" %></div>
         </div>
       </div>
     </div>
@@ -50,17 +50,17 @@
 
         <div class="row report-section-row row-alternate-color">
           <%= t('.exchanged_units_construction_costs') %>
-          <div class="right"><%= number_to_currency(@sensitivity_analysis.exchanged_units_construction_costs) %></div>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.exchanged_units_construction_costs.to_s.to_d) %></div>
         </div>
 
         <div class="row report-section-row">
           <%= t('.exchanged_units_expenses') %>
-          <div class="right"><%= number_to_currency(@sensitivity_analysis.exchanged_units_expenses) %></div>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.exchanged_units_expenses.to_s.to_d) %></div>
         </div>
 
         <div class="row report-section-row row-total-report">
           <strong><%= t('.total') %></strong>
-          <div class="right"><strong><%= number_to_currency(@sensitivity_analysis.total_exchanged_units_costs) %></strong></div>
+          <div class="right"><strong><%= number_to_currency(@sensitivity_analysis.total_exchanged_units_costs.to_s.to_d) %></strong></div>
         </div>
       </div>
     </div>
@@ -76,32 +76,32 @@
 
         <div class="row report-section-row">
           <%= t('.individualization_costs') %>
-          <div class="right"><%= number_to_currency(@sensitivity_analysis.individualization_costs) %></div>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.individualization_costs.to_s.to_d) %></div>
         </div>
 
         <div class="row report-section-row row-alternate-color">
           <%= t('.land_acquisition_cost') %>
-          <div class="right"><%= number_to_currency(@sensitivity_analysis.land_acquisition_cost) %></div>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.land_acquisition_cost.to_s.to_d) %></div>
         </div>
 
         <div class="row report-section-row">
           <%= t('.sales_commissions') %>
-          <div class="right"><%= number_to_currency(@sensitivity_analysis.sales_commissions) %></div>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.sales_commissions.to_s.to_d) %></div>
         </div>
 
         <div class="row report-section-row row-alternate-color">
           <%= t('.sales_taxes') %>
-          <div class="right"><%= number_to_currency(@sensitivity_analysis.sales_taxes) %></div>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.sales_taxes.to_s.to_d) %></div>
         </div>
 
         <div class="row report-section-row">
           <%= t('.sales_charges') %>
-          <div class="right"><%= number_to_currency(@sensitivity_analysis.sales_charges) %></div>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.sales_charges.to_s.to_d) %></div>
         </div>
 
         <div class="row report-section-row row-alternate-color">
           <%= t('.exchanged_units_expenses') %>
-          <div class="right"><%= number_to_currency(@sensitivity_analysis.exchanged_units_expenses) %></div>
+          <div class="right"><%= number_to_currency(@sensitivity_analysis.exchanged_units_expenses.to_s.to_d) %></div>
         </div>
 
         <div class="row report-section-row row-total-report">

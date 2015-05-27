@@ -37,6 +37,7 @@ pt-BR:
       submit: "Salvar"
     sensitivity_analysis:
       incomplete_analysis: "Análise incompleta"
+      completed_analysis: "Análise completa"
       charts: "Gráficos"
       report: "Relatório"
     report:

@@ -5,6 +5,14 @@ class SensitivityAnalysis < ActiveRecord::Base
 
   validates :name, presence: true,
                    uniqueness: { scope: :project_id, case_sensitive: false }
+  validates :net_profit_margin, numericality: { greater_than: 0 }, allow_blank: true
+  validates :sales_commissions_rate, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
+  validates :sales_taxes_rate, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
+  validates :sales_charges_rate, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
+  validates :individualization_costs, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
+  validates :cost_per_square_meter, numericality: { greater_than: 0 }, allow_blank: true
+  validates :land_acquisition_cost, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
+  validates :exchanged_units_expenses, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
   validates :project, presence: true
 
   def expected_revenue
@@ -49,7 +57,7 @@ class SensitivityAnalysis < ActiveRecord::Base
   end
 
   def total_exchanged_units_costs
-    (self.exchanged_units_construction_costs + self.exchanged_units_expenses).round(2)
+    (self.exchanged_units_construction_costs.to_s.to_d + self.exchanged_units_expenses.to_s.to_d).round(2)
   end
 
   def total_construction_and_sales_costs
@@ -60,7 +68,7 @@ class SensitivityAnalysis < ActiveRecord::Base
               self.sales_taxes,
               self.sales_charges,
               self.exchanged_units_expenses]
-    (to_sum.inject(0) { |sum, number| sum + number }).round(2)
+    (to_sum.inject(0) { |sum, number| sum + number.to_s.to_d }).round(2)
   end
 
   def markup
@@ -80,6 +88,15 @@ class SensitivityAnalysis < ActiveRecord::Base
   def average_profit_rate
     total_profit_rate = not_exchanged_units.inject(0) { |sum, unit_sensitivity_analysis| sum + unit_sensitivity_analysis.profit_rate}
     (total_profit_rate / self.project.total_units_not_exchanged).round(2)
+  end
+
+  def completed
+    if (!self.name.blank? && self.net_profit_margin && self.cost_per_square_meter &&
+        !self.unit_sensitivity_analyses.any? { |unit_sensitivity_analysis| !unit_sensitivity_analysis.completed })
+      true
+    else
+      false
+    end
   end
 
   self.per_page = 10

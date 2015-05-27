@@ -18,10 +18,13 @@ describe UnitSensitivityAnalysis do
   it { expect(subject).to respond_to(:profit_rate) }
   it { expect(subject).to respond_to(:unit_id) }
   it { expect(subject).to respond_to(:sensitivity_analysis_id) }
+  it { expect(subject).to respond_to(:completed) }
 
   it { expect(subject).to belong_to(:unit) }
   it { expect(subject).to belong_to(:sensitivity_analysis) }
 
+  it { expect(subject).to validate_numericality_of(:sale_price).is_greater_than(0) }
+  it { expect(subject).to allow_value("", nil).for(:sale_price) }
   it { expect(subject).to validate_presence_of(:unit) }
   it { expect(subject).to validate_presence_of(:sensitivity_analysis) }
 
@@ -250,6 +253,33 @@ describe UnitSensitivityAnalysis do
         allow(unit_sensitivity_analysis).to receive(:result).and_return(result)
 
         expect(unit_sensitivity_analysis.profit_rate).to eq(profit_rate)
+      end
+    end
+  end
+
+  describe "#completed" do
+    context "when is not completed" do
+        it "returns false" do
+          unit_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+          unit_sensitivity_analysis.sale_price = ""
+          unit_sensitivity_analysis.unit.exchanged = false
+
+          expect(unit_sensitivity_analysis.completed).to be(false)
+        end
+      end
+    end
+
+    context "when is completed" do
+      [ # sale_price | exchanged
+        [       1000,      false ],
+        [         "",       true ],
+      ].each do |sale_price, exchanged|
+      it "returns true" do
+        unit_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        unit_sensitivity_analysis.sale_price = sale_price
+        unit_sensitivity_analysis.unit.exchanged = exchanged
+
+        expect(unit_sensitivity_analysis.completed).to be(true)
       end
     end
   end

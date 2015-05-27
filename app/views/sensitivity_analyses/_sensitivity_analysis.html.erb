@@ -11,8 +11,12 @@
 
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
-          <%= icon 'warning' %>
-          <%= t('.incomplete_analysis') %>
+          <% if sensitivity_analysis.completed %>
+            <%= t('.completed_analysis') %>
+          <% else %>
+            <%= icon 'warning' %>
+            <%= t('.incomplete_analysis') %>
+          <% end %>
         </div>
       </div>
     <% end %>

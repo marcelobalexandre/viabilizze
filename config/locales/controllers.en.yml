@@ -27,3 +27,7 @@ en:
       restricted_access: "You tried to access a page not allowed and was redirected."
     edit:
       restricted_access: "You tried to access a page not allowed and was redirected."
+    report:
+      incomplete_sensitivity_analysis: "You can not view the report of an incomplete sensitivity analysis."
+    charts:
+      incomplete_sensitivity_analysis: "You can not view the charts of an incomplete sensitivity analysis."

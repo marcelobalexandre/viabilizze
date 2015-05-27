@@ -11,13 +11,7 @@
         <div class="row collapse">
           <%= f.label :name %>
           <div class="small-12 medium-12 large-12 columns">
-            <div class="<%= "error" if @project.errors[:name].any? %>">
-              <%= f.text_field :name, autofocus: true %>
-
-              <% if @project.errors[:name].any? %>
-                <small class="error"><%= @project.errors.full_messages_for(:name).first %></small>
-              <% end %>
-            </div>
+            <%= f.text_field :name, autofocus: true %>
           </div>
         </div>
 

@@ -7,7 +7,8 @@ $(document).on('page:change', function() {
             dataType: "json",
             url: url,
             success: function(data, status, xhr) {
-                createChart(data);
+                createDoughnutChart(data);
+                createBarChart(data);
             },
             error: function(xhr, status, error) {
                 console.log(xhr);
@@ -19,7 +20,7 @@ $(document).on('page:change', function() {
     }
 });
 
-function createChart(sensitivity_analysis) {
+function createDoughnutChart(sensitivity_analysis) {
     var context = $("#doughnut-chart").get(0).getContext("2d");
 
     var data = [

@@ -36,7 +36,7 @@ function updateSellingPrice() {
                 selling_price: selling_price
             },
             success: function(data, status, xhr) {
-                input.val(data.selling_price);
+                input.val(parseFloat(data.selling_price).toFixed(2));
             },
             error: function(xhr, status, error) {
                 console.log(xhr);

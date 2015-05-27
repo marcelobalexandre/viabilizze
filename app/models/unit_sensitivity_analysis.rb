@@ -2,6 +2,7 @@ class UnitSensitivityAnalysis < ActiveRecord::Base
   belongs_to :unit
   belongs_to :sensitivity_analysis
 
+  validates :sale_price, numericality: { greater_than: 0 }, allow_blank: true
   validates :unit, presence: true
   validates :sensitivity_analysis, presence: true
 
@@ -18,20 +19,20 @@ class UnitSensitivityAnalysis < ActiveRecord::Base
   end
 
   def sales_commissions
-    calculate_and_return_zero_if_exchanged { (self.sale_price * (self.sensitivity_analysis.sales_commissions_rate / 100)).round(2) }
+    calculate_and_return_zero_if_exchanged { (self.sale_price * (self.sensitivity_analysis.sales_commissions_rate.to_s.to_d / 100)).round(2) }
   end
 
   def sales_taxes
-    calculate_and_return_zero_if_exchanged { (self.sale_price * (self.sensitivity_analysis.sales_taxes_rate / 100)).round(2) }
+    calculate_and_return_zero_if_exchanged { (self.sale_price * (self.sensitivity_analysis.sales_taxes_rate.to_s.to_d / 100)).round(2) }
   end
 
   def sales_charges
-    calculate_and_return_zero_if_exchanged { (self.sale_price * (self.sensitivity_analysis.sales_charges_rate / 100)).round(2) }
+    calculate_and_return_zero_if_exchanged { (self.sale_price * (self.sensitivity_analysis.sales_charges_rate.to_s.to_d / 100)).round(2) }
   end
 
   def individualization_costs
     calculate_and_return_zero_if_exchanged do
-      (self.sensitivity_analysis.individualization_costs / self.sensitivity_analysis.project.total_units_not_exchanged).round(2)
+      (self.sensitivity_analysis.individualization_costs.to_s.to_d / self.sensitivity_analysis.project.total_units_not_exchanged).round(2)
     end
   end
 
@@ -40,12 +41,12 @@ class UnitSensitivityAnalysis < ActiveRecord::Base
   end
 
   def construction_costs
-    (self.sensitivity_analysis.cost_per_square_meter * self.unit.total_area).round(2)
+    (self.sensitivity_analysis.cost_per_square_meter.to_s.to_d * self.unit.total_area).round(2)
   end
 
   def exchanged_units_construction_costs
     calculate_and_return_zero_if_exchanged do
-      (self.unit.total_area * self.sensitivity_analysis.exchanged_units_construction_costs_per_total_area_not_exchanged).round(2)
+      (self.unit.total_area.to_s.to_d * self.sensitivity_analysis.exchanged_units_construction_costs_per_total_area_not_exchanged.to_s.to_d).round(2)
     end
   end
 
@@ -70,6 +71,14 @@ class UnitSensitivityAnalysis < ActiveRecord::Base
 
   def profit_rate
     calculate_and_return_zero_if_exchanged { ((self.result / self.sale_price) * 100).round(2) }
+  end
+
+  def completed
+    if self.sale_price || self.unit.exchanged
+      true
+    else
+      false
+    end
   end
 
   private

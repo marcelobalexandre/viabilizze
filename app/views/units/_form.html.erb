@@ -9,28 +9,16 @@
         </div>
 
         <div class="row collapse">
-          <%= f.label :name %>
           <div class="small-12 medium-12 large-12 columns">
-            <div class="<%= "error" if @unit.errors[:name].any? %>">
-              <%= f.text_field :name, autofocus: true %>
-
-              <% if @unit.errors[:name].any? %>
-                <small class="error"><%= @unit.errors.full_messages_for(:name).first %></small>
-              <% end %>
-            </div>
+            <%= f.label :name %>
+            <%= f.text_field :name, autofocus: true %>
           </div>
         </div>
 
         <div class="row collapse">
           <%= f.label :private_area %>
           <div class="small-9 medium-9 large-9 columns">
-            <div class="<%= "error" if @unit.errors[:private_area].any? %>">
-              <%= f.number_field :private_area, step: 'any', value: number_with_precision(f.object.private_area, precision: 2, separator: '.', delimiter: '')  %>
-
-              <% if @unit.errors[:private_area].any? %>
-                <small class="error"><%= @unit.errors.full_messages_for(:private_area).first %></small>
-              <% end %>
-            </div>
+            <%= f.number_field :private_area, step: 'any', value: number_with_precision(f.object.private_area, precision: 2, separator: '.', delimiter: '')  %>
           </div>
           <div class="small-3 medium-3 large-3 columns">
             <span class="postfix">m²</span>
@@ -40,13 +28,7 @@
         <div class="row collapse">
           <%= f.label :common_area %>
           <div class="small-9 medium-9 large-9 columns">
-            <div class="<%= "error" if @unit.errors[:common_area].any? %>">
-              <%= f.number_field :common_area, step: 'any', value: number_with_precision(f.object.common_area, precision: 2, separator: '.', delimiter: '') %>
-
-              <% if @unit.errors[:common_area].any? %>
-                <small class="error"><%= @unit.errors.full_messages_for(:common_area).first %></small>
-              <% end %>
-            </div>
+            <%= f.number_field :common_area, step: 'any', value: number_with_precision(f.object.common_area, precision: 2, separator: '.', delimiter: '') %>
           </div>
           <div class="small-3 medium-3 large-3 columns">
             <span class="postfix">m²</span>
@@ -56,13 +38,7 @@
         <div class="row collapse">
           <%= f.label :box_area %>
           <div class="small-9 medium-9 large-9 columns">
-            <div class="<%= "error" if @unit.errors[:box_area].any? %>">
-              <%= f.number_field :box_area, step: 'any', value: number_with_precision(f.object.box_area, precision: 2, separator: '.', delimiter: '') %>
-
-              <% if @unit.errors[:box_area].any? %>
-                <small class="error"><%= @unit.errors.full_messages_for(:box_area).first %></small>
-              <% end %>
-            </div>
+            <%= f.number_field :box_area, step: 'any', value: number_with_precision(f.object.box_area, precision: 2, separator: '.', delimiter: '') %>
           </div>
           <div class="small-3 medium-3 large-3 columns">
             <span class="postfix">m²</span>

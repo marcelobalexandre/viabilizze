@@ -27,3 +27,7 @@ pt-BR:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
     edit:
       restricted_access: "Você tentou acessar uma página não permitida e foi redirecionado."
+    report:
+      incomplete_sensitivity_analysis: "Não é possível visualizar o relatório de uma análise de sensibilidade incompleta."
+    charts:
+      incomplete_sensitivity_analysis: "Não é possível visualizar os gráficos de uma análise de sensibilidade incompleta."

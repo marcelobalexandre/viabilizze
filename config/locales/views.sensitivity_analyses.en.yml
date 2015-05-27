@@ -37,6 +37,7 @@ en:
       submit: "Save"
     sensitivity_analysis:
       incomplete_analysis: "Incomplete analysis"
+      completed_analysis: "Completed analysis"
       charts: "Charts"
       report: "Report"
     report:

@@ -1,6 +1,7 @@
 class SensitivityAnalysesController < ApplicationController
   before_action :authenticate_user!
   before_action :validate_user, only: [:index, :show, :new, :edit]
+  before_action :validate_sensitivity_analysis, only: [:report, :charts]
 
   def index
     @sensitivity_analyses = current_project.sensitivity_analyses.paginate(page: params[:page])
@@ -45,13 +46,13 @@ class SensitivityAnalysesController < ApplicationController
   def charts
     @sensitivity_analysis = SensitivityAnalysis.find(params[:id])
 
-    data = { construction_costs: @sensitivity_analysis.construction_costs,
-             individualization_costs: @sensitivity_analysis.individualization_costs,
-             land_acquisition_cost: @sensitivity_analysis.land_acquisition_cost,
-             sales_commissions: @sensitivity_analysis.sales_commissions,
-             sales_taxes: @sensitivity_analysis.sales_taxes,
-             sales_charges: @sensitivity_analysis.sales_charges,
-             exchanged_units_expenses: @sensitivity_analysis.exchanged_units_expenses }
+    data = { construction_costs: @sensitivity_analysis.construction_costs.to_s.to_d,
+             individualization_costs: @sensitivity_analysis.individualization_costs.to_s.to_d,
+             land_acquisition_cost: @sensitivity_analysis.land_acquisition_cost.to_s.to_d,
+             sales_commissions: @sensitivity_analysis.sales_commissions.to_s.to_d,
+             sales_taxes: @sensitivity_analysis.sales_taxes.to_s.to_d,
+             sales_charges: @sensitivity_analysis.sales_charges.to_s.to_d,
+             exchanged_units_expenses: @sensitivity_analysis.exchanged_units_expenses.to_s.to_d }
     respond_to do |format|
       format.html
       format.json { render json: data, status: :ok }
@@ -70,6 +71,16 @@ class SensitivityAnalysesController < ApplicationController
   end
 
   private
+
+  def validate_sensitivity_analysis
+    if params[:id]
+      sensitivity_analysis = SensitivityAnalysis.find(params[:id])
+      if !sensitivity_analysis.completed
+          flash[:message] = t('.incomplete_sensitivity_analysis')
+          redirect_to user_project_sensitivity_analyses_path(current_user, current_project)
+      end
+    end
+  end
 
   def selling_price_params
     params.require(:selling_price).permit(:net_profit_margin,

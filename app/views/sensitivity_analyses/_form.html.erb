@@ -27,26 +27,14 @@
         <div class="row collapse">
           <%= f.label :name %>
           <div class="small-12 medium-12 large-12 columns">
-            <div class="<%= "error" if @sensitivity_analysis.errors[:name].any? %>">
-              <%= f.text_field :name, autofocus: true %>
-
-              <% if @sensitivity_analysis.errors[:name].any? %>
-                <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:name).first %></small>
-              <% end %>
-            </div>
+            <%= f.text_field :name, autofocus: true %>
           </div>
         </div>
 
         <div class="row collapse">
           <%= f.label :net_profit_margin %>
           <div class="small-9 medium-9 large-9 columns">
-            <div class="<%= "error" if @sensitivity_analysis.errors[:net_profit_margin].any? %>">
-              <%= f.number_field :net_profit_margin, step: 'any', value: number_with_precision(f.object.net_profit_margin, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, net_profit_margin: true } %>
-
-              <% if @sensitivity_analysis.errors[:net_profit_margin].any? %>
-                <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:net_profit_margin).first %></small>
-              <% end %>
-            </div>
+            <%= f.number_field :net_profit_margin, step: 'any', value: number_with_precision(f.object.net_profit_margin, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, net_profit_margin: true } %>
           </div>
           <div class="small-3 medium-3 large-3 columns">
             <span class="postfix">%</span>
@@ -56,13 +44,7 @@
         <div class="row collapse">
           <%= f.label :sales_commissions_rate %>
           <div class="small-9 medium-9 large-9 columns">
-            <div class="<%= "error" if @sensitivity_analysis.errors[:sales_commissions_rate].any? %>">
-              <%= f.number_field :sales_commissions_rate, step: 'any', value: number_with_precision(f.object.sales_commissions_rate, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, sales_commissions_rate: true } %>
-
-              <% if @sensitivity_analysis.errors[:sales_commissions_rate].any? %>
-                <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:sales_commissions_rate).first %></small>
-              <% end %>
-            </div>
+            <%= f.number_field :sales_commissions_rate, step: 'any', value: number_with_precision(f.object.sales_commissions_rate, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, sales_commissions_rate: true } %>
           </div>
           <div class="small-3 medium-3 large-3 columns">
             <span class="postfix">%</span>
@@ -72,13 +54,7 @@
         <div class="row collapse">
           <%= f.label :sales_taxes_rate %>
           <div class="small-9 medium-9 large-9 columns">
-            <div class="<%= "error" if @sensitivity_analysis.errors[:sales_taxes_rate].any? %>">
-              <%= f.number_field :sales_taxes_rate, step: 'any', value: number_with_precision(f.object.sales_taxes_rate, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, sales_taxes_rate: true } %>
-
-              <% if @sensitivity_analysis.errors[:sales_taxes_rate].any? %>
-                <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:sales_taxes_rate).first %></small>
-              <% end %>
-            </div>
+            <%= f.number_field :sales_taxes_rate, step: 'any', value: number_with_precision(f.object.sales_taxes_rate, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, sales_taxes_rate: true } %>
           </div>
           <div class="small-3 medium-3 large-3 columns">
             <span class="postfix">%</span>
@@ -88,13 +64,7 @@
         <div class="row collapse">
           <%= f.label :sales_charges_rate %>
           <div class="small-9 medium-9 large-9 columns">
-            <div class="<%= "error" if @sensitivity_analysis.errors[:sales_charges_rate].any? %>">
-              <%= f.number_field :sales_charges_rate, step: 'any', value: number_with_precision(f.object.sales_charges_rate, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, sales_charges_rate: true } %>
-
-              <% if @sensitivity_analysis.errors[:sales_charges_rate].any? %>
-                <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:sales_charges_rate).first %></small>
-              <% end %>
-            </div>
+            <%= f.number_field :sales_charges_rate, step: 'any', value: number_with_precision(f.object.sales_charges_rate, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, sales_charges_rate: true } %>
           </div>
           <div class="small-3 medium-3 large-3 columns">
             <span class="postfix">%</span>
@@ -107,13 +77,7 @@
             <span class="prefix"><%= t('.currency') %></span>
           </div>
           <div class="small-9 medium-9 large-9 columns">
-            <div class="<%= "error" if @sensitivity_analysis.errors[:individualization_costs].any? %>">
-              <%= f.number_field :individualization_costs, step: 'any', value: number_with_precision(f.object.individualization_costs, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, individualization_costs: true } %>
-
-              <% if @sensitivity_analysis.errors[:individualization_costs].any? %>
-                <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:individualization_costs).first %></small>
-              <% end %>
-            </div>
+            <%= f.number_field :individualization_costs, step: 'any', value: number_with_precision(f.object.individualization_costs, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, individualization_costs: true } %>
           </div>
         </div>
 
@@ -123,13 +87,7 @@
             <span class="prefix"><%= t('.currency') %></span>
           </div>
           <div class="small-9 medium-9 large-9 columns">
-            <div class="<%= "error" if @sensitivity_analysis.errors[:cost_per_square_meter].any? %>">
-              <%= f.number_field :cost_per_square_meter, step: 'any', value: number_with_precision(f.object.cost_per_square_meter, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, cost_per_square_meter: true } %>
-
-              <% if @sensitivity_analysis.errors[:cost_per_square_meter].any? %>
-                <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:cost_per_square_meter).first %></small>
-              <% end %>
-            </div>
+            <%= f.number_field :cost_per_square_meter, step: 'any', value: number_with_precision(f.object.cost_per_square_meter, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, cost_per_square_meter: true } %>
           </div>
         </div>
 
@@ -139,13 +97,7 @@
             <span class="prefix"><%= t('.currency') %></span>
           </div>
           <div class="small-9 medium-9 large-9 columns">
-            <div class="<%= "error" if @sensitivity_analysis.errors[:land_acquisition_cost].any? %>">
-              <%= f.number_field :land_acquisition_cost, step: 'any', value: number_with_precision(f.object.land_acquisition_cost, scale: 8, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, land_acquisition_cost: true } %>
-
-              <% if @sensitivity_analysis.errors[:land_acquisition_cost].any? %>
-                <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:land_acquisition_cost).first %></small>
-              <% end %>
-            </div>
+            <%= f.number_field :land_acquisition_cost, step: 'any', value: number_with_precision(f.object.land_acquisition_cost, scale: 8, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, land_acquisition_cost: true } %>
           </div>
         </div>
 
@@ -155,13 +107,7 @@
             <span class="prefix"><%= t('.currency') %></span>
           </div>
           <div class="small-9 medium-9 large-9 columns">
-            <div class="<%= "error" if @sensitivity_analysis.errors[:exchanged_units_expenses].any? %>">
-              <%= f.number_field :exchanged_units_expenses, step: 'any', value: number_with_precision(f.object.exchanged_units_expenses, scale: 8, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, exchanged_units_expenses: true } %>
-
-              <% if @sensitivity_analysis.errors[:exchanged_units_expenses].any? %>
-                <small class="error"><%= @sensitivity_analysis.errors.full_messages_for(:exchanged_units_expenses).first %></small>
-              <% end %>
-            </div>
+            <%= f.number_field :exchanged_units_expenses, step: 'any', value: number_with_precision(f.object.exchanged_units_expenses, scale: 8, precision: 2, separator: '.', delimiter: ''), data: { update_selling_price: true, exchanged_units_expenses: true } %>
           </div>
         </div>
 

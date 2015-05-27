@@ -24,7 +24,7 @@ window.ClientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'] = 
     form = $(element[0].form);
     errorFieldClass = jQuery(settings.input_tag).attr('class');
     inputErrorField = element.closest("." + (errorFieldClass.replace(" ", ".")));
-    label = form.find("label[for='" + (element.attr('id')) + "']:not(.message)");
+    label = form.find("small[for='" + (element.attr('id')) + "']:not(.message)");
     labelErrorField = label.closest("." + errorFieldClass);
     if (inputErrorField[0]) {
       inputErrorField.find("#" + (element.attr('id'))).detach();

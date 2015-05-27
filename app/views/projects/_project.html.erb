@@ -23,8 +23,13 @@
 
       <div class="row collapse">
         <div class="small-12 medium-12 large-12 columns">
-          <%= icon 'warning' %>
-          <%= t('.no_analysis') %>
+          <% if project.sensitivity_analyses.count == 0 %>
+            <%= icon 'warning' %> <%= t('.no_analysis') %>
+          <% elsif project.sensitivity_analyses.count == 1 %>
+            <%= "#{project.sensitivity_analyses.count} #{t('.sensitivity_analysis')}" %>
+          <% else %>
+            <%= "#{project.sensitivity_analyses.count} #{t('.sensitivity_analyses')}" %>
+          <% end %>
         </div>
       </div>
     <% end %>

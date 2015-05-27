@@ -33,11 +33,7 @@
         <div class="small-12 medium-12 large-12 columns">
             <h6 class="sensitivity-analysis-label"><strong><%= t('.sales_commissions_rate') %></strong></h6>
             <p class="sensitivity-analysis-label">
-              <% if @sensitivity_analysis.sales_commissions_rate %>
-                <%= number_with_precision(@sensitivity_analysis.sales_commissions_rate, precision: 2, separator: '.') %> %
-              <% else %>
-                <%= t('.incomplete') %>
-              <% end %>
+              <%= number_with_precision(@sensitivity_analysis.sales_commissions_rate.to_s.to_d, precision: 2, separator: '.') %> %
             </p>
         </div>
       </div>
@@ -46,11 +42,7 @@
         <div class="small-12 medium-12 large-12 columns">
             <h6 class="sensitivity-analysis-label"><strong><%= t('.sales_taxes_rate') %></strong></h6>
             <p class="sensitivity-analysis-label">
-            <% if @sensitivity_analysis.sales_taxes_rate %>
-              <%= number_with_precision(@sensitivity_analysis.sales_taxes_rate, precision: 2, separator: '.') %> %
-            <% else %>
-              <%= t('.incomplete') %>
-            <% end %>
+              <%= number_with_precision(@sensitivity_analysis.sales_taxes_rate.to_s.to_d, precision: 2, separator: '.') %> %
           </p>
         </div>
       </div>
@@ -59,11 +51,7 @@
         <div class="small-12 medium-12 large-12 columns">
             <h6 class="sensitivity-analysis-label"><strong><%= t('.sales_charges_rate') %></strong></h6>
             <p class="sensitivity-analysis-label">
-              <% if @sensitivity_analysis.sales_charges_rate %>
-                <%= number_with_precision(@sensitivity_analysis.sales_charges_rate, precision: 2, separator: '.') %> %
-              <% else %>
-                <%= t('.incomplete') %>
-              <% end %>
+              <%= number_with_precision(@sensitivity_analysis.sales_charges_rate.to_s.to_d, precision: 2, separator: '.') %> %
             </p>
         </div>
       </div>
@@ -72,11 +60,7 @@
         <div class="small-12 medium-12 large-12 columns">
             <h6 class="sensitivity-analysis-label"><strong><%= t('.individualization_costs') %></strong></h6>
             <p class="sensitivity-analysis-label">
-              <% if @sensitivity_analysis.individualization_costs %>
-                <%= number_to_currency(@sensitivity_analysis.individualization_costs) %>
-              <% else %>
-                <%= t('.incomplete') %>
-              <% end %>
+              <%= number_to_currency(@sensitivity_analysis.individualization_costs.to_s.to_d) %>
             </p>
         </div>
       </div>
@@ -98,11 +82,7 @@
         <div class="small-12 medium-12 large-12 columns">
             <h6 class="sensitivity-analysis-label"><strong><%= t('.land_acquisition_cost') %></strong></h6>
             <p class="sensitivity-analysis-label">
-              <% if @sensitivity_analysis.land_acquisition_cost %>
-                <%= number_to_currency(@sensitivity_analysis.land_acquisition_cost) %>
-              <% else %>
-                <%= t('.incomplete') %>
-              <% end %>
+              <%= number_to_currency(@sensitivity_analysis.land_acquisition_cost.to_s.to_d) %>
             </p>
         </div>
       </div>
@@ -111,11 +91,7 @@
         <div class="small-12 medium-12 large-12 columns">
             <h6 class="sensitivity-analysis-label"><strong><%= t('.exchanged_units_expenses') %></strong></h6>
             <p class="sensitivity-analysis-label">
-              <% if @sensitivity_analysis.exchanged_units_expenses %>
-                <%= number_to_currency(@sensitivity_analysis.exchanged_units_expenses) %>
-              <% else %>
-                <%= t('.incomplete') %>
-              <% end %>
+              <%= number_to_currency(@sensitivity_analysis.exchanged_units_expenses.to_s.to_d) %>
             </p>
         </div>
       </div>
@@ -142,7 +118,13 @@
                 <%= t('.exchanged_unit') %>
               <% else %>
                 <%= "#{t('.selling_price')}: #{number_to_currency(unit_sensitivity_analysis.selling_price)}" %> </br>
-                <%= "#{t('.sale_price')}: #{number_to_currency(unit_sensitivity_analysis.sale_price)}" %>
+                <%= "#{t('.sale_price')}: " %>
+
+                <% if unit_sensitivity_analysis.sale_price %>
+                  <%= number_to_currency(unit_sensitivity_analysis.sale_price) %>
+                <% else %>
+                  <%= t('.incomplete') %>
+                <% end %>
               <% end %>
             </div>
           </div>

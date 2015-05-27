@@ -32,11 +32,28 @@ describe SensitivityAnalysis do
   it { expect(subject).to respond_to(:average_profit_rate) }
   it { expect(subject).to respond_to(:project_id) }
   it { expect(subject).to respond_to(:unit_sensitivity_analyses) }
+  it { expect(subject).to respond_to(:completed) }
 
   it { expect(subject).to belong_to(:project) }
   it { expect(subject).to have_many(:unit_sensitivity_analyses) }
 
   it { expect(subject).to validate_presence_of(:name) }
+  it { expect(subject).to validate_numericality_of(:net_profit_margin).is_greater_than(0) }
+  it { expect(subject).to allow_value("", nil).for(:net_profit_margin) }
+  it { expect(subject).to validate_numericality_of(:sales_commissions_rate).is_greater_than_or_equal_to(0) }
+  it { expect(subject).to allow_value("", nil).for(:sales_commissions_rate) }
+  it { expect(subject).to validate_numericality_of(:sales_taxes_rate).is_greater_than_or_equal_to(0) }
+  it { expect(subject).to allow_value("", nil).for(:sales_taxes_rate) }
+  it { expect(subject).to validate_numericality_of(:sales_charges_rate).is_greater_than_or_equal_to(0) }
+  it { expect(subject).to allow_value("", nil).for(:sales_charges_rate) }
+  it { expect(subject).to validate_numericality_of(:individualization_costs).is_greater_than_or_equal_to(0) }
+  it { expect(subject).to allow_value("", nil).for(:individualization_costs) }
+  it { expect(subject).to validate_numericality_of(:cost_per_square_meter).is_greater_than(0) }
+  it { expect(subject).to allow_value("", nil).for(:cost_per_square_meter) }
+  it { expect(subject).to validate_numericality_of(:land_acquisition_cost).is_greater_than_or_equal_to(0) }
+  it { expect(subject).to allow_value("", nil).for(:land_acquisition_cost) }
+  it { expect(subject).to validate_numericality_of(:exchanged_units_expenses).is_greater_than_or_equal_to(0) }
+  it { expect(subject).to allow_value("", nil).for(:exchanged_units_expenses) }
   it { expect(subject).to validate_uniqueness_of(:name).scoped_to(:project_id) }
 
   describe "when name is already taken from sensitivity analysis from another project" do
@@ -391,6 +408,65 @@ describe SensitivityAnalysis do
         sensitivity_analysis.unit_sensitivity_analyses << unit_three_sensitivity_analysis
 
         expect(sensitivity_analysis.average_profit_rate).to eq(average_profit_rate)
+      end
+    end
+  end
+
+  describe "#completed" do
+    context "when is not completed" do
+      [ #   name | net_profit_margin | cost_per_square_meter | completed_units | uncompleted_units
+        [     "",                 "",                     "",                0,                  0 ],
+        [     "",                 10,                   1000,                2,                  0 ],
+        [ "Name",                 "",                   1000,                2,                  0 ],
+        [ "Name",                 10,                     "",                2,                  0 ],
+        [ "Name",                 10,                   1000,                2,                  2 ],
+      ].each do |name, net_profit_margin, cost_per_square_meter, completed_units, uncompleted_units|
+        it "returns false" do
+          sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+          sensitivity_analysis.name = name
+          sensitivity_analysis.net_profit_margin = net_profit_margin
+          sensitivity_analysis.sales_commissions_rate = ""
+          sensitivity_analysis.sales_taxes_rate = ""
+          sensitivity_analysis.sales_charges_rate = ""
+          sensitivity_analysis.individualization_costs = ""
+          sensitivity_analysis.cost_per_square_meter = cost_per_square_meter
+          sensitivity_analysis.land_acquisition_cost = ""
+          sensitivity_analysis.exchanged_units_expenses = ""
+
+          completed_units.times do
+            unit_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+            allow(unit_sensitivity_analysis).to receive(:completed).and_return(true)
+            sensitivity_analysis.unit_sensitivity_analyses << unit_sensitivity_analysis
+          end
+
+          uncompleted_units.times do
+            unit_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+            allow(unit_sensitivity_analysis).to receive(:completed).and_return(false)
+            sensitivity_analysis.unit_sensitivity_analyses << unit_sensitivity_analysis
+          end
+
+          expect(sensitivity_analysis.completed).to be(false)
+        end
+      end
+    end
+
+    context "when is completed" do
+      it "returns true" do
+        sensitivity_analysis = FactoryGirl.build(:sensitivity_analysis)
+        sensitivity_analysis.name = "Sensitivity Analysis Example"
+        sensitivity_analysis.net_profit_margin = 10
+        sensitivity_analysis.sales_commissions_rate = ""
+        sensitivity_analysis.sales_taxes_rate = ""
+        sensitivity_analysis.sales_charges_rate = ""
+        sensitivity_analysis.individualization_costs = ""
+        sensitivity_analysis.cost_per_square_meter = 1000
+        sensitivity_analysis.land_acquisition_cost = ""
+        sensitivity_analysis.exchanged_units_expenses = ""
+        unit_sensitivity_analysis = FactoryGirl.build(:unit_sensitivity_analysis)
+        allow(unit_sensitivity_analysis).to receive(:completed).and_return(true)
+        sensitivity_analysis.unit_sensitivity_analyses << unit_sensitivity_analysis
+
+        expect(sensitivity_analysis.completed).to be(true)
       end
     end
   end
