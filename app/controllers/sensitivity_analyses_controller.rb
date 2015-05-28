@@ -45,14 +45,8 @@ class SensitivityAnalysesController < ApplicationController
 
   def charts
     @sensitivity_analysis = SensitivityAnalysis.find(params[:id])
+    data = get_data_to_charts(@sensitivity_analysis)
 
-    data = { construction_costs: @sensitivity_analysis.construction_costs.to_s.to_d,
-             individualization_costs: @sensitivity_analysis.individualization_costs.to_s.to_d,
-             land_acquisition_cost: @sensitivity_analysis.land_acquisition_cost.to_s.to_d,
-             sales_commissions: @sensitivity_analysis.sales_commissions.to_s.to_d,
-             sales_taxes: @sensitivity_analysis.sales_taxes.to_s.to_d,
-             sales_charges: @sensitivity_analysis.sales_charges.to_s.to_d,
-             exchanged_units_expenses: @sensitivity_analysis.exchanged_units_expenses.to_s.to_d }
     respond_to do |format|
       format.html
       format.json { render json: data, status: :ok }
@@ -71,6 +65,16 @@ class SensitivityAnalysesController < ApplicationController
   end
 
   private
+
+  def get_data_to_charts(sensitivity_analysis)
+    { construction_costs: sensitivity_analysis.construction_costs.to_s.to_d,
+      individualization_costs: sensitivity_analysis.individualization_costs.to_s.to_d,
+      land_acquisition_cost: sensitivity_analysis.land_acquisition_cost.to_s.to_d,
+      sales_commissions: sensitivity_analysis.sales_commissions.to_s.to_d,
+      sales_taxes: sensitivity_analysis.sales_taxes.to_s.to_d,
+      sales_charges: sensitivity_analysis.sales_charges.to_s.to_d,
+      exchanged_units_expenses: sensitivity_analysis.exchanged_units_expenses.to_s.to_d }
+  end
 
   def validate_sensitivity_analysis
     if params[:id]
