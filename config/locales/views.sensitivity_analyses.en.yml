@@ -43,6 +43,7 @@ en:
     report:
       title: "Sensitivity Analysis Report"
       report_title: "Sensitivity Analysis Report"
+      sensitivity_analysis: "Sensitivity Analysis"
       project: "Report"
       incidences_on_sales: "Incidences on Sales"
       sales_commissions_rate: "Sales Comissions"
@@ -73,5 +74,7 @@ en:
     charts:
       title: "Charts"
       chart_title: "Charts - Sensitivity Analysis"
+      sensitivity_analysis: "Sensitivity Analysis"
+      project: "Project"
       total_construction_and_sales_costs: "Total Construction and Sales Costs"
       print_button: "Print"

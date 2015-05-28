@@ -43,6 +43,7 @@ pt-BR:
     report:
       title: "Relatório de Análise de Sensibilidade"
       report_title: "Relatório de Análise de Sensibilidade"
+      sensitivity_analysis: "Análise de Sensibilidade"
       project: "Empreendimento"
       incidences_on_sales: "Incidências sobre Vendas"
       sales_commissions_rate: "Comissões sobre Vendas"
@@ -73,5 +74,7 @@ pt-BR:
     charts:
       title: "Gráficos"
       chart_title: "Gráficos - Análise de Sensibilidade"
+      sensitivity_analysis: "Análise de Sensibilidade"
+      project: "Empreendimento"
       total_construction_and_sales_costs: "Custos e Despesas Totais de Construção e Vendas"
       print_button: "Imprimir"

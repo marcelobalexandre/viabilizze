@@ -70,7 +70,7 @@ function createDoughnutChart(sensitivity_analysis) {
 
     var options = {
         tooltipTemplate: "<%= numberToCurrency(value) %>",
-        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%> !important\"></span><%if(segments[i].label){%><%=segments[i].label%> <div class=\"right\"><%=numberToCurrency(segments[i].value)%></div><%}%></li><%}%></ul>"
+        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%> !important\"></span><%if(segments[i].label){%><%=segments[i].label%> <div class=\"right hide-for-small\"><%=numberToCurrency(segments[i].value)%></div><%}%></li><%}%></ul>"
     };
 
     var doughnutChart = new Chart(context).Doughnut(data, options);

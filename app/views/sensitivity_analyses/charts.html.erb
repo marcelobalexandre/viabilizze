@@ -5,12 +5,12 @@
 <div class="row">
   <div class="small-12 medium-8 medium-offset-2 large-8 large-offset-2 columns">
     <div class="row collapse">
-      <div class="small-12 medium-12 large-12 columns text-center chart-header">
-        <h4 class="chart-title"><strong><%= t('.chart_title') %></strong></h4>
+      <div class="small-12 medium-12 large-12 columns chart-header">
+        <h4 class="report-title hide-for-small-up show-for-print text-center "><strong><%= t('.chart_title') %></strong></h4>
 
-        <h4 class="subheader"><%= @sensitivity_analysis.name %></h4>
+        <strong><%= "#{t('.sensitivity_analysis')}:" %></strong> <%= @sensitivity_analysis.name %></br>
 
-        <h4><strong><%= @sensitivity_analysis.project.name %></strong></h4>
+        <strong><%= "#{t('.project')}:" %></strong> <%= @sensitivity_analysis.project.name %>
       </div>
     </div>
 
