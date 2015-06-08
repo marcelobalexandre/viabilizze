@@ -36,7 +36,7 @@ describe User do
 
   it { expect(subject).to validate_presence_of(:name) }
   it { expect(subject).to validate_length_of(:name).is_at_least(3).is_at_most(35) }
-  
+
   it { expect(subject).to validate_presence_of(:email) }
   it { expect(subject).not_to allow_value('user@foo,com',
                                           'user_at_foo.org',
@@ -47,6 +47,7 @@ describe User do
   it { expect(subject).to allow_value('user@foo.COM',
                                       'A_US-ER@f.b.org',
                                       'frst.lst@foo.jp','a+b@baz.cn').for(:email) }
+  it { expect(subject).to validate_presence_of(:email) }
   it { expect(subject).to validate_length_of(:email).is_at_most(100) }
   it { expect(subject).to validate_uniqueness_of(:email) }
 

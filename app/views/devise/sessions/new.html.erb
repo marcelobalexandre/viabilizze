@@ -11,13 +11,7 @@
             <span class="prefix field-icon fi-mail"></span>
           </div>
           <div class="small-10 medium-10 large-11 columns">
-            <div class="<%= "error" if resource.errors[:email].any? %>">
-              <%= f.email_field :email, placeholder: t('.email_field_placeholder'), autofocus: true %>
-
-              <% if resource.errors[:email].any? %>
-                <small class="error"><%= resource.errors.full_messages_for(:email).first %></small>
-              <% end %>
-            </div>
+            <%= f.email_field :email, placeholder: t('.email_field_placeholder'), autofocus: true %>
           </div>
         </div>
 
@@ -26,13 +20,7 @@
             <span class="prefix field-icon fi-lock"></span>
           </div>
           <div class="small-10 medium-10 large-11 columns">
-            <div class="<%= "error" if resource.errors[:password].any? %>">
-              <%= f.password_field :password, placeholder: t('.password_field_placeholder'), autocomplete: "off" %>
-
-              <% if resource.errors[:password].any? %>
-                <small class="error"><%= resource.errors.full_messages_for(:password).first %></small>
-              <% end %>
-            </div>
+            <%= f.password_field :password, placeholder: t('.password_field_placeholder'), autocomplete: "off" %>
           </div>
         </div>
 
@@ -42,7 +30,7 @@
             <%= f.label :remember_me %>
           </div>
         </div>
-  
+
         <div class="row collapse">
           <div class="small-12 medium-12 large-12 columns">
             <%= f.submit t('.submit'), class: "button expand" %>

@@ -90,19 +90,19 @@ Then(/^devo ver uma mensagem de conta criada com sucesso$/) do
 end
 
 Then(/^devo ver uma mensagem de nome ausente$/) do
-  expect(page).to have_content "Nome completo não pode ficar em branco"
+  expect(page).to have_content "não pode ficar em branco"
 end
 
 Then(/^devo ver uma mensagem de e\-mail inválido$/) do
-  expect(page).to have_content "Endereço de e-mail não é válido"
+  expect(page).to have_content "não é válido"
 end
 
 Then(/^devo ver uma mensagem de senha ausente$/) do
-  expect(page).to have_content "Senha não pode ficar em branco"
+  expect(page).to have_content "não pode ficar em branco"
 end
 
 Then(/^devo ver uma mensagem de confirmação incorreta$/) do
-  expect(page).to have_content "Confirmação de senha não é igual a Senha"
+  expect(page).to have_content "não é igual a Senha"
 end
 
 Then(/^devo ver uma mensagem de conexão inválida$/) do

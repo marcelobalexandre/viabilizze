@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true) do |f| %>
   <div class="row">
     <div class="small-12 medium-6 medium-offset-3 large-6 large-offset-3 columns">
       <div class="panel">
@@ -17,13 +17,7 @@
             <span class="prefix field-icon fi-torso"></span>
           </div>
           <div class="small-10 medium-10 large-11 columns">
-            <div class="<%= "error" if resource.errors[:name].any? %>">
-              <%= f.text_field :name, placeholder: t('.name_field_placeholder'), autofocus: true %>
-
-              <% if resource.errors[:name].any? %>
-                <small class="error"><%= resource.errors.full_messages_for(:name).first %></small>
-              <% end %>
-            </div>
+            <%= f.text_field :name, placeholder: t('.name_field_placeholder'), autofocus: true %>
           </div>
         </div>
 
@@ -32,13 +26,7 @@
             <span class="prefix field-icon fi-mail"></span>
           </div>
           <div class="small-10 medium-10 large-11 columns">
-            <div class="<%= "error" if resource.errors[:email].any? %>">
-              <%= f.email_field :email, placeholder: t('.email_field_placeholder') %>
-
-              <% if resource.errors[:email].any? %>
-                <small class="error"><%= resource.errors.full_messages_for(:email).first %></small>
-              <% end %>
-            </div>
+            <%= f.email_field :email, placeholder: t('.email_field_placeholder') %>
           </div>
         </div>
 
@@ -47,13 +35,7 @@
             <span class="prefix field-icon fi-lock"></span>
           </div>
           <div class="small-10 medium-10 large-11 columns">
-            <div class="<%= "error" if resource.errors[:password].any? %>">
-              <%= f.password_field :password, placeholder: t('.password_field_placeholder'), autocomplete: "off" %>
-
-              <% if resource.errors[:password].any? %>
-                <small class="error"><%= resource.errors.full_messages_for(:password).first %></small>
-              <% end %>
-            </div>
+            <%= f.password_field :password, placeholder: t('.password_field_placeholder'), autocomplete: "off" %>
           </div>
         </div>
 
@@ -62,13 +44,7 @@
             <span class="prefix field-icon fi-lock"></span>
           </div>
           <div class="small-10 medium-10 large-11 columns">
-            <div class="<%= "error" if resource.errors[:password_confirmation].any? %>">
-              <%= f.password_field :password_confirmation, placeholder: t('.password_confirmation_field_placeholder'), autocomplete: "off" %>
-
-              <% if resource.errors[:password_confirmation].any? %>
-                <small class="error"><%= resource.errors.full_messages_for(:password_confirmation).first %></small>
-              <% end %>
-            </div>
+            <%= f.password_field :password_confirmation, placeholder: t('.password_confirmation_field_placeholder'), autocomplete: "off" %>
           </div>
         </div>
 
@@ -89,8 +65,8 @@
     <p class="create-user-agreement">
       <small>
         <%= t('.terms_first_line') %>
-        <%= link_to t('.terms_of_use_link'), "#" %> 
-        <%= t('.terms_second_line') %> 
+        <%= link_to t('.terms_of_use_link'), "#" %>
+        <%= t('.terms_second_line') %>
         <%= link_to t('.privacy_policy_link'), "#" %>
       </small>
     </p>
