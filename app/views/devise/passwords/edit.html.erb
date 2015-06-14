@@ -30,7 +30,6 @@
           </div>
           <div class="small-10 medium-10 large-11 columns">
               <%= f.password_field :password, placeholder: t('.password_field_placeholder'), autofocus: true, autocomplete: "off" %>
-            </div>
           </div>
         </div>
 
@@ -41,10 +40,6 @@
           <div class="small-10 medium-10 large-11 columns">
             <div class="<%= "error" if resource.errors[:password_confirmation].any? %>">
               <%= f.password_field :password_confirmation, placeholder: t('.password_confirmation_field_placeholder'), autocomplete: "off" %>
-
-              <% if resource.errors[:password_confirmation].any? %>
-                <small class="error"><%= resource.errors.full_messages_for(:password_confirmation).first %></small>
-              <% end %>
             </div>
           </div>
         </div>
